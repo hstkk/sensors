@@ -1,15 +1,31 @@
 @(title: String)(content: Html)
 
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
-    </head>
-    <body>
-        @content
+	<head>
+		<title>@title - Demo</title>
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/styles.css")">
+		<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+	</head>
+	<body>
+		<header class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="@controllers.routes.Application.index()">Demo</a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li><a href="@controllers.routes.Application.index()">Home</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+	    </header>
+	    <article class="container">
+	    	<header>
+				<h1>@title</h1>
+			</header>
+			@content
+	    </article>
     </body>
 </html>
