@@ -21,7 +21,11 @@ public class Application extends Controller {
 		return TODO;
 	}
 	
-	public static Result show(int id){
+	public static Result result(int id){
+		return TODO;
+	}
+	
+	public static Result resultAsJson(int id){
 		return TODO;
 	}
 	

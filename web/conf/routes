@@ -6,7 +6,8 @@
 GET		/							controllers.Application.index()
 GET		/page/:n					controllers.Application.page(n: Int)
 GET		/							controllers.Application.search(q: String ?= "")
-GET		/:id						controllers.Application.show(id: Int)
+GET		/:id						controllers.Application.result(id: Int)
+GET		/:id/json					controllers.Application.resultAsJson(id: Int)
 GET		/map						controllers.Application.map()
 
 # Map static resources from the /public folder to the /assets URL path
