@@ -4,6 +4,8 @@ import play.*;
 import play.mvc.*;
 import views.html.*;
 import models.*;
+import play.libs.*;
+import java.util.*;
 
 /**
  * @author Sami Hostikka
@@ -29,15 +31,9 @@ public class Application extends Controller {
 		return TODO;
 	}
 
-	public static Result resultAsJson(int id) {
-		Sensor sensor = Sensor.findById(id);
-		if (sensor == null)
-			return badRequest(views.html.notFound.render());
-		return TODO;
-	}
-
 	public static Result map() {
 		return TODO;
+		//return ok(Json.toJson(list));
 	}
 
 }
