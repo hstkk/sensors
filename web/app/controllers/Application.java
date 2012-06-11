@@ -16,7 +16,7 @@ public class Application extends Controller {
 		return page(1);
 	}
 
-	public static Result page(int n) {
+	public static Result page(int page) {
 		return TODO;
 	}
 
