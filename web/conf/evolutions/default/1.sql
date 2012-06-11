@@ -3,6 +3,11 @@
 
 # --- !Ups
 
+create table device (
+  id                        varchar(255),
+  name                      varchar(255))
+;
+
 create table network (
   id                        integer not null,
   name                      varchar(255),
@@ -11,7 +16,14 @@ create table network (
   constraint pk_network primary key (id))
 ;
 
+create table sensor (
+  id                        integer not null,
+  constraint pk_sensor primary key (id))
+;
+
 create sequence network_seq;
+
+create sequence sensor_seq;
 
 
 
@@ -20,9 +32,15 @@ create sequence network_seq;
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists device;
+
 drop table if exists network;
+
+drop table if exists sensor;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists network_seq;
+
+drop sequence if exists sensor_seq;
 

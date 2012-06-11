@@ -4,9 +4,9 @@
 
 # Home page
 GET		/							controllers.Application.index()
-GET		/page/:n					controllers.Application.page(n: Int)
+GET		/page/:page					controllers.Application.page(page: Int)
 GET		/							controllers.Application.search(q: String ?= "")
-GET		/:id						controllers.Application.show(id: Int)
+GET		/:id						controllers.Application.result(id: Int)
 GET		/map						controllers.Application.map()
 
 # Map static resources from the /public folder to the /assets URL path
