@@ -3,6 +3,7 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import views.html.*;
+import models.*;
 
 /**
  * @author Sami Hostikka
@@ -13,24 +14,30 @@ public class Application extends Controller {
 		return page(1);
 	}
 
-	public static Result page(int n){
+	public static Result page(int n) {
 		return TODO;
 	}
-	
-	public static Result search(String query){
+
+	public static Result search(String query) {
 		return TODO;
 	}
-	
-	public static Result result(int id){
+
+	public static Result result(int id) {
+		Sensor sensor = Sensor.findById(id);
+		if (sensor == null)
+			return badRequest(views.html.notFound.render());
 		return TODO;
 	}
-	
-	public static Result resultAsJson(int id){
+
+	public static Result resultAsJson(int id) {
+		Sensor sensor = Sensor.findById(id);
+		if (sensor == null)
+			return badRequest(views.html.notFound.render());
 		return TODO;
 	}
-	
-	public static Result map(){
+
+	public static Result map() {
 		return TODO;
 	}
-	
+
 }
