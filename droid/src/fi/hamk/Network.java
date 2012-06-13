@@ -1,15 +1,11 @@
 package fi.hamk;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
+import android.telephony.TelephonyManager;
+import android.widget.Toast;
 
 public class Network {
 
@@ -27,22 +23,13 @@ public class Network {
 		return wifiManager.getScanResults();
 	}
 
-	public String getBluetooth() {
-		BluetoothAdapter bluetoothAdapter = BluetoothAdapter
-				.getDefaultAdapter();
-		if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled())
-			return null;
-		bluetoothAdapter.startDiscovery();
-		while (bluetoothAdapter.isDiscovering())
-			;
-		BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-			List<BluetoothDevice> bluetoothDevices = new ArrayList<BluetoothDevice>();
-
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				bluetoothDevices.add((BluetoothDevice) intent
-						.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE));
-			}
-		};
+	// http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkType%28%29
+	public void getNetwork() {
+		TelephonyManager telephonyManager = (TelephonyManager) context
+				.getSystemService(Context.TELEPHONY_SERVICE);
+		Toast.makeText(context,
+				"operator " + telephonyManager.getNetworkOperatorName()
+						+ "\nType " + telephonyManager.getNetworkType()
+						+ "\nRoaming" + telephonyManager.isNetworkRoaming(), 50);
 	}
 }
