@@ -20,4 +20,5 @@
         </activity>
     </application>
 
+    <uses-feature android:name="android.hardware.wifi" />
 </manifest>
