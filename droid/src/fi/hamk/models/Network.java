@@ -1,5 +1,6 @@
 package fi.hamk.models;
 
+import java.security.MessageDigest;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 
@@ -8,6 +9,7 @@ import android.telephony.gsm.GsmCellLocation;
  */
 public class Network {
 
+	public String id;
 	public String operator;
 	public String type;
 	public boolean isNetworkRoaming;
@@ -21,6 +23,7 @@ public class Network {
 				.getCellLocation();
 		if (gsmCellLocation != null)
 			cell = gsmCellLocation.getCid();
+		this.id = encrypt(telephonyManager.getDeviceId());
 		this.operator = telephonyManager.getNetworkOperatorName();
 		this.isNetworkRoaming = telephonyManager.isNetworkRoaming();
 		switch (telephonyManager.getNetworkType()) {
@@ -59,6 +62,17 @@ public class Network {
 		default:
 			this.type = "unknown";
 			break;
+		}
+	}
+
+	private String encrypt(String id) {
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+			messageDigest.reset();
+			messageDigest.update(id.getBytes("UTF-8"));
+			return messageDigest.digest().toString();
+		} catch (Exception e) {
+			return null;
 		}
 	}
 }
