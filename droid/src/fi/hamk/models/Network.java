@@ -9,7 +9,7 @@ import android.telephony.gsm.GsmCellLocation;
  */
 public class Network {
 
-	public String id;
+	public String deviceId;
 	public String operator;
 	public String type;
 	public boolean isNetworkRoaming;
@@ -23,7 +23,7 @@ public class Network {
 				.getCellLocation();
 		if (gsmCellLocation != null)
 			cell = gsmCellLocation.getCid();
-		this.id = encrypt(telephonyManager.getDeviceId());
+		this.deviceId = encrypt(telephonyManager.getDeviceId());
 		this.operator = telephonyManager.getNetworkOperatorName();
 		this.isNetworkRoaming = telephonyManager.isNetworkRoaming();
 		switch (telephonyManager.getNetworkType()) {
