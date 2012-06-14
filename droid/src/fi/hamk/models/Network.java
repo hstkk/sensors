@@ -11,7 +11,7 @@ public class Network {
 	public String operator;
 	public String type;
 	public boolean isNetworkRoaming;
-	public int cell;
+	public Integer cell = null;
 
 	public Network() {
 	}
