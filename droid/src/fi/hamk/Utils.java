@@ -3,8 +3,10 @@ package fi.hamk;
 import java.util.List;
 
 import fi.hamk.models.Device;
+import fi.hamk.models.Location;
 import fi.hamk.models.Network;
 import android.content.Context;
+import android.location.LocationManager;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
 import android.telephony.TelephonyManager;
@@ -32,7 +34,9 @@ public class Utils {
 		return new Device();
 	}
 
-	public static void getLocation() {
-
+	public static Location getLocation(Context context) {
+		return new Location(
+				(LocationManager) context
+						.getSystemService(Context.LOCATION_SERVICE));
 	}
 }

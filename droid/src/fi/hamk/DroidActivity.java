@@ -16,11 +16,17 @@ public class DroidActivity extends Activity {
 		setContentView(R.layout.main);
 		textView = (TextView) findViewById(R.id.textView);
 	}
-	
-	public void magic(View view){
+
+	public void magic(View view) {
 		Network n = Utils.getNetwork(this);
 		Device d = Utils.getDevice();
+		Location l = Utils.getLocation(this);
 		textView.setText("Operator " + n.operator + "\nCell " + n.cell
-				+ "\nType " + n.type + "\nroaming " + n.isNetworkRoaming+"\n\nbrand " + d.brand + "\ndevice " + d.device + "\nmanufacturer " + d.manufacturer + "\nmodel " + d.model + "\nproduct " + d.product + "\nandroid " + d.version);
+				+ "\nType " + n.type + "\nroaming " + n.isNetworkRoaming
+				+ "\n\nbrand " + d.brand + "\ndevice " + d.device
+				+ "\nmanufacturer " + d.manufacturer + "\nmodel " + d.model
+				+ "\nproduct " + d.product + "\nandroid " + d.version
+				+ "\n\nAltitude " + l.altitude + "\nLatitude " + l.latitude
+				+ "\nLongitude " + l.longitude);
 	}
 }
