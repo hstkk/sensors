@@ -10,19 +10,23 @@ import play.db.ebean.Model;
 @Entity
 public class Device extends Model {
 
-	public String id;
+	public String device;
 
-	@NotNull
-	public String name;
+	public String manufacturer;
 
-	@NotNull
+	public String version;
+
+	public String brand;
+
+	public String model;
+
+	public String product;
 
 	public Device() {
 	}
 
-	public Device(String id, String name) {
+	public Device(String id) {
 		this.id = id;
-		this.name = name;
 		this.save();
 	}
 
