@@ -32,10 +32,10 @@ public class Sensor extends Model {
 		}
 	}
 
-	public static Page<Sensor> page(int page) {
+	public static Page<Sensor> page(int page, String order, String by) {
 		try {
 			int pageSize = 10;
-			return find.orderBy("created desc").findPagingList(pageSize)
+			return find.orderBy(by + " " + order).findPagingList(pageSize)
 					.getPage(page);
 		} catch (Exception e) {
 			return null;
