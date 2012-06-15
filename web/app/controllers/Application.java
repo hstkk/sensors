@@ -13,7 +13,7 @@ import java.util.*;
 public class Application extends Controller {
 
 	public static Result index(String order, String by) {
-		return page(1, order, by);
+		return page(0, order, by);
 	}
 
 	public static Result page(int page, String order, String by) {
