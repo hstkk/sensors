@@ -3,6 +3,10 @@
 @import tags._ 
 
 @main("Results") {
+
+@table(1, order, by) {
+	<strong>Woot</strong>
+}
 	@if(results == null || results.getTotalRowCount == 0) {
 		@alert() {
 			No results!

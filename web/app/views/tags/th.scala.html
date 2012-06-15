@@ -1,9 +1,22 @@
 @(title: String, href: String, page: Int, order: String, by: String)
 
-@if(page >= 0) {
-	<th>
-		<a href="routes.Application.page()" title="Sort by @title">@title</a>
-	</th>
-} else {
-	<th>@title</th>
-}
+<th>
+	@if(page >= 0) {
+		<a href="
+			@if(href.equals(by)) {
+				@routes.Application.page(page,
+					if(order == "asc") {
+						"desc"
+					} else {
+						"asc"
+					}
+				, href)
+				" class="@order
+			} else {
+				@routes.Application.page(page, "asc", href)
+			}
+			" title="Sort by @title">@title</a>
+	} else {
+		@title
+	}
+</th>
