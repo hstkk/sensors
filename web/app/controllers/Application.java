@@ -17,7 +17,8 @@ public class Application extends Controller {
 	}
 
 	public static Result page(int page, String order, String by) {
-		return TODO;
+		return ok(views.html.results.render(Sensor.page(page, order, by),
+				order, by));
 	}
 
 	public static Result result(int id) {
@@ -29,7 +30,7 @@ public class Application extends Controller {
 
 	public static Result map() {
 		return TODO;
-		//return ok(Json.toJson(list));
+		// return ok(Json.toJson(list));
 	}
 
 }
