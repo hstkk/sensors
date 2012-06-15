@@ -1,4 +1,11 @@
 @(results: Page[Sensor], order: String, by: String)
 
-@main("Results") { 
+@import tags._ 
+
+@main("Results") {
+	@if(results == null || results.getTotalRowCount == 0) {
+		@alert() {
+			No results!
+		}
+	}
 }
