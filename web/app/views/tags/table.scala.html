@@ -1,0 +1,13 @@
+@(sortable: Boolean, order: String, by: String)(tbody: Html)
+
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			@th("Date", "date", sortable, order, by)
+			@th("Operator", "operator", sortable, order, by)
+		</tr>
+	</thead>
+	<tbody>
+		@tbody
+	</tbody>
+</table>
