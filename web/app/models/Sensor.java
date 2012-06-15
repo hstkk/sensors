@@ -16,7 +16,7 @@ public class Sensor extends Model {
 	public int id;
 
 	@Required
-	public static Date created;
+	public Date created;
 
 	public Sensor() {
 	}

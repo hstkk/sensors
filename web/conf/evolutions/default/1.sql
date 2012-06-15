@@ -23,6 +23,7 @@ create table network (
 
 create table sensor (
   id                        integer not null,
+  created                   timestamp,
   constraint pk_sensor primary key (id))
 ;
 

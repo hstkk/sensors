@@ -1,1 +1,11 @@
 @(result: Sensor)
+
+<tr>
+	<td>
+		@if(result.created == null) {
+			<em>-</em>
+		} else {
+			result.created
+		}
+	</td>
+</tr>

@@ -3,16 +3,30 @@
 @import tags._ 
 
 @main("Results") {
-
-@table(1, order, by) {
-	<strong>Woot</strong>
-}
 	@if(results == null || results.getTotalRowCount == 0) {
 		@alert() {
 			No results!
 		}
 	} else {
 		@table(results.getPageIndex, order, by) {
+			@for(result <- results.getList) {
+				@tags.result(result)
+			}
 		}
+
+		<div class="pagination">
+			<ul>
+				@if(results.hasPrev) {
+					<li><a href="@routes.Application.page(results.getPageIndex - 1, order, by)">&larr; Previous</a></li>
+				} else {
+					<li class="disabled"><a>&larr; Previous</a></li>
+				}
+				@if(results.hasNext) {
+					<li><a href="@routes.Application.page(results.getPageIndex + 1, order, by)">Next &rarr;</a></li>
+				} else {
+					<li class="disabled"><a>Next &rarr;</a></li>
+				}
+			</ul>
+		</div>
 	}
 }
