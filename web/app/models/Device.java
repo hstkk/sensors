@@ -10,6 +10,8 @@ import play.db.ebean.Model;
 @Entity
 public class Device extends Model {
 
+	public String deviceId;
+
 	public String device;
 
 	public String manufacturer;
@@ -23,11 +25,6 @@ public class Device extends Model {
 	public String product;
 
 	public Device() {
-	}
-
-	public Device(String id) {
-		this.id = id;
-		this.save();
 	}
 
 	public static Finder<Long, Device> find = new Finder<Long, Device>(

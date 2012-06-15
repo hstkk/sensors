@@ -12,15 +12,11 @@ import java.util.*;
  */
 public class Application extends Controller {
 
-	public static Result index() {
-		return page(1);
+	public static Result index(String order, String by) {
+		return page(1, order, by);
 	}
 
-	public static Result page(int page) {
-		return TODO;
-	}
-
-	public static Result search(String query) {
+	public static Result page(int page, String order, String by) {
 		return TODO;
 	}
 

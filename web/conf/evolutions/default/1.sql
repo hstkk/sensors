@@ -4,8 +4,13 @@
 # --- !Ups
 
 create table device (
-  id                        varchar(255),
-  name                      varchar(255))
+  device_id                 varchar(255),
+  device                    varchar(255),
+  manufacturer              varchar(255),
+  version                   varchar(255),
+  brand                     varchar(255),
+  model                     varchar(255),
+  product                   varchar(255))
 ;
 
 create table network (

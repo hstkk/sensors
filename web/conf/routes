@@ -3,9 +3,8 @@
 # ~~~~
 
 # Home page
-GET		/							controllers.Application.index()
-GET		/page/:page					controllers.Application.page(page: Int)
-GET		/							controllers.Application.search(q: String ?= "")
+GET		/							controllers.Application.index(order: String ?= "desc", by: String ?="id")
+GET		/page/:page					controllers.Application.page(page: Int, order: String ?= "desc", by: String ?="id")
 GET		/:id						controllers.Application.result(id: Int)
 GET		/map						controllers.Application.map()
 
