@@ -25,7 +25,7 @@ public class Application extends Controller {
 		Sensor sensor = Sensor.findById(id);
 		if (sensor == null)
 			return badRequest(views.html.notFound.render());
-		return TODO;
+		return ok(views.html.result.render(sensor));
 	}
 
 	public static Result map() {

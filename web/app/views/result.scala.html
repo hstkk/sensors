@@ -1,0 +1,9 @@
+@(sensor: Sensor)
+
+@import tags._ 
+
+@main("Result") {
+	@table(-1, "", "") {
+			@tags.result(sensor)
+	}
+}
