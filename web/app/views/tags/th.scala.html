@@ -1,6 +1,6 @@
-@(title: String, href: String, sortable: Boolean, order: String, by: String)
+@(title: String, href: String, page: Int, order: String, by: String)
 
-@if(sortable) {
+@if(page >= 0) {
 	<th>
 		<a href="routes.Application.page()" title="Sort by @title">@title</a>
 	</th>
