@@ -12,8 +12,6 @@ public class Device extends Model {
 
 	public String deviceId;
 
-	public String device;
-
 	public String manufacturer;
 
 	public String version;
@@ -21,8 +19,6 @@ public class Device extends Model {
 	public String brand;
 
 	public String model;
-
-	public String product;
 
 	public Device() {
 	}

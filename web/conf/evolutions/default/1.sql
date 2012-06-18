@@ -5,12 +5,10 @@
 
 create table device (
   device_id                 varchar(255),
-  device                    varchar(255),
   manufacturer              varchar(255),
   version                   varchar(255),
   brand                     varchar(255),
-  model                     varchar(255),
-  product                   varchar(255))
+  model                     varchar(255))
 ;
 
 create table network (
