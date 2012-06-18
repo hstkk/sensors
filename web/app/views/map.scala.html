@@ -1,8 +1,46 @@
-@***********************
-* author Sami Hostikka *
-***********************@
 @(json: String)
-
-@main("Map") {
- 
-}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Map - Demo</title>
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/styles.css")">
+	<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
+	<style type="text/css">
+		html, body, #map {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+	</style>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript">
+		var map;
+		function initialize() {
+			var myOptions = {
+				disableDefaultUI: true,
+				zoom: 5,
+				center: new google.maps.LatLng(65,26),
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById('map'), myOptions);
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+</head>
+	<body>
+		<header class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="@controllers.routes.Application.index()">Demo</a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li><a href="@controllers.routes.Application.index()">Home</a></li>
+							<li class="active"><a href="@controllers.routes.Application.map()">Map</a></li>
+						</ul>
+					</div>
+			</div>
+	    </header>
+    <div id="map"></div>
+  </body>
+</html>

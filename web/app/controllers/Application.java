@@ -29,7 +29,7 @@ public class Application extends Controller {
 	}
 
 	public static Result map() {
-		return TODO;
+		return ok(views.html.map.render("<blink>Hello universum</blink>"));
 		// return ok(Json.toJson(list));
 	}
 
