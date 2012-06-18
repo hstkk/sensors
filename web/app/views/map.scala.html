@@ -1,11 +1,13 @@
 @(json: String)
+
+@import tags._ 
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Map - Demo</title>
-	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
-	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/styles.css")">
-	<link rel="stylesheet" media="screen" href="@routes.Assets.at("javascripts/markerclusterer_compiled.js")">
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")"/>
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/styles.css")"/>
 	<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
 	<style type="text/css">
 		html, body, #map {
@@ -14,6 +16,9 @@
 			height: 100%;
 		}
 	</style>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.7.2.min.js")"></script>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/bootstrap-modal.js")"></script>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/markerclusterer.js")"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
 		var map;
@@ -25,6 +30,26 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+        var markers = [];
+        
+        for (var i = 0; i < 1000; ++i) {
+          var marker = new google.maps.Marker({
+           position: new google.maps.LatLng(i, i),
+           url: "/asd",
+           icon: "http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|asd|FF0000|000000"
+          });
+          
+          
+          google.maps.event.addListener(marker, "click", function() {
+    //window.location = marker.url;
+    $("#modal").modal('show');
+});
+          
+          
+          markers.push(marker);
+        }
+			var markerCluster = new MarkerClusterer(map, markers);
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
@@ -42,6 +67,15 @@
 					</div>
 			</div>
 	    </header>
-    <div id="map"></div>
+	<div id="map"></div>
+	<div class="modal hide" id="modal">
+	    <div class="modal-body">
+			@table(-1, null, null) {
+			}
+    	</div>
+		<div class="modal-footer">
+	  	  <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+	    </div>
+	</div>
   </body>
 </html>
