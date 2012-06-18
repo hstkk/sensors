@@ -10,10 +10,13 @@ import play.db.ebean.Model;
 @Entity
 public class Location extends Model {
 
+	@Id
+	public int id;
+
 	public Double altitude;
-	
+
 	public Double latitude;
-	
+
 	public Double longitude;
 
 	public Location() {

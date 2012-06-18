@@ -10,6 +10,9 @@ import play.db.ebean.Model;
 @Entity
 public class Network extends Model {
 
+	@Id
+	public int id;
+
 	@NotNull
 	public String operator;
 
@@ -17,7 +20,7 @@ public class Network extends Model {
 	public String type;
 
 	public boolean isNetworkRoaming;
-	
+
 	public Integer cell = null;
 
 	public Network() {
