@@ -23,10 +23,10 @@ public class Device extends Model {
 	public Device() {
 	}
 
-	public static Finder<Long, Device> find = new Finder<Long, Device>(
-			Long.class, Device.class);
+	public static Finder<Long, Location> find = new Finder<Long, Location>(
+			Long.class, Location.class);
 
-	public static Device findById(int id) {
+	public static Location findById(int id) {
 		try {
 			return find.where().eq("id", id).findUnique();
 		} catch (Exception e) {
