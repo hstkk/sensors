@@ -10,25 +10,17 @@ import play.db.ebean.Model;
 @Entity
 public class Network extends Model {
 
-	@Id
-	public int id;
+	@NotNull
+	public String operator;
 
 	@NotNull
-	public String name;
+	public String type;
 
-	@NotNull
-	public double quality;
-
-	public String mac;
+	public boolean isNetworkRoaming;
+	
+	public Integer cell = null;
 
 	public Network() {
-	}
-
-	public Network(String name, double quality, String mac) {
-		this.name = name;
-		this.quality = quality;
-		this.mac = mac;
-		this.save();
 	}
 
 	public static Finder<Long, Network> find = new Finder<Long, Network>(
