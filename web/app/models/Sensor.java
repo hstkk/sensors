@@ -12,11 +12,20 @@ import play.db.ebean.Model;
 @Entity
 public class Sensor extends Model {
 
-	@Id
-	public int id;
-
 	@Required
 	public Date created;
+	
+	@OneToOne
+	public Location location;
+	
+	@OneToOne
+	public Network network;
+	
+	@OneToOne
+	public Device device;
+	
+	@ManyToOne
+	public List<Wifi> wifi;
 
 	public Sensor() {
 	}
