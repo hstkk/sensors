@@ -23,9 +23,8 @@ public class DroidActivity extends Activity {
 		Location l = Utils.getLocation(this);
 		textView.setText("Operator " + n.operator + "\nCell " + n.cell
 				+ "\nType " + n.type + "\nroaming " + n.isNetworkRoaming
-				+ "\n\nbrand " + d.brand + "\ndevice " + d.device
-				+ "\nmanufacturer " + d.manufacturer + "\nmodel " + d.model
-				+ "\nproduct " + d.product + "\nandroid " + d.version
+				+ "\n\nbrand " + d.brand + "\nmanufacturer " + d.manufacturer
+				+ "\nmodel " + d.model + "\nandroid " + d.version
 				+ "\n\nAltitude " + l.altitude + "\nLatitude " + l.latitude
 				+ "\nLongitude " + l.longitude);
 	}
