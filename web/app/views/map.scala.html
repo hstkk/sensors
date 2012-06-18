@@ -30,25 +30,21 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById('map'), myOptions);
+			var markers = [];
 
-        var markers = [];
-        
-        for (var i = 0; i < 1000; ++i) {
-          var marker = new google.maps.Marker({
-           position: new google.maps.LatLng(i, i),
-           url: "/asd",
-           icon: "http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|asd|FF0000|000000"
-          });
-          
-          
-          google.maps.event.addListener(marker, "click", function() {
-    //window.location = marker.url;
-    $("#modal").modal('show');
-});
-          
-          
-          markers.push(marker);
-        }
+for (var i = 0; i < 1000; ++i) {
+	var marker = new google.maps.Marker({
+		position: new google.maps.LatLng(i, i),
+		url: "/asd",
+		icon: "http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|asd|FF0000|000000"
+	});
+
+			google.maps.event.addListener(marker, "click", function() {
+				//window.location = marker.url;
+				$("#modal").modal('show');
+			});
+			markers.push(marker);
+}
 			var markerCluster = new MarkerClusterer(map, markers);
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
@@ -66,16 +62,16 @@
 						</ul>
 					</div>
 			</div>
-	    </header>
+		</header>
 	<div id="map"></div>
 	<div class="modal hide" id="modal">
-	    <div class="modal-body">
+		<div class="modal-body">
 			@table(-1, null, null) {
 			}
-    	</div>
+		</div>
 		<div class="modal-footer">
-	  	  <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-	    </div>
+			<a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+		</div>
 	</div>
   </body>
 </html>
