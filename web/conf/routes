@@ -6,6 +6,7 @@
 GET		/							controllers.Application.index(order: String ?= "desc", by: String ?="created")
 GET		/page/:page					controllers.Application.page(page: Int, order: String ?= "desc", by: String ?="created")
 GET		/map						controllers.Application.map()
+GET		/map.json					controllers.Application.pushpins()
 GET		/:id						controllers.Application.result(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path

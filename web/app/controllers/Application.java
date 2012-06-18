@@ -30,7 +30,9 @@ public class Application extends Controller {
 
 	public static Result map() {
 		return ok(views.html.map.render("<blink>Hello universum</blink>"));
-		// return ok(Json.toJson(list));
 	}
 
+	public static Result pushpins() {
+		return ok(views.html.json.render(Sensor.pushpins()));
+	}
 }
