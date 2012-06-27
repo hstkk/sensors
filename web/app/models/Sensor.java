@@ -57,8 +57,8 @@ public class Sensor extends Model {
 	public static List<Sensor> pushpins() {
 		try {
 			return find.select("id, created, location").fetch("location")
-					.where("location.latitude")
-					.where("location.longitude != null").findList();
+					.where().isNotNull("location.latitude")
+					.isNotNull("location.longitude").findList();
 		} catch (Exception e) {
 			return null;
 		}

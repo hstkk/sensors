@@ -1,7 +1,6 @@
 package models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import play.db.ebean.Model;
 
 /**

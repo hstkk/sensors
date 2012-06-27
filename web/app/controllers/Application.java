@@ -7,6 +7,8 @@ import models.*;
 import play.libs.*;
 import java.util.*;
 
+import org.joda.time.DateTime;
+
 /**
  * @author Sami Hostikka
  */
@@ -33,6 +35,9 @@ public class Application extends Controller {
 	}
 
 	public static Result pushpins() {
-		return ok(views.html.json.render(Sensor.pushpins()));
+		List<Sensor> results = Sensor.pushpins();
+		if (results == null || results.isEmpty())
+			return TODO;
+		return ok(Json.toJson(results));
 	}
 }
