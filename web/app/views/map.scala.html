@@ -30,19 +30,18 @@
 			map = new google.maps.Map(document.getElementById('map'), myOptions);
 			var markers = [];
 
-for (var i = 0; i < 1000; ++i) {
-	var marker = new google.maps.Marker({
-		position: new google.maps.LatLng(i, i),
-		id: 0,
-		icon: "http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|asd|FF0000|000000"
-	});
-
-			google.maps.event.addListener(marker, "click", function() {
-				$("#modal tbody").load("@controllers.routes.Application.map()/" + marker.id);
-				$("#modal").modal('show');
+			$.getJSON('@controllers.routes.Application.pushpins()', function(data) {
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(data.location.latitude, data.location.longitude),
+					id: data.id,
+					icon: 'http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|' + data.created + '|FF0000|000000'
+				});
+				google.maps.event.addListener(marker, "click", function() {
+					$("#modal tbody").load('@controllers.routes.Application.map()/' + marker.id);
+					$("#modal").modal('show');
+				});
+				markers.push(marker);
 			});
-			markers.push(marker);
-}
 			var markerCluster = new MarkerClusterer(map, markers);
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
