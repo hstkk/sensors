@@ -18,7 +18,11 @@
 					<a class="brand" href="@controllers.routes.Application.index()">Demo</a>
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li><a href="@controllers.routes.Application.index()">Home</a></li>
+							@if(title.equals("Results")) {
+								<li class="active"><a href="@controllers.routes.Application.index()">Results</a></li>
+							} else {
+								<li><a href="@controllers.routes.Application.index()">Results</a></li>
+							}
 							<li><a href="@controllers.routes.Application.map()">Map</a></li>
 						</ul>
 					</div>
