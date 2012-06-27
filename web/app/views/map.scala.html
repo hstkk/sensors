@@ -33,12 +33,12 @@
 for (var i = 0; i < 1000; ++i) {
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(i, i),
-		url: "/asd",
+		id: 0,
 		icon: "http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|asd|FF0000|000000"
 	});
 
 			google.maps.event.addListener(marker, "click", function() {
-				//window.location = marker.url;
+				$("#modal tbody").load("@controllers.routes.Application.map()/" + marker.id);
 				$("#modal").modal('show');
 			});
 			markers.push(marker);
