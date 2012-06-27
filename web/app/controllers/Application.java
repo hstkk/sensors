@@ -30,6 +30,13 @@ public class Application extends Controller {
 		return ok(views.html.result.render(sensor));
 	}
 
+	public static Result resultAsTr(int id) {
+		Sensor sensor = Sensor.findById(id);
+		if (sensor == null)
+			return badRequest(views.html.notFound.render());
+		return ok(views.html.tags.result.render(sensor));
+	}
+
 	public static Result map() {
 		return ok(views.html.map.render());
 	}
