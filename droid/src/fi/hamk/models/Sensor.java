@@ -16,4 +16,9 @@ public class Sensor {
 
 	public Sensor() {
 	}
+
+	//TODO
+	public String toJson(){
+		return null;
+	}
 }
