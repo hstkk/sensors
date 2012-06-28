@@ -30,6 +30,9 @@ public class Sensor extends Model {
 	@OneToOne
 	public Device device;
 
+	@OneToOne
+	public Acceleration acceleration;
+
 	@ManyToOne
 	public List<Wifi> wifi = new ArrayList<Wifi>();
 
