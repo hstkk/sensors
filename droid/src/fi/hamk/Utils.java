@@ -21,7 +21,13 @@ public class Utils {
 	Context context;
 
 	public Sensor getSensor() {
-		return new Sensor(this);
+		Sensor sensor = new Sensor();
+		sensor.location = getLocation();
+		sensor.device = getDevice();
+		sensor.network = getNetwork();
+		sensor.wifi = getWifi();
+		sensor.light = getLight();
+		return sensor;
 	}
 
 	// TODO try catch

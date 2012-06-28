@@ -17,12 +17,4 @@ public class Sensor {
 
 	public Sensor() {
 	}
-	
-	public Sensor(Utils utils) {
-		this.location = utils.getLocation();
-		this.device = utils.getDevice();
-		this.network = utils.getNetwork();
-		this.wifi = utils.getWifi();
-		this.light = utils.getLight();
-	}
 }
