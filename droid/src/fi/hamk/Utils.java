@@ -16,6 +16,7 @@ import android.telephony.TelephonyManager;
  */
 public class Utils {
 
+	//TODO try catch
 	public static List<ScanResult> getWifi(Context context) {
 		WifiManager wifiManager = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE);
