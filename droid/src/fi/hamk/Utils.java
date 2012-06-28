@@ -2,9 +2,7 @@ package fi.hamk;
 
 import java.util.List;
 
-import fi.hamk.models.Device;
-import fi.hamk.models.Location;
-import fi.hamk.models.Network;
+import fi.hamk.models.*;
 import android.content.Context;
 import android.location.LocationManager;
 import android.net.wifi.WifiManager;
@@ -23,7 +21,7 @@ public class Utils {
 	Context context;
 
 	public Sensor getSensor() {
-
+		return new Sensor(this);
 	}
 
 	// TODO try catch
@@ -51,7 +49,7 @@ public class Utils {
 						.getSystemService(Context.LOCATION_SERVICE));
 	}
 
-	public void getLight() {
-
+	public Double getLight() {
+		return null;
 	}
 }
