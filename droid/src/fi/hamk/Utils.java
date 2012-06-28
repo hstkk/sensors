@@ -16,8 +16,18 @@ import android.telephony.TelephonyManager;
  */
 public class Utils {
 
-	//TODO try catch
-	public static List<ScanResult> getWifi(Context context) {
+	public Utils(Context context) {
+		this.context = context;
+	}
+
+	Context context;
+
+	public Sensor getSensor() {
+
+	}
+
+	// TODO try catch
+	public List<ScanResult> getWifi() {
 		WifiManager wifiManager = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE);
 		if (!wifiManager.isWifiEnabled())
@@ -25,19 +35,23 @@ public class Utils {
 		return wifiManager.getScanResults();
 	}
 
-	public static Network getNetwork(Context context) {
+	public Network getNetwork() {
 		return new Network(
 				(TelephonyManager) context
 						.getSystemService(Context.TELEPHONY_SERVICE));
 	}
 
-	public static Device getDevice() {
+	public Device getDevice() {
 		return new Device();
 	}
 
-	public static Location getLocation(Context context) {
+	public Location getLocation() {
 		return new Location(
 				(LocationManager) context
 						.getSystemService(Context.LOCATION_SERVICE));
+	}
+
+	public void getLight() {
+
 	}
 }

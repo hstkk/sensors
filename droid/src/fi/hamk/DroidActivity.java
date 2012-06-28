@@ -18,9 +18,10 @@ public class DroidActivity extends Activity {
 	}
 
 	public void magic(View view) {
-		Network n = Utils.getNetwork(this);
-		Device d = Utils.getDevice();
-		Location l = Utils.getLocation(this);
+		Utils utils = new Utils(this);
+		Network n = utils.getNetwork();
+		Device d = utils.getDevice();
+		Location l = utils.getLocation();
 		textView.setText("Operator " + n.operator + "\nCell " + n.cell
 				+ "\nType " + n.type + "\nroaming " + n.isNetworkRoaming
 				+ "\n\nbrand " + d.brand + "\nmanufacturer " + d.manufacturer
