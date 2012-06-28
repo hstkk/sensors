@@ -3,6 +3,8 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 import com.avaje.ebean.*;
+import com.avaje.ebean.validation.NotNull;
+
 import play.data.validation.Constraints.*;
 import play.db.ebean.Model;
 
@@ -16,6 +18,7 @@ public class Sensor extends Model {
 	public int id;
 
 	@Required
+	@NotNull
 	public Date created;
 
 	@OneToOne
@@ -28,7 +31,7 @@ public class Sensor extends Model {
 	public Device device;
 
 	@ManyToOne
-	public List<Wifi> wifi;
+	public List<Wifi> wifi = new ArrayList<Wifi>();
 
 	public Sensor() {
 	}
@@ -47,8 +50,8 @@ public class Sensor extends Model {
 	public static Page<Sensor> page(int page, String order, String by) {
 		try {
 			int pageSize = 10;
-			return find.fetch("location").orderBy(by + " " + order).findPagingList(pageSize)
-					.getPage(page);
+			return find.fetch("location").orderBy(by + " " + order)
+					.findPagingList(pageSize).getPage(page);
 		} catch (Exception e) {
 			return null;
 		}
