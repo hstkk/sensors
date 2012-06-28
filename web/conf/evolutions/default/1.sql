@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table device (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   device_id                 varchar(255),
   manufacturer              varchar(255),
   version                   varchar(255),
@@ -14,7 +14,7 @@ create table device (
 ;
 
 create table location (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   altitude                  double,
   latitude                  double,
   longitude                 double,
@@ -22,17 +22,17 @@ create table location (
 ;
 
 create table network (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   operator                  varchar(255),
   type                      varchar(255),
-  is_network_roaming        boolean,
+  is_network_roaming        tinyint(1) default 0,
   cell                      integer,
   constraint pk_network primary key (id))
 ;
 
 create table sensor (
-  id                        integer not null,
-  created                   timestamp,
+  id                        integer auto_increment not null,
+  created                   datetime,
   location_id               integer,
   network_id                integer,
   device_id                 integer,
@@ -40,7 +40,7 @@ create table sensor (
 ;
 
 create table wifi (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   bssid                     varchar(255),
   ssid                      varchar(255),
   capabilities              varchar(255),
@@ -48,16 +48,6 @@ create table wifi (
   level                     integer,
   constraint pk_wifi primary key (id))
 ;
-
-create sequence device_seq;
-
-create sequence location_seq;
-
-create sequence network_seq;
-
-create sequence sensor_seq;
-
-create sequence wifi_seq;
 
 alter table sensor add constraint fk_sensor_location_1 foreign key (location_id) references location (id) on delete restrict on update restrict;
 create index ix_sensor_location_1 on sensor (location_id);
@@ -70,27 +60,17 @@ create index ix_sensor_device_3 on sensor (device_id);
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists device;
+drop table device;
 
-drop table if exists location;
+drop table location;
 
-drop table if exists network;
+drop table network;
 
-drop table if exists sensor;
+drop table sensor;
 
-drop table if exists wifi;
+drop table wifi;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists device_seq;
-
-drop sequence if exists location_seq;
-
-drop sequence if exists network_seq;
-
-drop sequence if exists sensor_seq;
-
-drop sequence if exists wifi_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
