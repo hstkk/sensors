@@ -11,4 +11,25 @@
 			@result.created.format("H:m dd.M.yyyy")
 		}
 	</td>
+	<td>
+		@if(result.location.altitude == null) {
+			<em>-</em>
+		} else {
+			@result.location.altitude
+		}
+	</td>
+	<td>
+		@if(result.location.latitude == null) {
+			<em>-</em>
+		} else {
+			@result.location.latitude
+		}
+	</td>
+	<td>
+		@if(result.location.longitude == null) {
+			<em>-</em>
+		} else {
+			@result.location.longitude
+		}
+	</td>
 </tr>
