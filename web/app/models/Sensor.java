@@ -38,7 +38,7 @@ public class Sensor extends Model {
 
 	public static Sensor findById(int id) {
 		try {
-			return find.where().eq("id", id).findUnique();
+			return find.fetch("location").where().eq("id", id).findUnique();
 		} catch (Exception e) {
 			return null;
 		}
@@ -47,7 +47,7 @@ public class Sensor extends Model {
 	public static Page<Sensor> page(int page, String order, String by) {
 		try {
 			int pageSize = 10;
-			return find.orderBy(by + " " + order).findPagingList(pageSize)
+			return find.fetch("location").orderBy(by + " " + order).findPagingList(pageSize)
 					.getPage(page);
 		} catch (Exception e) {
 			return null;
