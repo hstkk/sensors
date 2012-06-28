@@ -31,7 +31,7 @@ public class Utils {
 	}
 
 	// TODO try catch
-	public List<ScanResult> getWifi() {
+	private List<ScanResult> getWifi() {
 		WifiManager wifiManager = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE);
 		if (!wifiManager.isWifiEnabled())
@@ -39,23 +39,23 @@ public class Utils {
 		return wifiManager.getScanResults();
 	}
 
-	public Network getNetwork() {
+	private Network getNetwork() {
 		return new Network(
 				(TelephonyManager) context
 						.getSystemService(Context.TELEPHONY_SERVICE));
 	}
 
-	public Device getDevice() {
+	private Device getDevice() {
 		return new Device();
 	}
 
-	public Location getLocation() {
+	private Location getLocation() {
 		return new Location(
 				(LocationManager) context
 						.getSystemService(Context.LOCATION_SERVICE));
 	}
 
-	public Double getLight() {
+	private Double getLight() {
 		return null;
 	}
 }

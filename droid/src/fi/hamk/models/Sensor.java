@@ -1,7 +1,6 @@
 package fi.hamk.models;
 
 import java.util.List;
-import fi.hamk.Utils;
 import android.net.wifi.ScanResult;
 
 /**
