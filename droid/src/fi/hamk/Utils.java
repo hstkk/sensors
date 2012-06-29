@@ -2,6 +2,10 @@ package fi.hamk;
 
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import fi.hamk.models.*;
 import android.content.Context;
 import android.location.LocationManager;
@@ -19,6 +23,8 @@ public class Utils {
 	}
 
 	Context context;
+	final String URI = "http://example.com"; // server
+	final int TIMEOUT = 10000; // milliseconds
 
 	public Sensor getSensor() {
 		Sensor sensor = new Sensor();
@@ -62,7 +68,17 @@ public class Utils {
 		return null;
 	}
 
-	public boolean send() {
-		return false;
+	public void send() {
+		try {
+			String json = getSensor().toJson();
+			if (json != null) {
+				DefaultHttpClient httpClient = new DefaultHttpClient();
+				HttpPost httpPost = new HttpPost(URI);
+				httpPost.setEntity(new StringEntity(json));
+				HttpResponse httpResponse = httpClient.execute(httpPost);
+				System.out.println(httpResponse.getStatusLine());
+			}
+		} catch (Exception e) {
+		}
 	}
 }
