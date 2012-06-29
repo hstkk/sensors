@@ -30,13 +30,16 @@ public class Utils {
 		return sensor;
 	}
 
-	// TODO try catch
 	private List<ScanResult> getWifi() {
-		WifiManager wifiManager = (WifiManager) context
-				.getSystemService(Context.WIFI_SERVICE);
-		if (!wifiManager.isWifiEnabled())
+		try {
+			WifiManager wifiManager = (WifiManager) context
+					.getSystemService(Context.WIFI_SERVICE);
+			if (!wifiManager.isWifiEnabled())
+				return null;
+			return wifiManager.getScanResults();
+		} catch (Exception e) {
 			return null;
-		return wifiManager.getScanResults();
+		}
 	}
 
 	private Network getNetwork() {
@@ -57,5 +60,9 @@ public class Utils {
 
 	private Double getLight() {
 		return null;
+	}
+
+	public boolean send() {
+		return false;
 	}
 }
