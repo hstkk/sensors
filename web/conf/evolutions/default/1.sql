@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table acceleration (
+  id                        integer auto_increment not null,
+  x                         float,
+  y                         float,
+  z                         float,
+  constraint pk_acceleration primary key (id))
+;
+
 create table device (
   id                        integer auto_increment not null,
   device_id                 varchar(255),
@@ -32,10 +40,11 @@ create table network (
 
 create table sensor (
   id                        integer auto_increment not null,
-  created                   datetime,
+  created                   datetime not null,
   location_id               integer,
   network_id                integer,
   device_id                 integer,
+  acceleration_id           integer,
   constraint pk_sensor primary key (id))
 ;
 
@@ -55,12 +64,16 @@ alter table sensor add constraint fk_sensor_network_2 foreign key (network_id) r
 create index ix_sensor_network_2 on sensor (network_id);
 alter table sensor add constraint fk_sensor_device_3 foreign key (device_id) references device (id) on delete restrict on update restrict;
 create index ix_sensor_device_3 on sensor (device_id);
+alter table sensor add constraint fk_sensor_acceleration_4 foreign key (acceleration_id) references acceleration (id) on delete restrict on update restrict;
+create index ix_sensor_acceleration_4 on sensor (acceleration_id);
 
 
 
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table acceleration;
 
 drop table device;
 

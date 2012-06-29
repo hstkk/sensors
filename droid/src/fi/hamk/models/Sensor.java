@@ -2,6 +2,7 @@ package fi.hamk.models;
 
 import java.util.List;
 import android.net.wifi.ScanResult;
+import org.json.*;
 
 /**
  * @author Sami Hostikka
@@ -17,8 +18,9 @@ public class Sensor {
 	public Sensor() {
 	}
 
-	//TODO
-	public String toJson(){
-		return null;
+	public String toJson() {
+		JSONArray json = new JSONArray();
+		json.put(this);
+		return json.toString();
 	}
 }
