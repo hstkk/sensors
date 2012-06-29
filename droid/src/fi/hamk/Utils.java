@@ -2,8 +2,6 @@ package fi.hamk;
 
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
-
 import fi.hamk.models.*;
 import android.content.Context;
 import android.location.LocationManager;
