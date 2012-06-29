@@ -2,9 +2,7 @@ package fi.hamk.models;
 
 import java.util.List;
 import android.net.wifi.ScanResult;
-import org.codehaus.jackson.*;
 import org.codehaus.jackson.map.*;
-import org.codehaus.jackson.node.*;
 
 /**
  * @author Sami Hostikka
