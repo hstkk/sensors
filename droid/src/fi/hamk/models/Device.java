@@ -7,10 +7,10 @@ import android.os.Build;
  */
 public class Device {
 
-	public String manufacturer;
-	public String version;
-	public String brand;
-	public String model;
+	public String manufacturer = null;
+	public String version = null;
+	public String brand = null;
+	public String model = null;
 
 	public Device() {
 		this.manufacturer = Build.MANUFACTURER;

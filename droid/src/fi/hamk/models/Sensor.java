@@ -11,11 +11,11 @@ import org.codehaus.jackson.node.*;
  */
 public class Sensor {
 
-	public Location location;
-	public Device device;
-	public Network network;
-	public List<ScanResult> wifi;
-	public Double light;
+	public Location location = null;
+	public Device device = null;
+	public Network network = null;
+	public List<ScanResult> wifi = null;
+	public Double light = null;
 
 	public Sensor() {
 	}

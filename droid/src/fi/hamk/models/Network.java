@@ -9,10 +9,10 @@ import android.telephony.gsm.GsmCellLocation;
  */
 public class Network {
 
-	public String deviceId;
-	public String operator;
-	public String type;
-	public boolean isNetworkRoaming;
+	public String deviceId = null;
+	public String operator = null;
+	public String type = null;
+	public Boolean isNetworkRoaming = null;
 	public Integer cell = null;
 
 	public Network() {
