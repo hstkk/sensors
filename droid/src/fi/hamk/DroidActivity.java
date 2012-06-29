@@ -18,7 +18,7 @@ public class DroidActivity extends Activity {
 	}
 
 	public void magic(View view) {
-		Sensor sensor= new Utils(this).getSensor();
-		textView.setText(sensor.toJson());
+		new Utils(this).send();
+		// textView.setText(sensor.toJson());
 	}
 }

@@ -1,8 +1,10 @@
 package fi.hamk.models;
 
 import java.util.List;
+
+import org.codehaus.jackson.map.ObjectMapper;
+
 import android.net.wifi.ScanResult;
-import org.codehaus.jackson.map.*;
 
 /**
  * @author Sami Hostikka
