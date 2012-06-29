@@ -19,14 +19,6 @@ public class DroidActivity extends Activity {
 
 	public void magic(View view) {
 		Sensor sensor= new Utils(this).getSensor();
-		Network n = sensor.network;
-		Device d = sensor.device;
-		Location l = sensor.location;
-		textView.setText("Operator " + n.operator + "\nCell " + n.cell
-				+ "\nType " + n.type + "\nroaming " + n.isNetworkRoaming
-				+ "\n\nbrand " + d.brand + "\nmanufacturer " + d.manufacturer
-				+ "\nmodel " + d.model + "\nandroid " + d.version
-				+ "\n\nAltitude " + l.altitude + "\nLatitude " + l.latitude
-				+ "\nLongitude " + l.longitude);
+		textView.setText(sensor.toJson());
 	}
 }
