@@ -6,6 +6,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import android.net.wifi.ScanResult;
 
+//import com.google.gson.Gson;
+
 /**
  * @author Sami Hostikka
  */
@@ -23,6 +25,8 @@ public class Sensor {
 	public String toJson() {
 		try {
 			return new ObjectMapper().valueToTree(this).toString();
+			// Gson gson = new Gson();
+			// return gson.toJson(this);
 		} catch (Exception e) {
 			return null;
 		}

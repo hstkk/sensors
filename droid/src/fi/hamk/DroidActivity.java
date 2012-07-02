@@ -1,6 +1,5 @@
 package fi.hamk;
 
-import fi.hamk.models.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +17,7 @@ public class DroidActivity extends Activity {
 	}
 
 	public void magic(View view) {
-		new Utils(this).send();
-		// textView.setText(sensor.toJson());
+		// new Utils(this).send();
+		textView.setText(new Utils(this).getSensor().toJson());
 	}
 }
