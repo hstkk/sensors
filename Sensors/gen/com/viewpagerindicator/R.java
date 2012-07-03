@@ -337,9 +337,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int vpi__tab_unselected_pressed_holo=0x7f020008;
     }
     public static final class id {
-        public static final int button=0x7f040003;
+        public static final int add_page=0x7f040006;
+        public static final int indicator=0x7f040003;
         public static final int none=0x7f040000;
-        public static final int textView=0x7f040004;
+        public static final int pager=0x7f040004;
+        public static final int random=0x7f040005;
+        public static final int remove_page=0x7f040007;
         public static final int triangle=0x7f040001;
         public static final int underline=0x7f040002;
     }
@@ -351,6 +354,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+    }
+    public static final class menu {
+        public static final int menu=0x7f0b0000;
     }
     public static final class string {
         public static final int app_name=0x7f0a0000;
