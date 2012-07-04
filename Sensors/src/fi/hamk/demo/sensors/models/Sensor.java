@@ -25,10 +25,8 @@ public class Sensor {
 	public String toJson() {
 		try {
 			return new ObjectMapper().valueToTree(this).toString();
-			// Gson gson = new Gson();
-			// return gson.toJson(this);
 		} catch (Exception e) {
-			return e.toString();
+			return null;
 		}
 	}
 }
