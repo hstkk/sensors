@@ -2,55 +2,46 @@ package fi.hamk.demo.sensors;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class MainActivity extends BaseActivity {
-	private static final String[] CONTENT = new String[] { "Recent", "Artists",
-			"Albums", "Songs", "Playlists", "Genres" };
+public class MainActivity extends FragmentActivity {
+
+	FragmentAdapter fragmentAdapter;
+	ViewPager viewPager;
+	PageIndicator pageIndicator;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mAdapter = new GoogleMusicAdapter(getSupportFragmentManager());
+		fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
 
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
+		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setAdapter(fragmentAdapter);
 
-		mIndicator = (TabPageIndicator) findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
+		pageIndicator = (TabPageIndicator) findViewById(R.id.indicator);
+		pageIndicator.setViewPager(viewPager);
 		// textView = (TextView) findViewById(R.id.textView);
 	}
 
-	/*
-	 * public void magic(View view) { // new Utils(this).send(); //
-	 * textView.setText(new Utils(this).getSensor().toJson()); // new
-	 * Utils(this).send(); }
-	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu, menu);
+		return true;
+	}
 
-	class GoogleMusicAdapter extends TestFragmentAdapter {
-		public GoogleMusicAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return TestFragment.newInstance(MainActivity.CONTENT[position
-					% MainActivity.CONTENT.length]);
-		}
-
-		@Override
-		public int getCount() {
-			return MainActivity.CONTENT.length;
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return MainActivity.CONTENT[position
-					% MainActivity.CONTENT.length].toUpperCase();
-		}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Toast.makeText(this, item.getItemId(), 5000);
+		return super.onOptionsItemSelected(item);
 	}
 }
