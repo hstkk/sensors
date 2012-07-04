@@ -1,5 +1,6 @@
 package fi.hamk.demo.sensors;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TabPageIndicator;
 
+@SuppressLint("ParserError")
 public class MainActivity extends FragmentActivity {
 
 	FragmentAdapter fragmentAdapter;
