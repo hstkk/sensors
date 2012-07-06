@@ -12,6 +12,8 @@ import android.hardware.SensorManager;
 public class Sensors {
 	public Sensors(Context context) {
 		this.context = context;
+		sensorManager = (SensorManager) context
+				.getSystemService(Context.SENSOR_SERVICE);
 	}
 
 	Context context;
@@ -27,4 +29,13 @@ public class Sensors {
 		}
 	};
 
+	public void register() {
+		sensorManager.registerListener(sensorEventListener,
+				sensorManager.getDefaultSensor(Sensor.TYPE_ALL),
+				SensorManager.SENSOR_DELAY_NORMAL);
+	}
+
+	public void unregister() {
+		sensorManager.unregisterListener(sensorEventListener);
+	}
 }
