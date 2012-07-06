@@ -3,6 +3,7 @@ package fi.hamk.demo.sensors;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -36,8 +37,17 @@ public class MainActivity extends SherlockActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add("Refresh").setIcon(R.drawable.ic_refresh)
+		menu.add("refresh").setIcon(R.drawable.ic_action_refresh)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menu.add("settings").setIcon(R.drawable.ic_action_settings)
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem menuItem) {
+		Toast.makeText(this, menuItem.toString(),
+				Toast.LENGTH_SHORT).show();
 		return true;
 	}
 
