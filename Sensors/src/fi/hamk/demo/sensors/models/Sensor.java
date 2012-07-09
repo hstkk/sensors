@@ -2,12 +2,8 @@ package fi.hamk.demo.sensors.models;
 
 import java.util.Date;
 import java.util.List;
-
 import org.codehaus.jackson.map.ObjectMapper;
-
 import android.net.wifi.ScanResult;
-
-//import com.google.gson.Gson;
 
 /**
  * @author Sami Hostikka
