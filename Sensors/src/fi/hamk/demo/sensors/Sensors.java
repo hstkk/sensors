@@ -29,26 +29,22 @@ public class Sensors {
 		public void onSensorChanged(SensorEvent event) {
 			switch (event.sensor.getType()) {
 			case Sensor.TYPE_ACCELEROMETER:
-				break;
-			case Sensor.TYPE_AMBIENT_TEMPERATURE:
+				getAccelerometer(event);
 				break;
 			case Sensor.TYPE_GRAVITY:
+				getGravity(event);
 				break;
 			case Sensor.TYPE_GYROSCOPE:
+				getGyroscope(event);
 				break;
 			case Sensor.TYPE_LIGHT:
-				break;
-			case Sensor.TYPE_LINEAR_ACCELERATION:
+				getLight(event);
 				break;
 			case Sensor.TYPE_MAGNETIC_FIELD:
-				break;
-			case Sensor.TYPE_PRESSURE:
+				getMagneticField(event);
 				break;
 			case Sensor.TYPE_PROXIMITY:
-				break;
-			case Sensor.TYPE_RELATIVE_HUMIDITY:
-				break;
-			case Sensor.TYPE_ROTATION_VECTOR:
+				getProximity(event);
 				break;
 			}
 		}
@@ -62,5 +58,35 @@ public class Sensors {
 
 	protected void unregister() {
 		sensorManager.unregisterListener(sensorEventListener);
+	}
+
+	protected void getProximity(SensorEvent event) {
+		android.widget.Toast.makeText(context, "TODO!",
+				android.widget.Toast.LENGTH_LONG).show();
+	}
+
+	protected void getMagneticField(SensorEvent event) {
+		android.widget.Toast.makeText(context, "TODO!",
+				android.widget.Toast.LENGTH_LONG).show();
+	}
+
+	protected void getLight(SensorEvent event) {
+		android.widget.Toast.makeText(context, "TODO!",
+				android.widget.Toast.LENGTH_LONG).show();
+	}
+
+	protected void getGyroscope(SensorEvent event) {
+		android.widget.Toast.makeText(context, "TODO!",
+				android.widget.Toast.LENGTH_LONG).show();
+	}
+
+	protected void getGravity(SensorEvent event) {
+		android.widget.Toast.makeText(context, "TODO!",
+				android.widget.Toast.LENGTH_LONG).show();
+	}
+
+	protected void getAccelerometer(SensorEvent event) {
+		android.widget.Toast.makeText(context, "TODO!",
+				android.widget.Toast.LENGTH_LONG).show();
 	}
 }
