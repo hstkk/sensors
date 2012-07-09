@@ -32,7 +32,6 @@ public class Utils extends Sensors {
 		sensor.device = getDevice();
 		sensor.network = getNetwork();
 		sensor.wifi = getWifi();
-		sensor.light = getLight();
 		return sensor;
 	}
 
