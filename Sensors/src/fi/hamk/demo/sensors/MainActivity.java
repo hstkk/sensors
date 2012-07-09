@@ -43,6 +43,24 @@ public class MainActivity extends SherlockActivity implements
 	}
 
 	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		utils.unregister();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		utils.register();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		utils.unregister();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add("refresh").setIcon(R.drawable.ic_action_refresh)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
