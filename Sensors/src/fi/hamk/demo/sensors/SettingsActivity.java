@@ -1,17 +1,25 @@
 package fi.hamk.demo.sensors;
 
 import android.os.Bundle;
+import android.webkit.URLUtil;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import fi.hamk.demo.sensors.R;
-
 public class SettingsActivity extends SherlockActivity {
+	EditText url;
+	CheckBox shake;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
+		url = (EditText) findViewById(R.id.url);
+		shake = (CheckBox) findViewById(R.id.shake);
 	}
 
 	@Override
@@ -23,7 +31,12 @@ public class SettingsActivity extends SherlockActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
-		finish();
+		if (!URLUtil.isValidUrl(url.getText().toString()))
+			Toast.makeText(this, "Server is not valid", Toast.LENGTH_SHORT)
+					.show();
+		else {
+			finish();
+		}
 		return true;
 	}
 }
