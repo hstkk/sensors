@@ -1,5 +1,6 @@
 package fi.hamk.demo.sensors.models;
 
+import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -13,6 +14,7 @@ import android.net.wifi.ScanResult;
  */
 public class Sensor {
 
+	public Date measured = null;
 	public Location location = null;
 	public Device device = null;
 	public Network network = null;
@@ -28,13 +30,5 @@ public class Sensor {
 		} catch (Exception e) {
 			return null;
 		}
-	}
-
-	public void nullify() {
-		location = null;
-		device = null;
-		network = null;
-		wifi = null;
-		light = null;
 	}
 }

@@ -1,7 +1,7 @@
 package fi.hamk.demo.sensors;
 
+import java.util.Date;
 import java.util.List;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -27,6 +27,7 @@ public class Utils extends Sensors {
 	final int TIMEOUT = 10000; // milliseconds
 
 	public Sensor getSensor() {
+		sensor.measured = new Date();
 		sensor.location = getLocation();
 		sensor.device = getDevice();
 		sensor.network = getNetwork();
