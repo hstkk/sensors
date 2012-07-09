@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.webkit.URLUtil;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,7 +13,6 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class SettingsActivity extends SherlockActivity {
 	EditText url;
-	CheckBox shake;
 	SharedPreferences preferences;
 
 	@Override
@@ -23,12 +21,9 @@ public class SettingsActivity extends SherlockActivity {
 		setContentView(R.layout.activity_settings);
 
 		url = (EditText) findViewById(R.id.url);
-		shake = (CheckBox) findViewById(R.id.shake);
 		preferences = getSharedPreferences(getString(R.string.preferences), 0);
 		url.setText(preferences.getString(getString(R.string.preferences_url),
 				"http://127.0.0.1"));
-		shake.setChecked(preferences.getBoolean(
-				getString(R.string.preferences_shake), true));
 	}
 
 	@Override
@@ -45,8 +40,6 @@ public class SettingsActivity extends SherlockActivity {
 					Toast.LENGTH_SHORT).show();
 		else {
 			Editor editor = preferences.edit();
-			editor.putBoolean(getString(R.string.preferences_shake),
-					shake.isChecked());
 			editor.putString(getString(R.string.preferences_url), url.getText()
 					.toString());
 			editor.commit();
