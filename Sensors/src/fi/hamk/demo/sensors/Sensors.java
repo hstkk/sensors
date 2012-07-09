@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
  * @author Sami Hostikka
  */
 public class Sensors {
+
 	public Sensors(Context context) {
 		this.context = context;
 		sensorManager = (SensorManager) context

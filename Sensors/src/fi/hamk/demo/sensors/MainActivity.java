@@ -19,10 +19,14 @@ public class MainActivity extends SherlockActivity implements
 	final String[] TABS = { "network", "device", "location" };
 	TextView textView;
 
+	Utils utils;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		utils = new Utils(this);
 
 		textView = (TextView) findViewById(R.id.textView);
 
@@ -49,8 +53,7 @@ public class MainActivity extends SherlockActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
-		Toast.makeText(this, menuItem.toString(),
-				Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, menuItem.toString(), Toast.LENGTH_SHORT).show();
 		return true;
 	}
 

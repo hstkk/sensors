@@ -16,13 +16,12 @@ import android.telephony.TelephonyManager;
 /**
  * @author Sami Hostikka
  */
-public class Utils {
+public class Utils extends Sensors {
 
 	public Utils(Context context) {
-		this.context = context;
+		super(context);
 	}
 
-	Context context;
 	final String URI = "http://example.com"; // server
 	final int TIMEOUT = 10000; // milliseconds
 
