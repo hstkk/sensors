@@ -27,6 +27,7 @@ public class SettingsActivity extends SherlockActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
+		finish();
 		return true;
 	}
 }
