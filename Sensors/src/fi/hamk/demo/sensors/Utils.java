@@ -8,6 +8,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import fi.hamk.demo.sensors.models.*;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
@@ -21,9 +22,11 @@ public class Utils extends Sensors {
 	public Utils(Context context) {
 		super(context);
 		register();
+		preferences = context.getSharedPreferences(
+				context.getString(R.string.preferences), 0);
 	}
 
-	final String URI = "http://example.com"; // server
+	SharedPreferences preferences;
 	final int TIMEOUT = 10000; // milliseconds
 
 	public Sensor getSensor() {
@@ -68,7 +71,9 @@ public class Utils extends Sensors {
 			String json = sensor.toJson();
 			if (json != null) {
 				DefaultHttpClient httpClient = new DefaultHttpClient();
-				HttpPost httpPost = new HttpPost(URI);
+				HttpPost httpPost = new HttpPost(preferences.getString(
+						context.getString(R.string.preferences_url),
+						"http://127.0.0.1"));
 				httpPost.setEntity(new StringEntity(json));
 				HttpResponse httpResponse = httpClient.execute(httpPost);
 				System.out.println(httpResponse.getStatusLine());
