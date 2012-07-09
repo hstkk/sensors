@@ -1,10 +1,6 @@
 package fi.hamk.demo.sensors;
 
 import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -20,7 +16,7 @@ public class SettingsActivity extends SherlockActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add("save").setIcon(R.drawable.ic_content_save)
+		menu.add(getString(R.string.save)).setIcon(R.drawable.ic_content_save)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return true;
 	}

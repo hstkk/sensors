@@ -61,32 +61,32 @@ public class Sensors {
 	}
 
 	protected void getProximity(SensorEvent event) {
-		android.widget.Toast.makeText(context, "TODO!",
-				android.widget.Toast.LENGTH_LONG).show();
+		// android.widget.Toast.makeText(context,
+		// "TODO!",android.widget.Toast.LENGTH_LONG).show();
 	}
 
 	protected void getMagneticField(SensorEvent event) {
-		android.widget.Toast.makeText(context, "TODO!",
-				android.widget.Toast.LENGTH_LONG).show();
+		// android.widget.Toast.makeText(context,
+		// "TODO!",android.widget.Toast.LENGTH_LONG).show();
 	}
 
 	protected void getLight(SensorEvent event) {
-		android.widget.Toast.makeText(context, "TODO!",
-				android.widget.Toast.LENGTH_LONG).show();
+		// android.widget.Toast.makeText(context,
+		// "TODO!",android.widget.Toast.LENGTH_LONG).show();
 	}
 
 	protected void getGyroscope(SensorEvent event) {
-		android.widget.Toast.makeText(context, "TODO!",
-				android.widget.Toast.LENGTH_LONG).show();
+		// android.widget.Toast.makeText(context,
+		// "TODO!",android.widget.Toast.LENGTH_LONG).show();
 	}
 
 	protected void getGravity(SensorEvent event) {
-		android.widget.Toast.makeText(context, "TODO!",
-				android.widget.Toast.LENGTH_LONG).show();
+		// android.widget.Toast.makeText(context,
+		// "TODO!",android.widget.Toast.LENGTH_LONG).show();
 	}
 
 	protected void getAccelerometer(SensorEvent event) {
-		android.widget.Toast.makeText(context, "TODO!",
-				android.widget.Toast.LENGTH_LONG).show();
+		// android.widget.Toast.makeText(context,
+		// "TODO!",android.widget.Toast.LENGTH_LONG).show();
 	}
 }

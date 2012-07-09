@@ -6,5 +6,8 @@
     <string name="title_activity_main">Sensors</string>
     <string name="server">Server</string>
     <string name="shake">Shake it?</string>
+    <string name="refresh">Refresh</string>
+    <string name="save">Save</string>
+    <string name="settings">Settings</string>
 
 </resources>

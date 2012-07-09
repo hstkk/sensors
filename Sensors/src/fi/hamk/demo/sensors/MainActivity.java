@@ -63,21 +63,21 @@ public class MainActivity extends SherlockActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add("refresh").setIcon(R.drawable.ic_action_refresh)
+		menu.add(getString(R.string.refresh)).setIcon(R.drawable.ic_action_refresh)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add("settings").setIcon(R.drawable.ic_action_settings)
+		menu.add(getString(R.string.settings)).setIcon(R.drawable.ic_action_settings)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
-		if("settings".equals(menuItem.toString())){
+		if (menuItem.getTitle().equals(getString(R.string.settings))) {
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
-		}
-		else
-			Toast.makeText(this, menuItem.toString(), Toast.LENGTH_SHORT).show();
+		} else
+			Toast.makeText(this, "ELSE\n" + menuItem.getTitle(),
+					Toast.LENGTH_SHORT).show();
 		return true;
 	}
 
