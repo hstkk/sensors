@@ -20,14 +20,13 @@ public class Utils extends Sensors {
 
 	public Utils(Context context) {
 		super(context);
+		register();
 	}
 
 	final String URI = "http://example.com"; // server
 	final int TIMEOUT = 10000; // milliseconds
 
 	public Sensor getSensor() {
-		sensor.nullify();
-		register();
 		sensor.location = getLocation();
 		sensor.device = getDevice();
 		sensor.network = getNetwork();

@@ -27,8 +27,30 @@ public class Sensors {
 		}
 
 		public void onSensorChanged(SensorEvent event) {
-			// TODO Auto-generated method stub
-
+			switch (event.sensor.getType()) {
+			case Sensor.TYPE_ACCELEROMETER:
+				break;
+			case Sensor.TYPE_AMBIENT_TEMPERATURE:
+				break;
+			case Sensor.TYPE_GRAVITY:
+				break;
+			case Sensor.TYPE_GYROSCOPE:
+				break;
+			case Sensor.TYPE_LIGHT:
+				break;
+			case Sensor.TYPE_LINEAR_ACCELERATION:
+				break;
+			case Sensor.TYPE_MAGNETIC_FIELD:
+				break;
+			case Sensor.TYPE_PRESSURE:
+				break;
+			case Sensor.TYPE_PROXIMITY:
+				break;
+			case Sensor.TYPE_RELATIVE_HUMIDITY:
+				break;
+			case Sensor.TYPE_ROTATION_VECTOR:
+				break;
+			}
 		}
 	};
 
