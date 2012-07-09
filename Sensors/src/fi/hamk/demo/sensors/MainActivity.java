@@ -1,5 +1,6 @@
 package fi.hamk.demo.sensors;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.TextView;
@@ -71,7 +72,12 @@ public class MainActivity extends SherlockActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
-		Toast.makeText(this, menuItem.toString(), Toast.LENGTH_SHORT).show();
+		if("settings".equals(menuItem.toString())){
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
+		}
+		else
+			Toast.makeText(this, menuItem.toString(), Toast.LENGTH_SHORT).show();
 		return true;
 	}
 
