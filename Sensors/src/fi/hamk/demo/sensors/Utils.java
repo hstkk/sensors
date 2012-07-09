@@ -64,10 +64,6 @@ public class Utils extends Sensors {
 						.getSystemService(Context.LOCATION_SERVICE));
 	}
 
-	private Double getLight() {
-		return null;
-	}
-
 	public void send() {
 		try {
 			String json = sensor.toJson();
