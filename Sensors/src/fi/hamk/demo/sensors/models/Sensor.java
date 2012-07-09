@@ -29,4 +29,12 @@ public class Sensor {
 			return null;
 		}
 	}
+
+	public void nullify() {
+		location = null;
+		device = null;
+		network = null;
+		wifi = null;
+		light = null;
+	}
 }

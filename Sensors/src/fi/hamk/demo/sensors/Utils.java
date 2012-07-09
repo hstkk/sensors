@@ -26,7 +26,8 @@ public class Utils extends Sensors {
 	final int TIMEOUT = 10000; // milliseconds
 
 	public Sensor getSensor() {
-		Sensor sensor = new Sensor();
+		sensor.nullify();
+		register();
 		sensor.location = getLocation();
 		sensor.device = getDevice();
 		sensor.network = getNetwork();
@@ -69,7 +70,7 @@ public class Utils extends Sensors {
 
 	public void send() {
 		try {
-			String json = getSensor().toJson();
+			String json = sensor.toJson();
 			if (json != null) {
 				DefaultHttpClient httpClient = new DefaultHttpClient();
 				HttpPost httpPost = new HttpPost(URI);

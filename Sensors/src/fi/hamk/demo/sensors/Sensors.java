@@ -12,11 +12,13 @@ import android.hardware.SensorManager;
 public class Sensors {
 
 	public Sensors(Context context) {
+		sensor = new fi.hamk.demo.sensors.models.Sensor();
 		this.context = context;
 		sensorManager = (SensorManager) context
 				.getSystemService(Context.SENSOR_SERVICE);
 	}
 
+	fi.hamk.demo.sensors.models.Sensor sensor;
 	Context context;
 	SensorManager sensorManager = null;
 	SensorEventListener sensorEventListener = new SensorEventListener() {
@@ -30,13 +32,13 @@ public class Sensors {
 		}
 	};
 
-	public void register() {
+	protected void register() {
 		sensorManager.registerListener(sensorEventListener,
 				sensorManager.getDefaultSensor(Sensor.TYPE_ALL),
 				SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
-	public void unregister() {
+	protected void unregister() {
 		sensorManager.unregisterListener(sensorEventListener);
 	}
 }
