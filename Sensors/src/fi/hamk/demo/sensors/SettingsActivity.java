@@ -49,6 +49,7 @@ public class SettingsActivity extends SherlockActivity {
 					shake.isChecked());
 			editor.putString(getString(R.string.preferences_url), url.getText()
 					.toString());
+			editor.commit();
 			finish();
 		}
 		return true;
