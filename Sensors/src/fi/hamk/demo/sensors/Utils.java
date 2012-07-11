@@ -1,5 +1,6 @@
 package fi.hamk.demo.sensors;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.apache.http.HttpResponse;
@@ -25,12 +26,14 @@ public class Utils extends Sensors {
 		register();
 		preferences = context.getSharedPreferences(
 				context.getString(R.string.preferences), 0);
+		transmissionQueue = new ArrayList<Sensor>();
 	}
 
 	SharedPreferences preferences;
 	final int TIMEOUT = 10000; // milliseconds
+	ArrayList<Sensor> transmissionQueue;
 
-	public Sensor getSensor() {
+	private Sensor getSensor() {
 		sensor.measured = new Date();
 		sensor.location = getLocation();
 		sensor.device = getDevice();
@@ -101,5 +104,9 @@ public class Utils extends Sensors {
 
 	private void toastify(String message) {
 		Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+	}
+
+	public void addToQueue(){
+		transmissionQueue.add(getSensor());
 	}
 }

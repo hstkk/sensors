@@ -76,10 +76,8 @@ public class MainActivity extends SherlockActivity implements
 		if (menuItem.getTitle().equals(getString(R.string.settings))) {
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
-		} else {
-			utils.getSensor();
-			utils.send();
-		}
+		} else
+			utils.addToQueue();
 		return true;
 	}
 
