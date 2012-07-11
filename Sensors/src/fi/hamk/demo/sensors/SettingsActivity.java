@@ -3,6 +3,7 @@ package fi.hamk.demo.sensors;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -46,5 +47,9 @@ public class SettingsActivity extends SherlockActivity {
 			finish();
 		}
 		return true;
+	}
+
+	public void flush(View view){
+		//TODO
 	}
 }

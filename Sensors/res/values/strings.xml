@@ -16,5 +16,6 @@
     <string name="int_err">Internal Server Error.</string>
     <string name="err">Error.</string>
     <string name="queue">Result is added to the to the transmission queue!</string>
+    <string name="flush">Flush transmission queue</string>
 
 </resources>
