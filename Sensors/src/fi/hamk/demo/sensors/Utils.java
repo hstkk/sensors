@@ -113,4 +113,12 @@ public class Utils extends Sensors {
 	public void flushQueue() {
 		transmissionQueue.clear();
 	}
+
+	public void register() {
+		super.register();
+	}
+
+	public void unregister() {
+		super.unregister();
+	}
 }
