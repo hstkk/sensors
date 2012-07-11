@@ -73,12 +73,15 @@ public class Utils extends Sensors {
 				DefaultHttpClient httpClient = new DefaultHttpClient();
 				HttpPost httpPost = new HttpPost(preferences.getString(
 						context.getString(R.string.preferences_url),
-						"http://127.0.0.1"));
+						"http://127.0.0.1") + "/json");
 				httpPost.setEntity(new StringEntity(json));
 				HttpResponse httpResponse = httpClient.execute(httpPost);
-				System.out.println(httpResponse.getStatusLine());
+				android.widget.Toast.makeText(context, httpResponse.getStatusLine()+"", android.widget.Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
+			android.widget.Toast.makeText(context,
+					context.getString(R.string.connection_err),
+					android.widget.Toast.LENGTH_LONG).show();
 		}
 	}
 }
