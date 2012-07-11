@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
 import android.telephony.TelephonyManager;
+import android.widget.Toast;
 
 /**
  * @author Sami Hostikka
@@ -76,12 +77,29 @@ public class Utils extends Sensors {
 						"http://127.0.0.1") + "/json");
 				httpPost.setEntity(new StringEntity(json));
 				HttpResponse httpResponse = httpClient.execute(httpPost);
-				android.widget.Toast.makeText(context, httpResponse.getStatusLine()+"", android.widget.Toast.LENGTH_SHORT).show();
+				String status = null;
+				switch (httpResponse.getStatusLine().getStatusCode()) {
+					case 200:
+						status = context.getString(R.string.ok);
+						break;
+					case 500:
+						status = context.getString(R.string.int_err) + " " + 
+								context.getString(R.string.queue);
+						break;
+					default:
+						status = context.getString(R.string.err) + " " +
+								context.getString(R.string.queue);
+						break;
+				}
+				toastify(status);
 			}
 		} catch (Exception e) {
-			android.widget.Toast.makeText(context,
-					context.getString(R.string.connection_err),
-					android.widget.Toast.LENGTH_LONG).show();
+			toastify(context.getString(R.string.connection_err) + " " +
+					context.getString(R.string.queue));
 		}
+	}
+
+	private void toastify(String message) {
+		Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 	}
 }

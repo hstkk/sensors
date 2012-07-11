@@ -11,6 +11,10 @@
     <string name="preferences">SharedPreferences</string>
     <string name="preferences_url">url</string>
     <string name="save_err">Server is not valid</string>
-    <string name="connection_err">Connection refused by server</string>
+    <string name="connection_err">Connection refused by server.</string>
+    <string name="ok">OK</string>
+    <string name="int_err">Internal Server Error.</string>
+    <string name="err">Error.</string>
+    <string name="queue">Result is added to the to the transmission queue!</string>
 
 </resources>
