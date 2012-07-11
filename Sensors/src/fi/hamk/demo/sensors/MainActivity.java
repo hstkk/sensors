@@ -26,7 +26,7 @@ public class MainActivity extends SherlockActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		utils = new Utils(this, new android.os.Handler());
+		utils = new Utils(this);
 
 		textView = (TextView) findViewById(R.id.textView);
 
@@ -64,6 +64,8 @@ public class MainActivity extends SherlockActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(getString(R.string.refresh))
 				.setIcon(R.drawable.ic_action_refresh)
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menu.add(getString(R.string.upload)).setIcon(R.drawable.ic_av_upload)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menu.add(getString(R.string.settings))
 				.setIcon(R.drawable.ic_action_settings)
