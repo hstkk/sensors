@@ -26,7 +26,7 @@ public class MainActivity extends SherlockActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		utils = new Utils(this);
+		utils = new Utils(this, new android.os.Handler());
 
 		textView = (TextView) findViewById(R.id.textView);
 

@@ -19,16 +19,18 @@ import android.widget.Toast;
 /**
  * @author Sami Hostikka
  */
-public class Utils extends Sensors {
+public class Utils extends Sensors implements Runnable {
 
 	public Utils(Context context) {
 		super(context);
 		register();
+		thread = new Thread(this, "KK");
 		preferences = context.getSharedPreferences(
 				context.getString(R.string.preferences), 0);
 		transmissionQueue = new ArrayList<Sensor>();
 	}
 
+	Thread thread;
 	SharedPreferences preferences;
 	final int TIMEOUT = 10000; // milliseconds
 	ArrayList<Sensor> transmissionQueue;
@@ -70,8 +72,9 @@ public class Utils extends Sensors {
 						.getSystemService(Context.LOCATION_SERVICE));
 	}
 
-	public void send() {
+	private void send(Sensor sensor) {
 		try {
+			android.util.Log.i("send", Thread.currentThread().getName());
 			String json = sensor.toJson();
 			if (json != null) {
 				DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -84,6 +87,7 @@ public class Utils extends Sensors {
 				switch (httpResponse.getStatusLine().getStatusCode()) {
 					case 200:
 						status = context.getString(R.string.ok);
+						transmissionQueue.remove(sensor);
 						break;
 					case 500:
 						status = context.getString(R.string.int_err) + " "
@@ -102,11 +106,13 @@ public class Utils extends Sensors {
 		}
 	}
 
-	private void toastify(String message) {
-		Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+	private void toastify(final String message) {
+		//Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 	}
 
 	public void addToQueue() {
+		if (!thread.isAlive())
+			thread.start();
 		transmissionQueue.add(getSensor());
 	}
 
@@ -120,5 +126,11 @@ public class Utils extends Sensors {
 
 	public void unregister() {
 		super.unregister();
+	}
+
+	public void run() {
+		toastify(""+transmissionQueue.size());
+		while (!transmissionQueue.isEmpty())
+			send(transmissionQueue.get(0));
 	}
 }
