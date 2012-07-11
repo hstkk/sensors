@@ -50,6 +50,6 @@ public class SettingsActivity extends SherlockActivity {
 	}
 
 	public void flush(View view){
-		//TODO
+		setResult(RESULT_OK);
 	}
 }

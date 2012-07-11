@@ -86,19 +86,19 @@ public class Utils extends Sensors {
 						status = context.getString(R.string.ok);
 						break;
 					case 500:
-						status = context.getString(R.string.int_err) + " " + 
-								context.getString(R.string.queue);
+						status = context.getString(R.string.int_err) + " "
+								+ context.getString(R.string.queue);
 						break;
 					default:
-						status = context.getString(R.string.err) + " " +
-								context.getString(R.string.queue);
+						status = context.getString(R.string.err) + " "
+								+ context.getString(R.string.queue);
 						break;
 				}
 				toastify(status);
 			}
 		} catch (Exception e) {
-			toastify(context.getString(R.string.connection_err) + " " +
-					context.getString(R.string.queue));
+			toastify(context.getString(R.string.connection_err) + " "
+					+ context.getString(R.string.queue));
 		}
 	}
 
@@ -106,7 +106,11 @@ public class Utils extends Sensors {
 		Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 	}
 
-	public void addToQueue(){
+	public void addToQueue() {
 		transmissionQueue.add(getSensor());
+	}
+
+	public void flushQueue() {
+		transmissionQueue.clear();
 	}
 }

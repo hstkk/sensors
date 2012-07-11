@@ -75,10 +75,16 @@ public class MainActivity extends SherlockActivity implements
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
 		if (menuItem.getTitle().equals(getString(R.string.settings))) {
 			Intent intent = new Intent(this, SettingsActivity.class);
-			startActivity(intent);
+			startActivityForResult(intent, 0);
 		} else
 			utils.addToQueue();
 		return true;
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent intent) {
+		if (resultCode == RESULT_OK)
+			utils.flushQueue();
 	}
 
 	// @Override
