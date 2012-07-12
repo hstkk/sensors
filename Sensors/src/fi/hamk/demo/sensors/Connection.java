@@ -1,19 +1,12 @@
 package fi.hamk.demo.sensors;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
-
 import android.os.Handler;
 import android.os.Message;
-
-import fi.hamk.demo.sensors.models.Sensor;
 
 /**
  * @author Sami Hostikka
@@ -25,6 +18,8 @@ public class Connection implements Runnable {
 	public static final int ERROR = -1;
 	public static final int CONNECTION_ERROR = 2;
 	final int TIMEOUT = 10000; // milliseconds
+	final int SLEEP = 30000; // milliseconds
+	int status = ERROR;
 	String url;
 	String data;
 	Handler handler;
@@ -44,12 +39,16 @@ public class Connection implements Runnable {
 		try {
 			httpPost.setEntity(new StringEntity(data));
 			HttpResponse httpResponse = httpClient.execute(httpPost);
-			handler.sendMessage(Message.obtain(handler, httpResponse
-					.getStatusLine().getStatusCode()));
+			status = httpResponse.getStatusLine().getStatusCode();
 		} catch (Exception e) {
-			handler.sendMessage(Message.obtain(handler, ERROR));
 		}
-		// if (httpResponse.getStatusLine().getStatusCode() == 200)
-		ConnectionManager.getConnectionManager().done(this);
+		handler.sendMessage(Message.obtain(handler, status));
+		if (status == OK)
+			ConnectionManager.getConnectionManager().done(this);
+		else
+			try {
+				Thread.sleep(SLEEP);
+			} catch (InterruptedException e) {
+			}
 	}
 }
