@@ -85,8 +85,8 @@ public class MainActivity extends SherlockActivity implements
 
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
-		if (resultCode == RESULT_OK)
-			utils.flushQueue();
+		//if (resultCode == RESULT_OK)
+			//TODO
 	}
 
 	// @Override
