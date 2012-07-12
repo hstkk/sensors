@@ -1,6 +1,5 @@
 package fi.hamk.demo.sensors.models;
 
-import java.security.MessageDigest;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 
