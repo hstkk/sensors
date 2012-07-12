@@ -75,8 +75,6 @@ public class MainActivity extends SherlockActivity implements
 		menu.add(getString(R.string.refresh))
 				.setIcon(R.drawable.ic_action_refresh)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add(getString(R.string.upload)).setIcon(R.drawable.ic_av_upload)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		menu.add(getString(R.string.settings))
 				.setIcon(R.drawable.ic_action_settings)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
