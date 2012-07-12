@@ -10,18 +10,11 @@ public class ConnectionManager {
 	ArrayList<Runnable> running = new ArrayList<Runnable>();
 	ArrayList<Runnable> queue = new ArrayList<Runnable>();
 	static ConnectionManager connectionManager;
-	public static int workers = 5;
-
-	public ConnectionManager() {
-	}
-
-	public ConnectionManager(int workers) {
-		ConnectionManager.workers = workers;
-	}
+	final int workers = 5;
 
 	public static ConnectionManager getConnectionManager() {
 		if (connectionManager == null)
-			connectionManager = new ConnectionManager(workers);
+			connectionManager = new ConnectionManager();
 		return connectionManager;
 	}
 

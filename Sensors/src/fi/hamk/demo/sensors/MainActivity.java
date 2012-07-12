@@ -1,7 +1,10 @@
 package fi.hamk.demo.sensors;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.TextView;
 
@@ -20,12 +23,14 @@ public class MainActivity extends SherlockActivity implements
 	final String[] TABS = { "network", "device", "location" };
 	TextView textView;
 	Utils utils;
+	Context context;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		context = this;
 		utils = new Utils(this);
 
 		textView = (TextView) findViewById(R.id.textView);
@@ -78,15 +83,35 @@ public class MainActivity extends SherlockActivity implements
 		if (menuItem.getTitle().equals(getString(R.string.settings))) {
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivityForResult(intent, 0);
-		} // else
-			// TODO
+		} else
+			upload();
 		return true;
+	}
+
+	private void upload() {
+		Handler handler = new Handler() {
+			public void handleMessage(Message message) {
+				android.widget.Toast.makeText(context, message.what,
+						android.widget.Toast.LENGTH_LONG).show();
+				switch (message.what) {
+					case Connection.OK:
+						break;
+					case Connection.INTERNAL_SERVER_ERROR:
+						break;
+					case Connection.CONNECTION_ERROR:
+						break;
+					case Connection.ERROR:
+						break;
+				}
+			}
+		};
+		new Connection("http://example.com", "asd", handler);
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
-		// if (resultCode == RESULT_OK)
-		// TODO
+		if (resultCode == RESULT_OK)
+			ConnectionManager.getConnectionManager().flush();
 	}
 
 	// @Override
