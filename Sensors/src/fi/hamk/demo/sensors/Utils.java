@@ -22,7 +22,6 @@ public class Utils extends Sensors {
 	public Sensor getSensor() {
 		sensor.measured = new Date();
 		sensor.location = getLocation();
-		sensor.device = getDevice();
 		sensor.network = getNetwork();
 		sensor.wifi = getWifi();
 		return sensor;
@@ -44,10 +43,6 @@ public class Utils extends Sensors {
 		return new Network(
 				(TelephonyManager) context
 						.getSystemService(Context.TELEPHONY_SERVICE));
-	}
-
-	private Device getDevice() {
-		return new Device();
 	}
 
 	private Location getLocation() {

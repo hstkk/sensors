@@ -12,7 +12,7 @@ public class Sensor {
 
 	public Date measured = null;
 	public Location location = null;
-	public Device device = null;
+	public Device device = new Device();
 	public Network network = null;
 	public List<ScanResult> wifi = null;
 	public Double light = null;
