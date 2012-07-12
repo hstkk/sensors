@@ -1,11 +1,15 @@
 package fi.hamk.demo.sensors;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -23,16 +27,17 @@ public class MainActivity extends SherlockActivity implements
 	final String[] TABS = { "network", "device", "location" };
 	TextView textView;
 	Utils utils;
-	Context context;
+	NotificationManager notificationManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		context = this;
-		utils = new Utils(this);
+		notificationManager = (NotificationManager) this
+				.getSystemService(NOTIFICATION_SERVICE);
 
+		utils = new Utils(this);
 		textView = (TextView) findViewById(R.id.textView);
 
 		// ActionBarSherlock settings
@@ -91,10 +96,8 @@ public class MainActivity extends SherlockActivity implements
 	private void upload() {
 		Handler handler = new Handler() {
 			public void handleMessage(Message message) {
-					switch (message.what) {
+				switch (message.what) {
 					case Connection.OK:
-						android.widget.Toast.makeText(context, "KK",
-								android.widget.Toast.LENGTH_LONG).show();
 						break;
 					case Connection.INTERNAL_SERVER_ERROR:
 						break;
@@ -102,10 +105,23 @@ public class MainActivity extends SherlockActivity implements
 						break;
 					case Connection.ERROR:
 						break;
-				}
+					}
 			}
 		};
 		new Connection("http://example.com", "asd", handler);
+	}
+
+	private void notification(int id, String title, String text) {
+		Notification notification = new Notification();
+		notification.icon = R.drawable.ic_launcher;
+		notification.tickerText = title;
+		notification.when = System.currentTimeMillis();
+		Intent intent = id > 0 ? new Intent(this, SettingsActivity.class)
+				: new Intent();
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+				intent, 0);
+		notification.setLatestEventInfo(this, title, text, pendingIntent);
+		notificationManager.notify(id, notification);
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode,
