@@ -94,19 +94,28 @@ public class MainActivity extends SherlockActivity implements
 	private void upload() {
 		Handler handler = new Handler() {
 			public void handleMessage(Message message) {
+				String title = null, text = getString(R.string.queue);
+				int id = -1;
 				switch (message.what) {
 					case Connection.OK:
+						title = getString(R.string.ok);
+						text = getString(R.string.ok_text);
+						id = Connection.OK;
 						break;
 					case Connection.INTERNAL_SERVER_ERROR:
+						title = getString(R.string.int_err);
 						break;
 					case Connection.CONNECTION_ERROR:
+						title = getString(R.string.connection_err);
 						break;
 					case Connection.ERROR:
+						title = getString(R.string.err);
 						break;
-					}
+				}
+				notification(id, title, text);
 			}
 		};
-		new Connection("http://example.com", "asd", handler);
+		new Connection("example.com", "asd", handler);
 	}
 
 	private void notification(int id, String title, String text) {

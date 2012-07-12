@@ -17,6 +17,6 @@
     <string name="err">Error.</string>
     <string name="queue">Result is added to the to the transmission queue!</string>
     <string name="flush">Flush transmission queue</string>
-    <string name="upload">Upload</string>
+    <string name="ok_text">Upload Successful!</string>
 
 </resources>
