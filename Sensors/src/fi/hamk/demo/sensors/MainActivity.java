@@ -16,9 +16,9 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class MainActivity extends SherlockActivity implements
 		ActionBar.TabListener {
+
 	final String[] TABS = { "network", "device", "location" };
 	TextView textView;
-
 	Utils utils;
 
 	@Override
