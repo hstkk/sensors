@@ -79,7 +79,7 @@ public class MainActivity extends SherlockActivity implements
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivityForResult(intent, 0);
 		} else
-			utils.addToQueue();
+			//TODO
 		return true;
 	}
 
