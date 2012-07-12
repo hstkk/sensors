@@ -26,6 +26,7 @@ public class ConnectionManager {
 
 	public void flush() {
 		queue.clear();
+		running.clear();
 	}
 
 	private void next() {

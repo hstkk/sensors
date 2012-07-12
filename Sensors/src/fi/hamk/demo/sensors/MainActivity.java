@@ -91,10 +91,10 @@ public class MainActivity extends SherlockActivity implements
 	private void upload() {
 		Handler handler = new Handler() {
 			public void handleMessage(Message message) {
-				android.widget.Toast.makeText(context, message.what,
-						android.widget.Toast.LENGTH_LONG).show();
-				switch (message.what) {
+					switch (message.what) {
 					case Connection.OK:
+						android.widget.Toast.makeText(context, "KK",
+								android.widget.Toast.LENGTH_LONG).show();
 						break;
 					case Connection.INTERNAL_SERVER_ERROR:
 						break;

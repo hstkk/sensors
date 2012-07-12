@@ -49,7 +49,7 @@ public class Connection implements Runnable {
 		} catch (Exception e) {
 			handler.sendMessage(Message.obtain(handler, ERROR));
 		}
-		//if (httpResponse.getStatusLine().getStatusCode() == 200)
+		// if (httpResponse.getStatusLine().getStatusCode() == 200)
 		ConnectionManager.getConnectionManager().done(this);
 	}
 }
