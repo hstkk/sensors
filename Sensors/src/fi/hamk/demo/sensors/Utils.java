@@ -31,12 +31,11 @@ public class Utils extends Sensors {
 		try {
 			WifiManager wifiManager = (WifiManager) context
 					.getSystemService(Context.WIFI_SERVICE);
-			if (!wifiManager.isWifiEnabled())
-				return null;
-			return wifiManager.getScanResults();
+			if (wifiManager.isWifiEnabled())
+				return wifiManager.getScanResults();
 		} catch (Exception e) {
-			return null;
 		}
+		return null;
 	}
 
 	private Network getNetwork() {
