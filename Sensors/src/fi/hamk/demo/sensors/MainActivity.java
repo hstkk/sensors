@@ -15,6 +15,7 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import fi.hamk.demo.sensors.models.Sensor;
 
 /**
  * @author Sami Hostikka
@@ -25,7 +26,6 @@ public class MainActivity extends SherlockActivity implements
 	TextView textView;
 	Utils utils;
 	NotificationManager notificationManager;
-	SharedPreferences preferences;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,11 +85,11 @@ public class MainActivity extends SherlockActivity implements
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivityForResult(intent, 0);
 		} else
-			upload();
+			upload(utils.getSensor());
 		return true;
 	}
 
-	private void upload() {
+	private void upload(Sensor sensor) {
 		Handler handler = new Handler() {
 			public void handleMessage(Message message) {
 				String title = null, text = getString(R.string.queue);
@@ -113,9 +113,7 @@ public class MainActivity extends SherlockActivity implements
 				notification(id, title, text);
 			}
 		};
-		new Connection(preferences.getString(
-				getString(R.string.preferences_url), Conf.DEFAULT_SERVER),
-				"asd", handler);
+		new Connection(this, sensor, handler);
 	}
 
 	@SuppressWarnings("deprecation")

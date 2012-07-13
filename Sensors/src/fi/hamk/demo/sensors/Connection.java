@@ -5,6 +5,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
+
+import fi.hamk.demo.sensors.models.Sensor;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 
@@ -14,24 +19,36 @@ import android.os.Message;
 public class Connection implements Runnable {
 
 	int status = Conf.STATUS_ERROR;
-	String url;
-	String data;
+	SharedPreferences preferences;
+	String preferences_url;
+	String preferences_port;
+	String json;
 	Handler handler;
 
-	public Connection(String url, String data, Handler handler) {
-		this.url = url;
-		this.data = data;
+	public Connection(Context context, Sensor sensor, Handler handler) {
+		preferences = context.getSharedPreferences(
+				context.getString(R.string.preferences), 0);
+		preferences_url = context.getString(R.string.preferences_url);
+		preferences_port = context.getString(R.string.preferences_port);
+		this.json = sensor.toJson();
 		this.handler = handler;
-		if (data.length() > 0)
-			ConnectionManager.getConnectionManager().add(this);
+		ConnectionManager.getConnectionManager().add(this);
 	}
 
 	public void run() {
+		StringBuilder url = new StringBuilder();
+		url.append(preferences.getString(preferences_url, Conf.DEFAULT_SERVER));
+		url.append(":");
+		url.append(preferences.getLong(preferences_port, Conf.SERVER_PORT));
+		url.append("/");
+		url.append(Conf.SERVER_PATH);
+
 		DefaultHttpClient httpClient = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost(url);
-		HttpConnectionParams.setSoTimeout(httpClient.getParams(), Conf.CONNECTION_TIMEOUT);
+		HttpPost httpPost = new HttpPost(url.toString());
+		HttpConnectionParams.setSoTimeout(httpClient.getParams(),
+				Conf.CONNECTION_TIMEOUT);
 		try {
-			httpPost.setEntity(new StringEntity(data));
+			httpPost.setEntity(new StringEntity(json));
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			status = httpResponse.getStatusLine().getStatusCode();
 		} catch (Exception e) {
