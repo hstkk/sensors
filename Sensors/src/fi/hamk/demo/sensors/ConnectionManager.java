@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -49,21 +51,22 @@ public class ConnectionManager {
 	}
 
 	public void save(Context context) {
-		save(context, Conf.FILE_QUEUE);
-		save(context, Conf.FILE_RUNNING);
+		save(context, Conf.FILE_QUEUE, queue);
+		save(context, Conf.FILE_RUNNING, running);
 	}
 
-	private void save(Context context, String file) {
-		FileOutputStream fileOutputStream = null;
+	private void save(Context context, String file, Object object) {
+		ObjectOutputStream objectOutputStream = null;
 		try {
-			fileOutputStream = context.openFileOutput(file,
+			FileOutputStream fileOutputStream = context.openFileOutput(file,
 					Context.MODE_PRIVATE);
-			fileOutputStream.write(null);
+			objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(object);
 		} catch (Exception e) {
 			// unused
 		} finally {
 			try {
-				fileOutputStream.close();
+				objectOutputStream.close();
 			} catch (Exception e) {
 				// unused
 			}
@@ -71,23 +74,27 @@ public class ConnectionManager {
 	}
 
 	public void load(Context context) {
-		load(context, Conf.FILE_QUEUE);
-		load(context, Conf.FILE_RUNNING);
+		queue = load(context, Conf.FILE_QUEUE);
+		running = load(context, Conf.FILE_RUNNING);
 	}
 
-	private void load(Context context, String file) {
-		FileInputStream fileInputStream = null;
+	@SuppressWarnings("unchecked")
+	private ArrayList<Runnable> load(Context context, String file) {
+		ArrayList<Runnable> result = new ArrayList<Runnable>();
+		ObjectInputStream objectInputStream = null;
 		try {
-			fileInputStream = context.openFileInput(file);
-			fileInputStream.read();
+			FileInputStream fileInputStream = context.openFileInput(file);
+			objectInputStream = new ObjectInputStream(fileInputStream);
+			result = (ArrayList<Runnable>) objectInputStream.readObject();
 		} catch (Exception e) {
 			// unused
 		} finally {
 			try {
-				fileInputStream.close();
+				objectInputStream.close();
 			} catch (Exception e) {
 				// unused
 			}
 		}
+		return result;
 	}
 }
