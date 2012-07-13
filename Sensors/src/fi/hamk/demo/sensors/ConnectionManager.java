@@ -1,9 +1,7 @@
 package fi.hamk.demo.sensors;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -51,17 +49,12 @@ public class ConnectionManager {
 	}
 
 	public void save(Context context) {
-		save(context, Conf.FILE_QUEUE, queue);
-		save(context, Conf.FILE_RUNNING, running);
-	}
-
-	private void save(Context context, String file, Object object) {
 		ObjectOutputStream objectOutputStream = null;
 		try {
-			FileOutputStream fileOutputStream = context.openFileOutput(file,
-					Context.MODE_PRIVATE);
+			FileOutputStream fileOutputStream = context.openFileOutput(
+					Conf.FILE_QUEUE, Context.MODE_PRIVATE);
 			objectOutputStream = new ObjectOutputStream(fileOutputStream);
-			objectOutputStream.writeObject(object);
+			objectOutputStream.writeObject(queue.addAll(running));
 		} catch (Exception e) {
 			// unused
 		} finally {
@@ -73,20 +66,14 @@ public class ConnectionManager {
 		}
 	}
 
-	public void load(Context context) {
-		queue = load(context, Conf.FILE_QUEUE);
-		queue.addAll(load(context, Conf.FILE_RUNNING));
-		next();
-	}
-
 	@SuppressWarnings("unchecked")
-	private ArrayList<Runnable> load(Context context, String file) {
-		ArrayList<Runnable> result = new ArrayList<Runnable>();
+	public void load(Context context) {
 		ObjectInputStream objectInputStream = null;
 		try {
-			FileInputStream fileInputStream = context.openFileInput(file);
+			FileInputStream fileInputStream = context
+					.openFileInput(Conf.FILE_QUEUE);
 			objectInputStream = new ObjectInputStream(fileInputStream);
-			result = (ArrayList<Runnable>) objectInputStream.readObject();
+			queue = (ArrayList<Runnable>) objectInputStream.readObject();
 		} catch (Exception e) {
 			// unused
 		} finally {
@@ -96,10 +83,10 @@ public class ConnectionManager {
 				// unused
 			}
 		}
-		return result;
+		next();
 	}
 
-	public int status(){
+	public int status() {
 		return queue.size() + running.size();
 	}
 }
