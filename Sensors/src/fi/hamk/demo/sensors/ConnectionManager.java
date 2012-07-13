@@ -41,4 +41,12 @@ public class ConnectionManager {
 		running.remove(runnable);
 		next();
 	}
+
+	public void save(){
+		
+	}
+
+	public void load(){
+		
+	}
 }

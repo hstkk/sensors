@@ -94,4 +94,14 @@ public class Utils extends Sensors {
 				(LocationManager) context
 						.getSystemService(Context.LOCATION_SERVICE));
 	}
+
+	public void register() {
+		super.register();
+		ConnectionManager.getConnectionManager().load();
+	}
+
+	public void unregister() {
+		super.unregister();
+		ConnectionManager.getConnectionManager().save();
+	}
 }
