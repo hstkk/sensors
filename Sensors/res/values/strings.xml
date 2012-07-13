@@ -21,5 +21,7 @@
     <string name="flush">Flush transmission queue</string>
     <string name="ok_text">Upload Successful!</string>
     <string name="port">Port</string>
+    <string name="to_be_continued">Transmission continues</string>
+    <string name="pipeline">messages on the pipeline</string>
 
 </resources>

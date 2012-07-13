@@ -36,7 +36,8 @@ public class ConnectionManager {
 	}
 
 	private void next() {
-		if (!queue.isEmpty() && running.size() < Conf.CONNECTION_MANAGER_WORKERS) {
+		if (!queue.isEmpty()
+				&& running.size() < Conf.CONNECTION_MANAGER_WORKERS) {
 			Runnable runnable = queue.get(0);
 			queue.remove(runnable);
 			running.add(runnable);
@@ -74,7 +75,7 @@ public class ConnectionManager {
 
 	public void load(Context context) {
 		queue = load(context, Conf.FILE_QUEUE);
-		running = load(context, Conf.FILE_RUNNING);
+		queue.addAll(load(context, Conf.FILE_RUNNING));
 		next();
 	}
 
@@ -96,5 +97,9 @@ public class ConnectionManager {
 			}
 		}
 		return result;
+	}
+
+	public int status(){
+		return queue.size() + running.size();
 	}
 }

@@ -47,6 +47,7 @@ public class MainActivity extends SherlockActivity implements
 			tab.setTabListener(this);
 			getSupportActionBar().addTab(tab);
 		}
+		status();
 	}
 
 	@Override
@@ -59,6 +60,7 @@ public class MainActivity extends SherlockActivity implements
 	protected void onResume() {
 		super.onResume();
 		utils.register();
+		status();
 	}
 
 	@Override
@@ -94,7 +96,7 @@ public class MainActivity extends SherlockActivity implements
 		Handler handler = new Handler() {
 			public void handleMessage(Message message) {
 				String title = null, text = getString(R.string.queue);
-				int id = -1;
+				int id = Conf.STATUS_ERROR;
 				switch (message.what) {
 					case Conf.STATUS_OK:
 						title = getString(R.string.ok);
@@ -134,6 +136,14 @@ public class MainActivity extends SherlockActivity implements
 	// @Override
 	public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
 		textView.setText(tab.getText());
+	}
+
+	private void status() {
+		int queueStatus = ConnectionManager.getConnectionManager().status();
+		if (queueStatus > 0)
+			notification(Conf.STATUS_ERROR,
+					getString(R.string.to_be_continued), queueStatus + " "
+							+ getString(R.string.pipeline));
 	}
 
 	// @Override
