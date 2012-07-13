@@ -18,7 +18,6 @@ import android.os.Message;
  */
 public class Connection implements Runnable {
 
-	int status = Conf.STATUS_ERROR;
 	SharedPreferences preferences;
 	String preferences_url;
 	String preferences_port;
@@ -35,6 +34,22 @@ public class Connection implements Runnable {
 		ConnectionManager.getConnectionManager().add(this);
 	}
 
+	private int post(String url) {
+		int status = Conf.STATUS_ERROR;
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		HttpPost httpPost = new HttpPost(url);
+		HttpConnectionParams.setSoTimeout(httpClient.getParams(),
+				Conf.CONNECTION_TIMEOUT);
+		try {
+			httpPost.setEntity(new StringEntity(json));
+			HttpResponse httpResponse = httpClient.execute(httpPost);
+			status = httpResponse.getStatusLine().getStatusCode();
+		} catch (Exception e) {
+			// unused
+		}
+		return status;
+	}
+
 	public void run() {
 		StringBuilder url = new StringBuilder();
 		url.append(preferences.getString(preferences_url, Conf.DEFAULT_SERVER));
@@ -43,16 +58,7 @@ public class Connection implements Runnable {
 		url.append("/");
 		url.append(Conf.SERVER_PATH);
 
-		DefaultHttpClient httpClient = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost(url.toString());
-		HttpConnectionParams.setSoTimeout(httpClient.getParams(),
-				Conf.CONNECTION_TIMEOUT);
-		try {
-			httpPost.setEntity(new StringEntity(json));
-			HttpResponse httpResponse = httpClient.execute(httpPost);
-			status = httpResponse.getStatusLine().getStatusCode();
-		} catch (Exception e) {
-		}
+		int status = post(url.toString());
 		handler.sendMessage(Message.obtain(handler, status));
 		if (status == Conf.STATUS_OK)
 			ConnectionManager.getConnectionManager().done(this);
@@ -60,6 +66,7 @@ public class Connection implements Runnable {
 			try {
 				Thread.sleep(Conf.CONNECTION_SLEEP);
 			} catch (InterruptedException e) {
+				// unused
 			}
 	}
 }
