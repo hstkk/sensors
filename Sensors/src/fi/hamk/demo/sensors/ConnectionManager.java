@@ -27,8 +27,7 @@ public class ConnectionManager {
 
 	public void add(Runnable runnable) {
 		queue.add(runnable);
-		if (running.size() < Conf.CONNECTION_MANAGER_WORKERS)
-			next();
+		next();
 	}
 
 	public void flush() {
@@ -37,7 +36,7 @@ public class ConnectionManager {
 	}
 
 	private void next() {
-		if (!queue.isEmpty()) {
+		if (!queue.isEmpty() && running.size() < Conf.CONNECTION_MANAGER_WORKERS) {
 			Runnable runnable = queue.get(0);
 			queue.remove(runnable);
 			running.add(runnable);
@@ -76,6 +75,7 @@ public class ConnectionManager {
 	public void load(Context context) {
 		queue = load(context, Conf.FILE_QUEUE);
 		running = load(context, Conf.FILE_RUNNING);
+		next();
 	}
 
 	@SuppressWarnings("unchecked")
