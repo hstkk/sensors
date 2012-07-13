@@ -54,7 +54,8 @@ public class Connection implements Runnable {
 		StringBuilder url = new StringBuilder();
 		url.append(preferences.getString(preferences_url, Conf.DEFAULT_SERVER));
 		url.append(":");
-		url.append(preferences.getLong(preferences_port, Conf.SERVER_PORT));
+		url.append(preferences.getInt(preferences_port,
+				Conf.DEFAULT_SERVER_PORT));
 		url.append("/");
 		url.append(Conf.SERVER_PATH);
 

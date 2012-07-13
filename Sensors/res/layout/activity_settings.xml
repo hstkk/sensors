@@ -21,11 +21,21 @@
         <requestFocus />
     </EditText>
 
+    <EditText
+        android:id="@+id/port"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/flush"
-        android:onClick="flush"/>
+        android:onClick="flush"
+        android:text="@string/flush" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@
     <string name="preferences_url">url</string>
     <string name="preferences_port">port</string>
     <string name="save_err">Server is not valid</string>
+    <string name="port_err">Server is not valid, use port range 1 – 65535</string>
     <string name="connection_err">Connection refused by server.</string>
     <string name="ok">OK</string>
     <string name="int_err">Internal Server Error.</string>

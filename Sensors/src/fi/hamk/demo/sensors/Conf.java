@@ -13,8 +13,8 @@ public class Conf {
 	public static final int CONNECTION_SLEEP = 30000; // milliseconds
 	public static final int CONNECTION_MANAGER_WORKERS = 5;
 	public static final String DEFAULT_SERVER = "http://127.0.0.1";
+	public static final int DEFAULT_SERVER_PORT = 9000;
 	public static final String SERVER_PATH = "json";
-	public static final int SERVER_PORT = 9000;
 	public static final String[] TABS = { "network", "device", "location" };
 
 }
