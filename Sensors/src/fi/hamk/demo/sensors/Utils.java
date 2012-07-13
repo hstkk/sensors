@@ -97,11 +97,11 @@ public class Utils extends Sensors {
 
 	public void register() {
 		super.register();
-		ConnectionManager.getConnectionManager().load();
+		ConnectionManager.getConnectionManager().load(context);
 	}
 
 	public void unregister() {
 		super.unregister();
-		ConnectionManager.getConnectionManager().save();
+		ConnectionManager.getConnectionManager().save(context);
 	}
 }

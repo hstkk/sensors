@@ -16,5 +16,7 @@ public class Conf {
 	public static final int DEFAULT_SERVER_PORT = 9000;
 	public static final String SERVER_PATH = "json";
 	public static final String[] TABS = { "network", "device", "location" };
+	public static final String FILE_QUEUE = "queue";
+	public static final String FILE_RUNNING = "running";
 
 }

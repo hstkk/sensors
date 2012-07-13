@@ -1,6 +1,12 @@
 package fi.hamk.demo.sensors;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import android.content.Context;
 
 /**
  * @author Sami Hostikka
@@ -42,11 +48,46 @@ public class ConnectionManager {
 		next();
 	}
 
-	public void save(){
-		
+	public void save(Context context) {
+		save(context, Conf.FILE_QUEUE);
+		save(context, Conf.FILE_RUNNING);
 	}
 
-	public void load(){
-		
+	private void save(Context context, String file) {
+		FileOutputStream fileOutputStream = null;
+		try {
+			fileOutputStream = context.openFileOutput(file,
+					Context.MODE_PRIVATE);
+			fileOutputStream.write(null);
+		} catch (Exception e) {
+			// unused
+		} finally {
+			try {
+				fileOutputStream.close();
+			} catch (Exception e) {
+				// unused
+			}
+		}
+	}
+
+	public void load(Context context) {
+		load(context, Conf.FILE_QUEUE);
+		load(context, Conf.FILE_RUNNING);
+	}
+
+	private void load(Context context, String file) {
+		FileInputStream fileInputStream = null;
+		try {
+			fileInputStream = context.openFileInput(file);
+			fileInputStream.read();
+		} catch (Exception e) {
+			// unused
+		} finally {
+			try {
+				fileInputStream.close();
+			} catch (Exception e) {
+				// unused
+			}
+		}
 	}
 }
