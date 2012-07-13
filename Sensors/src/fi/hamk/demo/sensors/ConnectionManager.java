@@ -10,7 +10,6 @@ public class ConnectionManager {
 	ArrayList<Runnable> running = new ArrayList<Runnable>();
 	ArrayList<Runnable> queue = new ArrayList<Runnable>();
 	static ConnectionManager connectionManager;
-	final int workers = 5;
 
 	public static ConnectionManager getConnectionManager() {
 		if (connectionManager == null)
@@ -20,7 +19,7 @@ public class ConnectionManager {
 
 	public void add(Runnable runnable) {
 		queue.add(runnable);
-		if (running.size() < workers)
+		if (running.size() < Conf.CONNECTION_MANAGER_WORKERS)
 			next();
 	}
 

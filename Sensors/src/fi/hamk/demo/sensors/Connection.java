@@ -13,13 +13,7 @@ import android.os.Message;
  */
 public class Connection implements Runnable {
 
-	public static final int OK = 200;
-	public static final int INTERNAL_SERVER_ERROR = 500;
-	public static final int ERROR = -1;
-	public static final int CONNECTION_ERROR = 2;
-	final int TIMEOUT = 10000; // milliseconds
-	final int SLEEP = 30000; // milliseconds
-	int status = ERROR;
+	int status = Conf.STATUS_ERROR;
 	String url;
 	String data;
 	Handler handler;
@@ -35,7 +29,7 @@ public class Connection implements Runnable {
 	public void run() {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(url);
-		HttpConnectionParams.setSoTimeout(httpClient.getParams(), TIMEOUT);
+		HttpConnectionParams.setSoTimeout(httpClient.getParams(), Conf.CONNECTION_TIMEOUT);
 		try {
 			httpPost.setEntity(new StringEntity(data));
 			HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -43,11 +37,11 @@ public class Connection implements Runnable {
 		} catch (Exception e) {
 		}
 		handler.sendMessage(Message.obtain(handler, status));
-		if (status == OK)
+		if (status == Conf.STATUS_OK)
 			ConnectionManager.getConnectionManager().done(this);
 		else
 			try {
-				Thread.sleep(SLEEP);
+				Thread.sleep(Conf.CONNECTION_SLEEP);
 			} catch (InterruptedException e) {
 			}
 	}

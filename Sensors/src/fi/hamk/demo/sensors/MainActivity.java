@@ -3,15 +3,13 @@ package fi.hamk.demo.sensors;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.widget.TextView;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -24,10 +22,10 @@ import com.actionbarsherlock.view.MenuItem;
 public class MainActivity extends SherlockActivity implements
 		ActionBar.TabListener {
 
-	final String[] TABS = { "network", "device", "location" };
 	TextView textView;
 	Utils utils;
 	NotificationManager notificationManager;
+	SharedPreferences preferences;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,7 @@ public class MainActivity extends SherlockActivity implements
 		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// ActionBarSherlock add tabs
-		for (String title : TABS) {
+		for (String title : Conf.TABS) {
 			ActionBar.Tab tab = getSupportActionBar().newTab();
 			tab.setText(title);
 			tab.setTabListener(this);
@@ -97,27 +95,30 @@ public class MainActivity extends SherlockActivity implements
 				String title = null, text = getString(R.string.queue);
 				int id = -1;
 				switch (message.what) {
-					case Connection.OK:
+					case Conf.STATUS_OK:
 						title = getString(R.string.ok);
 						text = getString(R.string.ok_text);
-						id = Connection.OK;
+						id = Conf.STATUS_OK;
 						break;
-					case Connection.INTERNAL_SERVER_ERROR:
+					case Conf.STATUS_INTERNAL_SERVER_ERROR:
 						title = getString(R.string.int_err);
 						break;
-					case Connection.CONNECTION_ERROR:
+					case Conf.STATUS_CONNECTION_ERROR:
 						title = getString(R.string.connection_err);
 						break;
-					case Connection.ERROR:
+					case Conf.STATUS_ERROR:
 						title = getString(R.string.err);
 						break;
 				}
 				notification(id, title, text);
 			}
 		};
-		new Connection("example.com", "asd", handler);
+		new Connection(preferences.getString(
+				getString(R.string.preferences_url), Conf.DEFAULT_SERVER),
+				"asd", handler);
 	}
 
+	@SuppressWarnings("deprecation")
 	private void notification(int id, String title, String text) {
 		Notification notification = new Notification();
 		notification.icon = R.drawable.ic_launcher;

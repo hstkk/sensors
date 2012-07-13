@@ -24,7 +24,7 @@ public class SettingsActivity extends SherlockActivity {
 		url = (EditText) findViewById(R.id.url);
 		preferences = getSharedPreferences(getString(R.string.preferences), 0);
 		url.setText(preferences.getString(getString(R.string.preferences_url),
-				"http://127.0.0.1"));
+				Conf.DEFAULT_SERVER));
 	}
 
 	@Override
