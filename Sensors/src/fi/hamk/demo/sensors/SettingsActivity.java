@@ -26,8 +26,8 @@ public class SettingsActivity extends SherlockActivity {
 		preferences = getSharedPreferences(getString(R.string.preferences), 0);
 		url.setText(preferences.getString(getString(R.string.preferences_url),
 				Conf.DEFAULT_SERVER));
-		url.setText(preferences.getInt(getString(R.string.preferences_port),
-				Conf.DEFAULT_SERVER_PORT));
+		port.setText(preferences.getInt(getString(R.string.preferences_port),
+				Conf.DEFAULT_SERVER_PORT) + "");
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class SettingsActivity extends SherlockActivity {
 		if (!URLUtil.isValidUrl(url.getText().toString()))
 			Toast.makeText(this, getString(R.string.save_err),
 					Toast.LENGTH_SHORT).show();
-		if (!(value >= 1 && value <= 65535))
+		else if (!(value >= 1 && value <= 65535))
 			Toast.makeText(this, getString(R.string.port_err),
 					Toast.LENGTH_SHORT).show();
 		else {
