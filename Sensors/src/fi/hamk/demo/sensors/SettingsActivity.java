@@ -63,6 +63,6 @@ public class SettingsActivity extends SherlockActivity {
 	}
 
 	public void flush(View view) {
-		setResult(RESULT_OK);
+		ConnectionManager.getConnectionManager().flush();
 	}
 }

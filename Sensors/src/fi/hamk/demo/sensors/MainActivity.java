@@ -83,9 +83,11 @@ public class MainActivity extends SherlockActivity implements
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
 		if (menuItem.getTitle().equals(getString(R.string.settings))) {
 			Intent intent = new Intent(this, SettingsActivity.class);
-			startActivityForResult(intent, 0);
-		} else
-			upload(utils.getSensor());
+			startActivity(intent);
+		} else {
+			Sensor sensor = utils.getSensor();
+			upload(sensor);
+		}
 		return true;
 	}
 
@@ -128,12 +130,6 @@ public class MainActivity extends SherlockActivity implements
 				intent, 0);
 		notification.setLatestEventInfo(this, title, text, pendingIntent);
 		notificationManager.notify(id, notification);
-	}
-
-	protected void onActivityResult(int requestCode, int resultCode,
-			Intent intent) {
-		if (resultCode == RESULT_OK)
-			ConnectionManager.getConnectionManager().flush();
 	}
 
 	// @Override
