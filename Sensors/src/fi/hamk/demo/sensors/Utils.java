@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import fi.hamk.demo.sensors.models.*;
 import android.content.Context;
-import android.location.LocationManager;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
 import android.telephony.TelephonyManager;
@@ -22,7 +21,6 @@ public class Utils extends Sensors {
 
 	public Sensor getSensor() {
 		sensor.measured = new Date();
-		sensor.location = getLocation();
 		getNetwork();
 		sensor.wifi = getWifi();
 		return sensor;
@@ -87,12 +85,6 @@ public class Utils extends Sensors {
 				sensor.network.type = "unknown";
 				break;
 		}
-	}
-
-	private Location getLocation() {
-		return new Location(
-				(LocationManager) context
-						.getSystemService(Context.LOCATION_SERVICE));
 	}
 
 	public void register() {

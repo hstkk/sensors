@@ -1,24 +1,25 @@
 package fi.hamk.demo.sensors.models;
 
-import android.location.LocationManager;
-
 /**
- * @author Sami Hostikka
+ * @author Pontus Vainionpaa
  */
 public class Location {
 
 	public Double altitude = null, latitude = null, longitude = null;
+	public Float accuracy = null, speed = null;
+	public String provider = null;
+	public Integer satellites = null;
 
-	public Location(LocationManager locationManager) {
-		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			// http://stackoverflow.com/a/2227299
-			android.location.Location location = locationManager
-					.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-			if (location != null) {
-				altitude = location.getAltitude();
-				latitude = location.getLatitude();
-				longitude = location.getLongitude();
-			}
-		}
+	public Location() {
+	}
+
+	public void nullify() {
+		altitude = null;
+		latitude = null;
+		longitude = null;
+		accuracy = null;
+		speed = null;
+		provider = null;
+		satellites = null;
 	}
 }
