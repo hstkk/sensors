@@ -28,9 +28,6 @@ public class Sensors {
 	Context context;
 	SensorManager sensorManager = null;
 	LocationManager locationManager = null;
-	int[] sensors = { Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_GRAVITY,
-			Sensor.TYPE_GYROSCOPE, Sensor.TYPE_LIGHT,
-			Sensor.TYPE_MAGNETIC_FIELD, Sensor.TYPE_PROXIMITY };
 	SensorEventListener sensorEventListener = new SensorEventListener() {
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {
 			// unused
@@ -87,7 +84,7 @@ public class Sensors {
 	};
 
 	protected void register() {
-		for (int sensor : sensors)
+		for (int sensor : Conf.SENSORS)
 			sensorManager.registerListener(sensorEventListener,
 					sensorManager.getDefaultSensor(sensor),
 					SensorManager.SENSOR_DELAY_UI);

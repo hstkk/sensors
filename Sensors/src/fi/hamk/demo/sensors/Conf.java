@@ -1,5 +1,7 @@
 package fi.hamk.demo.sensors;
 
+import android.hardware.Sensor;
+
 /**
  * @author Sami Hostikka
  */
@@ -18,5 +20,8 @@ public class Conf {
 	public static final String[] TABS = { "network", "device", "location" };
 	public static final String FILE_QUEUE = "queue";
 	public static final String FILE_RUNNING = "running";
+	public static final int[] SENSORS = { Sensor.TYPE_ACCELEROMETER,
+			Sensor.TYPE_GRAVITY, Sensor.TYPE_GYROSCOPE, Sensor.TYPE_LIGHT,
+			Sensor.TYPE_MAGNETIC_FIELD, Sensor.TYPE_PROXIMITY };
 
 }
