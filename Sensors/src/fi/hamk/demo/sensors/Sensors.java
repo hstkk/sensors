@@ -98,33 +98,33 @@ public class Sensors {
 				0, locationListener);
 	}
 
-	protected void getProximity(SensorEvent event) {
+	private void getProximity(SensorEvent event) {
 		sensor.proximity.x = event.values[0];
 	}
 
-	protected void getMagneticField(SensorEvent event) {
+	private void getMagneticField(SensorEvent event) {
 		sensor.magfield.x = event.values[0];
 		sensor.magfield.y = event.values[1];
 		sensor.magfield.z = event.values[2];
 	}
 
-	protected void getLight(SensorEvent event) {
+	private void getLight(SensorEvent event) {
 		sensor.light.x = event.values[0];
 	}
 
-	protected void getGyroscope(SensorEvent event) {
+	private void getGyroscope(SensorEvent event) {
 		sensor.gyroscope.x = event.values[0];
 		sensor.gyroscope.y = event.values[1];
 		sensor.gyroscope.z = event.values[2];
 	}
 
-	protected void getGravity(SensorEvent event) {
+	private void getGravity(SensorEvent event) {
 		sensor.gravity.x = event.values[0];
 		sensor.gravity.y = event.values[1];
 		sensor.gravity.z = event.values[2];
 	}
 
-	protected void getAccelerometer(SensorEvent event) {
+	private void getAccelerometer(SensorEvent event) {
 		sensor.accelerometer.x = event.values[0];
 		sensor.accelerometer.y = event.values[1];
 		sensor.accelerometer.z = event.values[2];
