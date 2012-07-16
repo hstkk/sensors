@@ -21,7 +21,7 @@ public class Network extends Model {
 
 	public boolean isNetworkRoaming;
 
-	public Integer cell = null;
+	public Integer cell;
 
 	public Network() {
 	}

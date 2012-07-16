@@ -18,6 +18,14 @@ public class Location extends Model {
 
 	public Double longitude;
 
+	public Float accuracy;
+
+	public Float speed;
+
+	public String provider;
+
+	public Integer satellites;
+
 	public Location() {
 	}
 

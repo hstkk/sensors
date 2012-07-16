@@ -13,8 +13,6 @@ public class Device extends Model {
 	@Id
 	public int id;
 
-	public String deviceId;
-
 	public String manufacturer;
 
 	public String version;

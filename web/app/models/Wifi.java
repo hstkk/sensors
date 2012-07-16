@@ -1,8 +1,6 @@
 package models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 

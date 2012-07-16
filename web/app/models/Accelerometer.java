@@ -7,7 +7,7 @@ import play.db.ebean.Model;
  * @author Sami Hostikka
  */
 @Entity
-public class Acceleration extends Model {
+public class Accelerometer extends Model {
 
 	@Id
 	public int id;
@@ -18,13 +18,13 @@ public class Acceleration extends Model {
 
 	public Float z;
 
-	public Acceleration() {
+	public Accelerometer() {
 	}
 
-	public static Finder<Long, Acceleration> find = new Finder<Long, Acceleration>(
-			Long.class, Acceleration.class);
+	public static Finder<Long, Accelerometer> find = new Finder<Long, Accelerometer>(
+			Long.class, Accelerometer.class);
 
-	public static Acceleration findById(int id) {
+	public static Accelerometer findById(int id) {
 		try {
 			return find.where().eq("id", id).findUnique();
 		} catch (Exception e) {

@@ -19,7 +19,7 @@ public class Sensor extends Model {
 
 	@Required
 	@NotNull
-	public Date created;
+	public Date measured;
 
 	@OneToOne
 	public Location location;
@@ -31,7 +31,22 @@ public class Sensor extends Model {
 	public Device device;
 
 	@OneToOne
-	public Acceleration acceleration;
+	public Accelerometer accelerometer;
+
+	@OneToOne
+	public Proximity proximity;
+
+	@OneToOne
+	public Gravity gravity;
+
+	@OneToOne
+	public Gyroscope gyroscope;
+
+	@OneToOne
+	public Light light;
+
+	@OneToOne
+	public MagneticField magfield;
 
 	@ManyToOne
 	public List<Wifi> wifi = new ArrayList<Wifi>();
