@@ -35,24 +35,24 @@ public class Sensors {
 
 		public void onSensorChanged(SensorEvent event) {
 			switch (event.sensor.getType()) {
-			case Sensor.TYPE_ACCELEROMETER:
-				getAccelerometer(event);
-				break;
-			case Sensor.TYPE_GRAVITY:
-				getGravity(event);
-				break;
-			case Sensor.TYPE_GYROSCOPE:
-				getGyroscope(event);
-				break;
-			case Sensor.TYPE_LIGHT:
-				getLight(event);
-				break;
-			case Sensor.TYPE_MAGNETIC_FIELD:
-				getMagneticField(event);
-				break;
-			case Sensor.TYPE_PROXIMITY:
-				getProximity(event);
-				break;
+				case Sensor.TYPE_ACCELEROMETER:
+					getAccelerometer(event);
+					break;
+				case Sensor.TYPE_GRAVITY:
+					getGravity(event);
+					break;
+				case Sensor.TYPE_GYROSCOPE:
+					getGyroscope(event);
+					break;
+				case Sensor.TYPE_LIGHT:
+					getLight(event);
+					break;
+				case Sensor.TYPE_MAGNETIC_FIELD:
+					getMagneticField(event);
+					break;
+				case Sensor.TYPE_PROXIMITY:
+					getProximity(event);
+					break;
 			}
 		}
 	};
