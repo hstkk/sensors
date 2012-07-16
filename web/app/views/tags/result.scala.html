@@ -5,10 +5,10 @@
 
 <tr>
 	<td>
-		@if(result.created == null) {
+		@if(result.measured == null) {
 			<em>-</em>
 		} else {
-			@result.created.format("H:m dd.M.yyyy")
+			@result.measured.format("H:m dd.M.yyyy")
 		}
 	</td>
 	<td>
