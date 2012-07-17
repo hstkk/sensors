@@ -5,9 +5,12 @@ import play.mvc.*;
 import views.html.*;
 import models.*;
 import play.data.DynamicForm;
+import play.db.ebean.Transactional;
 import play.libs.*;
 import java.util.*;
 
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.node.ObjectNode;
 import org.joda.time.DateTime;
 
 /**
@@ -45,21 +48,23 @@ public class Application extends Controller {
 	public static Result pushpins() {
 		List<Sensor> results = Sensor.pushpins();
 		if (results == null || results.isEmpty())
-			return TODO;
+			return badRequest();
 		return ok(Json.toJson(results));
 	}
 
-	public static Result add(){
-		try{
-			DynamicForm dynamicForm = form().bindFromRequest();
-			  for (Object key: dynamicForm.get().getData().entrySet()){
-				  System.out.println("Key : " + key.toString() 
-			       			+ " Value : " + dynamicForm.get((String) key));
-			  }
-			return ok();
-		} catch(Exception e){
-			System.out.print(e.toString());
-			return badRequest();
+	@Transactional
+	public static Result add() {
+		try {
+			JsonNode json = request().body().asJson();
+			if (json != null) {
+				Sensor sensor = Json.fromJson(json, Sensor.class);
+				sensor.save();
+				ObjectNode result = Json.newObject();
+				result.put("id", sensor.id);
+				return ok(result);
+			}
+		} catch (Exception e) {
 		}
+		return badRequest();
 	}
 }
