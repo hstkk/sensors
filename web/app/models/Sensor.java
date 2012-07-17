@@ -2,6 +2,9 @@ package models;
 
 import java.util.*;
 import javax.persistence.*;
+
+import org.codehaus.jackson.JsonNode;
+
 import com.avaje.ebean.*;
 import com.avaje.ebean.validation.NotNull;
 
@@ -52,6 +55,9 @@ public class Sensor extends Model {
 	public List<Wifi> wifi = new ArrayList<Wifi>();
 
 	public Sensor() {
+	}
+
+	public Sensor(JsonNode json) {
 	}
 
 	public static Finder<Long, Sensor> find = new Finder<Long, Sensor>(
