@@ -39,20 +39,6 @@ public class Application extends Controller {
 	}
 
 	public static Result map() {
-		/*Location l = new Location();
-		l.accuracy = (float) 5;
-		l.altitude = (double) 0;
-		l.latitude = 60.7346;
-		l.longitude = 24.7612;
-		l.provider = "GPS";
-		l.satellites = 3;
-		l.speed = (float) 0;
-		l.save();
-		Sensor s = new Sensor();
-		s.measured = new Date();
-		s.location = l;
-		s.save();*/
-		
 		return ok(views.html.map.render());
 	}
 
