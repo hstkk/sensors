@@ -1,11 +1,13 @@
 package models;
 
 import javax.persistence.*;
+
 import play.db.ebean.Model;
 
 /**
  * @author Pontus Vainionpaa
  */
+@Entity
 public class Gyroscope extends Model {
 	@Id
 	public int id;
