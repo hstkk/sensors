@@ -10,6 +10,7 @@ import com.avaje.ebean.validation.NotNull;
 
 import play.data.validation.Constraints.*;
 import play.db.ebean.Model;
+import play.libs.Json;
 
 /**
  * @author Sami Hostikka
@@ -58,6 +59,8 @@ public class Sensor extends Model {
 	}
 
 	public Sensor(JsonNode json) {
+		location = Json.fromJson(json.get("location"), Location.class);
+		location.save();
 	}
 
 	public static Finder<Long, Sensor> find = new Finder<Long, Sensor>(
