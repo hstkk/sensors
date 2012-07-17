@@ -7,9 +7,12 @@
 	<thead>
 		<tr>
 			@th("Date", "created", page, order, by)
-			@th("Altitude", "location.altitude", page, order, by)
 			@th("Latitude", "location.latitude", page, order, by)
 			@th("Longitude", "location.longitude", page, order, by)
+			@th("Accuracy", "location.accuracy", page, order, by)
+			@th("Speed", "location.speed", page, order, by)
+			@th("Provider", "location.provider", page, order, by)
+			@th("Satellites", "location.satellites", page, order, by)
 		</tr>
 	</thead>
 	<tbody>

@@ -18,7 +18,7 @@ public class Sensor extends Model {
 	public int id;
 
 	@Required
-	@NotNull
+	//@NotNull
 	public Date measured;
 
 	@OneToOne

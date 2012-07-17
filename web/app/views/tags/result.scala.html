@@ -12,13 +12,6 @@
 		}
 	</td>
 	<td>
-		@if(result.location.altitude == null) {
-			<em>-</em>
-		} else {
-			@result.location.altitude
-		}
-	</td>
-	<td>
 		@if(result.location.latitude == null) {
 			<em>-</em>
 		} else {
@@ -30,6 +23,34 @@
 			<em>-</em>
 		} else {
 			@result.location.longitude
+		}
+	</td>
+	<td>
+		@if(result.location.accuracy == null) {
+			<em>-</em>
+		} else {
+			@result.location.accuracy
+		}
+	</td>
+	<td>
+		@if(result.location.speed == null) {
+			<em>-</em>
+		} else {
+			@result.location.speed
+		}
+	</td>
+	<td>
+		@if(result.location.provider == null) {
+			<em>-</em>
+		} else {
+			@result.location.provider
+		}
+	</td>
+	<td>
+		@if(result.location.satellites == null) {
+			<em>-</em>
+		} else {
+			@result.location.satellites
 		}
 	</td>
 </tr>

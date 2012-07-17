@@ -79,7 +79,7 @@ create table proximity (
 
 create table sensor (
   id                        integer auto_increment not null,
-  measured                  datetime not null,
+  measured                  datetime,
   location_id               integer,
   network_id                integer,
   device_id                 integer,
