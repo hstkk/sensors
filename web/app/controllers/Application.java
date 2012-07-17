@@ -57,7 +57,6 @@ public class Application extends Controller {
 			JsonNode json = request().body().asJson();
 			if (json != null) {
 				Sensor sensor = new Sensor(json);
-				sensor.save();
 				ObjectNode result = Json.newObject();
 				result.put("id", sensor.id);
 				return ok(result);

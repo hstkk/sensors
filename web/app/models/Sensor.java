@@ -60,7 +60,17 @@ public class Sensor extends Model {
 
 	public Sensor(JsonNode json) {
 		location = Json.fromJson(json.get("location"), Location.class);
-		location.save();
+		network = Json.fromJson(json.get("network"), Network.class);
+		device = Json.fromJson(json.get("device"), Device.class);
+		accelerometer = Json.fromJson(json.get("accelerometer"),
+				Accelerometer.class);
+		proximity = Json.fromJson(json.get("proximity"), Proximity.class);
+		gravity = Json.fromJson(json.get("gravity"), Gravity.class);
+		gyroscope = Json.fromJson(json.get("gyroscope"), Gyroscope.class);
+		light = Json.fromJson(json.get("light"), Light.class);
+		magfield = Json.fromJson(json.get("magfield"), MagneticField.class);
+		measured = new Date(json.findPath("measured").getLongValue());
+		this.save();
 	}
 
 	public static Finder<Long, Sensor> find = new Finder<Long, Sensor>(
