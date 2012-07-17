@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import play.db.ebean.Model;
 
 /**
@@ -12,10 +14,13 @@ public class Accelerometer extends Model {
 	@Id
 	public int id;
 
+	@NotNull
 	public Float x;
 
+	@NotNull
 	public Float y;
 
+	@NotNull
 	public Float z;
 
 	public Accelerometer() {

@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import play.db.ebean.Model;
 
@@ -12,8 +13,13 @@ public class Gravity extends Model {
 	@Id
 	public int id;
 
+	@NotNull
 	public Float x;
+
+	@NotNull
 	public Float y;
+
+	@NotNull
 	public Float z;
 
 	public static Finder<Long, Gravity> find = new Finder<Long, Gravity>(

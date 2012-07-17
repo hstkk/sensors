@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import play.db.ebean.Model;
 
@@ -12,6 +13,7 @@ public class Proximity extends Model {
 	@Id
 	public int id;
 
+	@NotNull
 	public Float x;
 
 	public static Finder<Long, Proximity> find = new Finder<Long, Proximity>(

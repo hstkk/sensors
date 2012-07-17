@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import play.db.ebean.Model;
 
 /**
@@ -14,14 +16,17 @@ public class Location extends Model {
 
 	public Double altitude;
 
+	@NotNull
 	public Double latitude;
 
+	@NotNull
 	public Double longitude;
 
 	public Float accuracy;
 
 	public Float speed;
 
+	@NotNull
 	public String provider;
 
 	public Integer satellites;
