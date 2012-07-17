@@ -4,6 +4,7 @@ import play.*;
 import play.mvc.*;
 import views.html.*;
 import models.*;
+import play.data.DynamicForm;
 import play.libs.*;
 import java.util.*;
 
@@ -50,6 +51,11 @@ public class Application extends Controller {
 
 	public static Result add(){
 		try{
+			DynamicForm dynamicForm = form().bindFromRequest();
+			  for (Object key: dynamicForm.get().getData().entrySet()){
+				  System.out.println("Key : " + key.toString() 
+			       			+ " Value : " + dynamicForm.get((String) key));
+			  }
 			return ok();
 		} catch(Exception e){
 			System.out.print(e.toString());
