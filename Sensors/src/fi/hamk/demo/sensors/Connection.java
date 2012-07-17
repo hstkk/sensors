@@ -38,10 +38,11 @@ public class Connection implements Runnable {
 		int status = Conf.STATUS_ERROR;
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(url);
+		httpPost.setHeader("Content-type", "application/json");
 		HttpConnectionParams.setSoTimeout(httpClient.getParams(),
 				Conf.CONNECTION_TIMEOUT);
 		try {
-			httpPost.setEntity(new StringEntity(json));
+			httpPost.setEntity(new StringEntity(json, "UTF-8"));
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			status = httpResponse.getStatusLine().getStatusCode();
 		} catch (Exception e) {
