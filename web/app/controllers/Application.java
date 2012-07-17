@@ -47,4 +47,13 @@ public class Application extends Controller {
 			return TODO;
 		return ok(Json.toJson(results));
 	}
+
+	public static Result add(){
+		try{
+			return ok();
+		} catch(Exception e){
+			System.out.print(e.toString());
+			return badRequest();
+		}
+	}
 }

@@ -4,6 +4,7 @@
 
 # Home page
 GET		/							controllers.Application.index(order: String ?= "desc", by: String ?="created")
+POST	/json						controllers.Application.add()
 GET		/page/:page					controllers.Application.page(page: Int, order: String ?= "desc", by: String ?="created")
 GET		/map						controllers.Application.map()
 GET		/map.json					controllers.Application.pushpins()
