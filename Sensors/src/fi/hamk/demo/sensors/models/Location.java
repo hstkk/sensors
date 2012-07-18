@@ -3,7 +3,7 @@ package fi.hamk.demo.sensors.models;
 /**
  * @author Pontus Vainionpaa
  */
-public class Location {
+public class Location extends Id {
 
 	public Double altitude = null, latitude = null, longitude = null;
 	public Float accuracy = null, speed = null;
