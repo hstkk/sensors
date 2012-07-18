@@ -6,6 +6,7 @@ import views.html.*;
 import models.*;
 import play.db.ebean.Transactional;
 import play.libs.*;
+
 import java.util.*;
 
 import org.codehaus.jackson.JsonNode;
@@ -56,7 +57,8 @@ public class Application extends Controller {
 		try {
 			JsonNode json = request().body().asJson();
 			if (json != null) {
-				Sensor sensor = new Sensor(json);
+				Sensor sensor = Json.fromJson(json, Sensor.class);
+				sensor.save();
 				ObjectNode result = Json.newObject();
 				result.put("id", sensor.id);
 				return ok(result);
