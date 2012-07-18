@@ -5,52 +5,155 @@
 
 <tr>
 	<td>
-		@if(result.measured == null) {
-			<em>-</em>
-		} else {
+		@if(result.measured != null) {
 			@result.measured.format("H:m dd.M.yyyy")
 		}
 	</td>
-	<td>
-		@if(result.location.latitude == null) {
-			<em>-</em>
-		} else {
-			@result.location.latitude
-		}
-	</td>
-	<td>
-		@if(result.location.longitude == null) {
-			<em>-</em>
-		} else {
-			@result.location.longitude
-		}
-	</td>
-	<td>
-		@if(result.location.accuracy == null) {
-			<em>-</em>
-		} else {
-			@result.location.accuracy
-		}
-	</td>
-	<td>
-		@if(result.location.speed == null) {
-			<em>-</em>
-		} else {
-			@result.location.speed
-		}
-	</td>
-	<td>
-		@if(result.location.provider == null) {
-			<em>-</em>
-		} else {
-			@result.location.provider
-		}
-	</td>
-	<td>
-		@if(result.location.satellites == null) {
-			<em>-</em>
-		} else {
-			@result.location.satellites
-		}
-	</td>
+	@if(result.location == null) {
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	} else {
+		<td>
+			@if(result.location.altitude != null) {
+				@result.location.altitude
+			}
+		</td>
+		<td>
+			@if(result.location.latitude != null) {
+				@result.location.latitude
+			}
+		</td>
+		<td>
+			@if(result.location.longitude != null) {
+				@result.location.longitude
+			}
+		</td>
+		<td>
+			@if(result.location.accuracy != null) {
+				@result.location.accuracy
+			}
+		</td>
+		<td>
+			@if(result.location.speed != null) {
+				@result.location.speed
+			}
+		</td>
+		<td>
+			@if(result.location.provider != null) {
+				@result.location.provider
+			}
+		</td>
+		<td>
+			@if(result.location.satellites != null) {
+				@result.location.satellites
+			}
+		</td>
+	}
+	@if(result.light == null) {
+		<td></td>
+	} else {
+		<td>
+			@if(result.light.x != null) {
+				@result.light.x
+			}
+		</td>
+	}
+	@if(result.magfield == null) {
+		<td></td>
+		<td></td>
+		<td></td>
+	} else {
+		<td>
+			@if(result.magfield.x != null) {
+				@result.magfield.x
+			}
+		</td>
+		<td>
+			@if(result.magfield.y != null) {
+				@result.magfield.y
+			}
+		</td>
+		<td>
+			@if(result.magfield.z != null) {
+				@result.magfield.z
+			}
+		</td>
+	}
+	@if(result.gyroscope == null) {
+		<td></td>
+		<td></td>
+		<td></td>
+	} else {
+		<td>
+			@if(result.gyroscope.x != null) {
+				@result.gyroscope.x
+			}
+		</td>
+		<td>
+			@if(result.gyroscope.y != null) {
+				@result.gyroscope.y
+			}
+		</td>
+		<td>
+			@if(result.gyroscope.z != null) {
+				@result.gyroscope.z
+			}
+		</td>
+	}
+	@if(result.gravity == null) {
+		<td></td>
+		<td></td>
+		<td></td>
+	} else {
+		<td>
+			@if(result.gravity.x != null) {
+				@result.gravity.x
+			}
+		</td>
+		<td>
+			@if(result.gravity.y != null) {
+				@result.gravity.y
+			}
+		</td>
+		<td>
+			@if(result.gravity.z != null) {
+				@result.gravity.z
+			}
+		</td>
+	}
+	@if(result.proximity == null) {
+		<td></td>
+	} else {
+		<td>
+			@if(result.light.x != null) {
+				@result.proximity.x
+			}
+		</td>
+	}
+	@if(result.accelerometer == null) {
+		<td></td>
+		<td></td>
+		<td></td>
+	} else {
+		<td>
+			@if(result.accelerometer.x != null) {
+				@result.accelerometer.x
+			}
+		</td>
+		<td>
+			@if(result.accelerometer.y != null) {
+				@result.accelerometer.y
+			}
+		</td>
+		<td>
+			@if(result.accelerometer.z != null) {
+				@result.accelerometer.z
+			}
+		</td>
+	}
 </tr>
