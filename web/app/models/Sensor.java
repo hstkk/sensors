@@ -69,6 +69,7 @@ public class Sensor extends Model {
 		gyroscope = Json.fromJson(json.get("gyroscope"), Gyroscope.class);
 		light = Json.fromJson(json.get("light"), Light.class);
 		magfield = Json.fromJson(json.get("magfield"), MagneticField.class);
+		wifi = Json.fromJson(json.get("wifi"), WifiList.class);
 		measured = new Date(json.findPath("measured").getLongValue());
 		this.save();
 	}
