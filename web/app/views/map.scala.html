@@ -35,7 +35,7 @@
 					var marker = new google.maps.Marker({
 						position: new google.maps.LatLng(item.location.latitude, item.location.longitude),
 						id: item.id,
-						icon: 'http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|' + item.created + '|FF0000|000000'
+						icon: 'http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|' + item.measured + '|FF0000|000000'
 					});
 					google.maps.event.addListener(marker, "click", function() {
 						$("#modal tbody").load('@controllers.routes.Application.map()/' + marker.id);
