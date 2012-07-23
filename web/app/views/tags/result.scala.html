@@ -3,211 +3,131 @@
 ***********************@
 @(result: Sensor)
 
-<tr>
-	<td>
-		@if(result.measured != null) {
-			@result.measured.format("HH:mm dd.M.yyyy")
-		}
-	</td>
-	@if(result.location == null) {
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	} else {
-		<td>
-			@if(result.location.altitude != null) {
-				@result.location.altitude
-			}
-		</td>
-		<td>
-			@if(result.location.latitude != null) {
-				@result.location.latitude
-			}
-		</td>
-		<td>
-			@if(result.location.longitude != null) {
-				@result.location.longitude
-			}
-		</td>
-		<td>
-			@if(result.location.accuracy != null) {
-				@result.location.accuracy
-			}
-		</td>
-		<td>
-			@if(result.location.speed != null) {
-				@result.location.speed
-			}
-		</td>
-		<td>
-			@if(result.location.provider != null) {
-				@result.location.provider
-			}
-		</td>
-		<td>
-			@if(result.location.satellites != null) {
-				@result.location.satellites
-			}
-		</td>
-	}
-	@if(result.light == null) {
-		<td></td>
-	} else {
-		<td>
-			@if(result.light.x != null) {
-				@result.light.x
-			}
-		</td>
-	}
-	@if(result.magfield == null) {
-		<td></td>
-		<td></td>
-		<td></td>
-	} else {
-		<td>
-			@if(result.magfield.x != null) {
-				@result.magfield.x
-			}
-		</td>
-		<td>
-			@if(result.magfield.y != null) {
-				@result.magfield.y
-			}
-		</td>
-		<td>
-			@if(result.magfield.z != null) {
-				@result.magfield.z
-			}
-		</td>
-	}
-	@if(result.gyroscope == null) {
-		<td></td>
-		<td></td>
-		<td></td>
-	} else {
-		<td>
-			@if(result.gyroscope.x != null) {
-				@result.gyroscope.x
-			}
-		</td>
-		<td>
-			@if(result.gyroscope.y != null) {
-				@result.gyroscope.y
-			}
-		</td>
-		<td>
-			@if(result.gyroscope.z != null) {
-				@result.gyroscope.z
-			}
-		</td>
-	}
-	@if(result.gravity == null) {
-		<td></td>
-		<td></td>
-		<td></td>
-	} else {
-		<td>
-			@if(result.gravity.x != null) {
-				@result.gravity.x
-			}
-		</td>
-		<td>
-			@if(result.gravity.y != null) {
-				@result.gravity.y
-			}
-		</td>
-		<td>
-			@if(result.gravity.z != null) {
-				@result.gravity.z
-			}
-		</td>
-	}
-	@if(result.proximity == null) {
-		<td></td>
-	} else {
-		<td>
-			@if(result.light.x != null) {
-				@result.proximity.x
-			}
-		</td>
-	}
-	@if(result.accelerometer == null) {
-		<td></td>
-		<td></td>
-		<td></td>
-	} else {
-		<td>
-			@if(result.accelerometer.x != null) {
-				@result.accelerometer.x
-			}
-		</td>
-		<td>
-			@if(result.accelerometer.y != null) {
-				@result.accelerometer.y
-			}
-		</td>
-		<td>
-			@if(result.accelerometer.z != null) {
-				@result.accelerometer.z
-			}
-		</td>
-	}
-	@if(result.device == null) {
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	} else {
-		<td>
-			@if(result.device.manufacturer != null) {
-				@result.device.manufacturer
-			}
-		</td>
-		<td>
-			@if(result.device.version != null) {
+<p>Measured @result.measured.format("HH:mm dd.M.yyyy")</p>
+
+@if(result.device != null) {
+	<h3>Device</h3>
+	@table() {
+		@thead() { Manufacturer
+			Android
+			Brand
+			Model }
+		@tbody() { @result.device.manufacturer
 				@result.device.version
-			}
-		</td>
-		<td>
-			@if(result.device.brand != null) {
 				@result.device.brand
-			}
-		</td>
-		<td>
-			@if(result.device.model != null) {
-				@result.device.model
-			}
-		</td>
+				@result.device.model }
 	}
-	@if(result.network == null) {
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	} else {
-		<td>
-			@if(result.network.operator != null) {
-				@result.network.operator
-			}
-		</td>
-		<td>
-			@if(result.network.technology != null) {
-				@result.network.technology
-			}
-		</td>
-		<td>
-			@if(result.network.isNetworkRoaming != null) {
-				@result.network.isNetworkRoaming
-			}
-		</td>
-		<td>
-			@if(result.network.cell != null) {
-				@result.network.cell
-			}
-		</td>
+}
+@if(result.location != null) {
+	<h3>Location</h3>
+	@table() {
+		@thead() { Altitude
+			Latitude
+			Longitude
+			Accuracy
+			Speed
+			Provider
+			Satellites }
+		@tbody() { @result.location.altitude
+			@result.location.latitude
+			@result.location.longitude
+			@result.location.accuracy
+			@result.location.speed
+			@result.location.provider
+			@result.location.satellites }
 	}
-</tr>
+}
+@if(result.magfield != null) {
+	<h3>Magnetic field</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.magfield.x
+				@result.magfield.y
+				@result.magfield.z }
+	}
+}
+@if(result.gyroscope != null) {
+	<h3>Gyroscope</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.gyroscope.x
+				@result.gyroscope.y
+				@result.gyroscope.z }
+	}
+}
+@if(result.gravity != null) {
+	<h3>Gravity</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.gravity.x
+				@result.gravity.y
+				@result.gravity.z }
+	}
+}
+@if(result.accelerometer != null) {
+	<h3>Accelerometer</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.accelerometer.x
+				@result.accelerometer.y
+				@result.accelerometer.z }
+	}
+}
+@if(result.network != null) {
+	<h3>Network</h3>
+	@table() {
+		@thead() { Operator
+			Technology
+			Roaming
+			Cell }
+		@tbody() { @result.network.operator
+			@result.network.technology
+			@result.network.isNetworkRoaming
+			@result.network.cell }
+	}
+}
+@if(result.wifi != null) {
+	<h3>WiFi</h3>
+	@table() {
+		@thead() { BSSID
+			SSID
+			Capabilities
+			Frequency
+			Level }
+		<tbody>
+			@for(row <- result.wifi) {
+				<tr>
+					@td() {
+						@row.ssid
+					}
+					@td() {
+						@row.capabilities
+					}
+					@td() {
+						@row.frequency
+					}
+					@td() {
+						@row.level
+					}
+				</tr>
+			}
+		</tbody>
+	}
+}
+@if(result.light != null || result.proximity != null) {
+	<h3>Etc</h3>
+	@table() {
+		@thead() { Light
+			Proximity }
+		@tbody() { @result.light.x
+				@result.proximity.x }
+	}
+}

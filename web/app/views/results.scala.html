@@ -11,7 +11,7 @@
 			No results!
 		}
 	} else {
-		@table(results.getPageIndex, order, by) {
+		table(results.getPageIndex, order, by) {
 			@for(result <- results.getList) {
 				@tags.result(result)
 			}
