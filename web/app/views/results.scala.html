@@ -11,10 +11,23 @@
 			No results!
 		}
 	} else {
-		table(results.getPageIndex, order, by) {
-			@for(result <- results.getList) {
-				@tags.result(result)
-			}
+		@table() {
+			<thead>
+				@th("Date", "measured", results.getPageIndex, order, by)
+				@th("Manufacturer", "device.manufacturer", results.getPageIndex, order, by)
+				@th("Android", "device.version", results.getPageIndex, order, by)
+				@th("Brand", "device.brand", results.getPageIndex, order, by)
+				@th("Model", "device.model", results.getPageIndex, order, by)
+			</thead>
+			<tbody>
+				@for(result <- results.getList) {
+					@tr() { @result.measured
+						@result.device.manufacturer
+						@result.device.version
+						@result.device.brand
+						@result.device.model }
+				}
+			</tbody>
 		}
 
 		<div class="pagination">
