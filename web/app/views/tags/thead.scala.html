@@ -3,10 +3,10 @@
 ***********************@
 @()(content: Html)
 
-<tbody>
+<thead>
 	<tr>
 		@for(th <- content.toString.lines) {
 			<th>@th.trim</th>
 		}
 	</tr>
-</tbody>
+</thead>
