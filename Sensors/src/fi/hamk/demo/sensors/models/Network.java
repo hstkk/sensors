@@ -6,7 +6,7 @@ package fi.hamk.demo.sensors.models;
 public class Network extends Id {
 
 	public String operator = null;
-	public String type = null;
+	public String technology = null;
 	public Boolean isNetworkRoaming = null;
 	public Integer cell = null;
 

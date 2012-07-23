@@ -50,39 +50,39 @@ public class Utils extends Sensors {
 		sensor.network.isNetworkRoaming = telephonyManager.isNetworkRoaming();
 		switch (telephonyManager.getNetworkType()) {
 			case TelephonyManager.NETWORK_TYPE_1xRTT:
-				sensor.network.type = "1xRTT";
+				sensor.network.technology = "1xRTT";
 				break;
 			case TelephonyManager.NETWORK_TYPE_CDMA:
-				sensor.network.type = "CDMA";
+				sensor.network.technology = "CDMA";
 				break;
 			case TelephonyManager.NETWORK_TYPE_EDGE:
-				sensor.network.type = "EDGE";
+				sensor.network.technology = "EDGE";
 				break;
 			case TelephonyManager.NETWORK_TYPE_EVDO_0:
 			case TelephonyManager.NETWORK_TYPE_EVDO_A:
 			case TelephonyManager.NETWORK_TYPE_EVDO_B:
-				sensor.network.type = "EVDO";
+				sensor.network.technology = "EVDO";
 				break;
 			case TelephonyManager.NETWORK_TYPE_GPRS:
-				sensor.network.type = "GPRS";
+				sensor.network.technology = "GPRS";
 				break;
 			case TelephonyManager.NETWORK_TYPE_HSDPA:
-				sensor.network.type = "HSDPA";
+				sensor.network.technology = "HSDPA";
 				break;
 			case TelephonyManager.NETWORK_TYPE_HSPA:
-				sensor.network.type = "HSPA";
+				sensor.network.technology = "HSPA";
 				break;
 			case TelephonyManager.NETWORK_TYPE_HSUPA:
-				sensor.network.type = "HSUPA";
+				sensor.network.technology = "HSUPA";
 				break;
 			case TelephonyManager.NETWORK_TYPE_IDEN:
-				sensor.network.type = "iDen";
+				sensor.network.technology = "iDen";
 				break;
 			case TelephonyManager.NETWORK_TYPE_UMTS:
-				sensor.network.type = "UMTS";
+				sensor.network.technology = "UMTS";
 				break;
 			default:
-				sensor.network.type = "unknown";
+				sensor.network.technology = "unknown";
 				break;
 		}
 	}
