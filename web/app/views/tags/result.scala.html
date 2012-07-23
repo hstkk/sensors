@@ -13,9 +13,9 @@
 			Brand
 			Model }
 		@tbody() { @result.device.manufacturer
-				@result.device.version
-				@result.device.brand
-				@result.device.model }
+			@result.device.version
+			@result.device.brand
+			@result.device.model }
 	}
 }
 @if(result.location != null) {
@@ -44,8 +44,8 @@
 			Y
 			Z }
 		@tbody() { @result.magfield.x
-				@result.magfield.y
-				@result.magfield.z }
+			@result.magfield.y
+			@result.magfield.z }
 	}
 }
 @if(result.gyroscope != null) {
@@ -55,8 +55,8 @@
 			Y
 			Z }
 		@tbody() { @result.gyroscope.x
-				@result.gyroscope.y
-				@result.gyroscope.z }
+			@result.gyroscope.y
+			@result.gyroscope.z }
 	}
 }
 @if(result.gravity != null) {
@@ -66,8 +66,8 @@
 			Y
 			Z }
 		@tbody() { @result.gravity.x
-				@result.gravity.y
-				@result.gravity.z }
+			@result.gravity.y
+			@result.gravity.z }
 	}
 }
 @if(result.accelerometer != null) {
@@ -77,8 +77,8 @@
 			Y
 			Z }
 		@tbody() { @result.accelerometer.x
-				@result.accelerometer.y
-				@result.accelerometer.z }
+			@result.accelerometer.y
+			@result.accelerometer.z }
 	}
 }
 @if(result.network != null) {
@@ -128,6 +128,6 @@
 		@thead() { Light
 			Proximity }
 		@tbody() { @result.light.x
-				@result.proximity.x }
+			@result.proximity.x }
 	}
 }
