@@ -67,9 +67,6 @@ public class Sensor extends Model {
 		Network network = Json.fromJson(json.get("network"), Network.class);
 		if (validate(network))
 			this.network = network;
-		Device device = Json.fromJson(json.get("device"), Device.class);
-		if (validate(device))
-			this.device = device;
 		Accelerometer accelerometer = Json.fromJson(json.get("accelerometer"),
 				Accelerometer.class);
 		if (validate(accelerometer))
@@ -93,13 +90,9 @@ public class Sensor extends Model {
 		if (validate(magfield))
 			this.magfield = magfield;
 		this.wifi = Json.fromJson(json.get("wifi"), WifiList.class);
-		measured = new Date(json.findPath("measured").getLongValue());
-		if (this.location != null || this.network != null
-				|| this.device != null || this.accelerometer != null
-				|| this.proximity != null || this.gravity != null
-				|| this.gyroscope != null || this.light != null
-				|| this.magfield != null || !this.wifi.isEmpty())
-			this.save();
+		this.measured = new Date(json.findPath("measured").getLongValue());
+		this.device = Json.fromJson(json.get("device"), Device.class);
+		this.save();
 	}
 
 	private <T> boolean validate(T t) {
