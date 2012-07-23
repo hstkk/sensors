@@ -104,20 +104,10 @@
 			Level }
 		<tbody>
 			@for(row <- result.wifi) {
-				<tr>
-					@td() {
-						@row.ssid
-					}
-					@td() {
-						@row.capabilities
-					}
-					@td() {
-						@row.frequency
-					}
-					@td() {
-						@row.level
-					}
-				</tr>
+				@tr() {	@row.ssid
+					@row.capabilities
+					@row.frequency
+					@row.level }
 			}
 		</tbody>
 	}
