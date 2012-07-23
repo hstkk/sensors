@@ -94,7 +94,7 @@
 			@result.network.cell }
 	}
 }
-@if(result.wifi != null) {
+@if(result.wifi != null && !result.wifi.isEmpty) {
 	<h3>WiFi</h3>
 	@table() {
 		@thead() { BSSID
