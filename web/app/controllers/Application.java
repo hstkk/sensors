@@ -37,7 +37,7 @@ public class Application extends Controller {
 	public static Result resultAsTr(int id) {
 		Sensor sensor = Sensor.findById(id);
 		if (sensor == null)
-			return badRequest("<tr></tr>");
+			return badRequest("<div></div>");
 		return ok(views.html.tags.result.render(sensor));
 	}
 

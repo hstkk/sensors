@@ -39,7 +39,7 @@
 						icon: 'http://chart.apis.google.com/chart?chst=d_bubble_text_small&chld=bb|' + date.toLocaleFormat("%H:%M %d.%m.%y") + '|FF0000|000000'
 					});
 					google.maps.event.addListener(marker, "click", function() {
-						$("#modal-body").load('@controllers.routes.Application.map()/' + marker.id);
+						$("#modal section").load('@controllers.routes.Application.map()/' + marker.id);
 						$("#modal").modal('show');
 					});
 					markers.push(marker);
@@ -66,8 +66,8 @@
 		</header>
 	<div id="map"></div>
 	<div class="modal hide" id="modal">
-		<div class="modal-body">
-		</div>
+		<section class="modal-body">
+		</section>
 		<div class="modal-footer">
 			<a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
 		</div>
