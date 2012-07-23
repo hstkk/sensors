@@ -17,7 +17,7 @@ public class Network extends Model {
 	public String operator;
 
 	@NotNull
-	public String type;
+	public String technology;
 
 	public boolean isNetworkRoaming;
 

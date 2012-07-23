@@ -156,4 +156,58 @@
 			}
 		</td>
 	}
+	@if(result.device == null) {
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	} else {
+		<td>
+			@if(result.device.manufacturer != null) {
+				@result.device.manufacturer
+			}
+		</td>
+		<td>
+			@if(result.device.version != null) {
+				@result.device.version
+			}
+		</td>
+		<td>
+			@if(result.device.brand != null) {
+				@result.device.brand
+			}
+		</td>
+		<td>
+			@if(result.device.model != null) {
+				@result.device.model
+			}
+		</td>
+	}
+	@if(result.network == null) {
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	} else {
+		<td>
+			@if(result.network.operator != null) {
+				@result.network.operator
+			}
+		</td>
+		<td>
+			@if(result.network.technology != null) {
+				@result.network.technology
+			}
+		</td>
+		<td>
+			@if(result.network.isNetworkRoaming != null) {
+				@result.network.isNetworkRoaming
+			}
+		</td>
+		<td>
+			@if(result.network.cell != null) {
+				@result.network.cell
+			}
+		</td>
+	}
 </tr>

@@ -65,7 +65,7 @@ create table magnetic_field (
 create table network (
   id                        integer auto_increment not null,
   operator                  varchar(255),
-  type                      varchar(255),
+  technology                varchar(255),
   is_network_roaming        tinyint(1) default 0,
   cell                      integer,
   constraint pk_network primary key (id))
