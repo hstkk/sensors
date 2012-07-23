@@ -1,0 +1,12 @@
+@***********************
+* author Sami Hostikka *
+***********************@
+@()(content: Html)
+
+<tbody>
+	<tr>
+		@for(th <- content.toString.lines) {
+			<th>@th.trim</th>
+		}
+	</tr>
+</tbody>
