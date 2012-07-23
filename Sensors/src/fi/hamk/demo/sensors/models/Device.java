@@ -5,7 +5,7 @@ import android.os.Build;
 /**
  * @author Sami Hostikka
  */
-public class Device extends Id {
+public class Device {
 
 	public String manufacturer = null;
 	public String version = null;

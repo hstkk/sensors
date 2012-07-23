@@ -3,7 +3,7 @@ package fi.hamk.demo.sensors.models;
 /**
  * @author Sami Hostikka
  */
-public class Network extends Id {
+public class Network {
 
 	public String operator = null;
 	public String technology = null;
