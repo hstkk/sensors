@@ -5,18 +5,16 @@
 
 <p>Measured on @result.measured.format("HH:mm dd.M.yyyy")</p>
 
-@if(result.device != null) {
-	<h3>Device</h3>
-	@table() {
-		@thead() { Manufacturer
-			Android
-			Brand
-			Model }
-		@tbody() { @result.device.manufacturer
-			@result.device.version
-			@result.device.brand
-			@result.device.model }
-	}
+<h3>Device</h3>
+@table() {
+	@thead() { Manufacturer
+		Android
+		Brand
+		Model }
+	@tbody() { @result.device.manufacturer
+		@result.device.version
+		@result.device.brand
+		@result.device.model }
 }
 @if(result.location != null) {
 	<h3>Location</h3>

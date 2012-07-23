@@ -82,7 +82,7 @@ create table sensor (
   measured                  datetime not null,
   location_id               integer,
   network_id                integer,
-  device_id                 integer,
+  device_id                 integer not null,
   accelerometer_id          integer,
   proximity_id              integer,
   gravity_id                integer,

@@ -33,6 +33,7 @@ public class Sensor extends Model {
 	public Network network;
 
 	@OneToOne
+	@NotNull
 	public Device device;
 
 	@OneToOne
