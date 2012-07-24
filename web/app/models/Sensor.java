@@ -2,6 +2,7 @@ package models;
 
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.Valid;
 
 import org.codehaus.jackson.JsonNode;
 
@@ -26,32 +27,33 @@ public class Sensor extends Model {
 	@NotNull
 	public Date measured;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Location location;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Network network;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@NotNull
+	@Valid
 	public Device device;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Accelerometer accelerometer;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Proximity proximity;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Gravity gravity;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Gyroscope gyroscope;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Light light;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public MagneticField magfield;
 
 	@ManyToOne
@@ -60,16 +62,24 @@ public class Sensor extends Model {
 	public Sensor() {
 	}
 
-	public Sensor(JsonNode json) {
-		this.measured = new Date(json.findPath("measured").getLongValue());
-		this.device = Json.fromJson(json.get("device"), Device.class);
-		this.device.save();
-		this.save();
+	@Override
+	public void save() {
+		this.location = validate(this.location);
+		this.network = validate(this.network);
+		this.accelerometer = validate(this.accelerometer);
+		this.proximity = validate(this.proximity);
+		this.gravity = validate(this.gravity);
+		this.gyroscope = validate(this.gyroscope);
+		this.light = validate(this.light);
+		this.magfield = validate(this.magfield);
+		this.wifi = validate(this.wifi);
+		super.save();
 	}
 
-	private <T> boolean validate(T t) {
-		System.out.println(t.toString());
-		return Validation.getValidator().validate(t).isEmpty();
+	private <T> T validate(T t) {
+		if(t != null && Validation.getValidator().validate(t).isEmpty())
+			return t;
+		return null;
 	}
 
 	public static Finder<Long, Sensor> find = new Finder<Long, Sensor>(
