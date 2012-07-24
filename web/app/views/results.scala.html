@@ -21,7 +21,7 @@
 			</thead>
 			<tbody>
 				@for(result <- results.getList) {
-					@tr() { @result.measured.format("HH:mm dd.M.yyyy")
+					@tr() { <a href="@controllers.routes.Application.result(result.id)">@result.measured.format("HH:mm dd.M.yyyy")</a>
 						@result.device.manufacturer
 						@result.device.version
 						@result.device.brand

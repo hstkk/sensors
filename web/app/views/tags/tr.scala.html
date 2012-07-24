@@ -6,7 +6,7 @@
 	<tr>
 		@for(td <- content.toString.lines) {
 			@if(!td.trim.isEmpty) {
-				<td>@td.trim</td>
+				<td>@Html(td.trim)</td>
 			} else {
 				<td><em>&mdash;</em></td>
 			}
