@@ -52,7 +52,6 @@ public class Application extends Controller {
 		return ok(Json.toJson(results));
 	}
 
-	@Transactional
 	public static Result add() {
 		try {
 			JsonNode json = request().body().asJson();
@@ -63,6 +62,7 @@ public class Application extends Controller {
 				return ok(result);
 			}
 		} catch (Exception e) {
+			System.out.print(e.toString());
 		}
 		return badRequest();
 	}

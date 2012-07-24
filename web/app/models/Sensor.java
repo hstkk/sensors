@@ -61,37 +61,9 @@ public class Sensor extends Model {
 	}
 
 	public Sensor(JsonNode json) {
-		Location location = Json.fromJson(json.get("location"), Location.class);
-		if (validate(location))
-			this.location = location;
-		Network network = Json.fromJson(json.get("network"), Network.class);
-		if (validate(network))
-			this.network = network;
-		Accelerometer accelerometer = Json.fromJson(json.get("accelerometer"),
-				Accelerometer.class);
-		if (validate(accelerometer))
-			this.accelerometer = accelerometer;
-		Proximity proximity = Json.fromJson(json.get("proximity"),
-				Proximity.class);
-		if (validate(proximity))
-			this.proximity = proximity;
-		Gravity gravity = Json.fromJson(json.get("gravity"), Gravity.class);
-		if (validate(gravity))
-			this.gravity = gravity;
-		Gyroscope gyroscope = Json.fromJson(json.get("gyroscope"),
-				Gyroscope.class);
-		if (validate(gyroscope))
-			this.gyroscope = gyroscope;
-		Light light = Json.fromJson(json.get("light"), Light.class);
-		if (validate(light))
-			this.light = light;
-		MagneticField magfield = Json.fromJson(json.get("magfield"),
-				MagneticField.class);
-		if (validate(magfield))
-			this.magfield = magfield;
-		this.wifi = Json.fromJson(json.get("wifi"), WifiList.class);
 		this.measured = new Date(json.findPath("measured").getLongValue());
 		this.device = Json.fromJson(json.get("device"), Device.class);
+		this.device.save();
 		this.save();
 	}
 
