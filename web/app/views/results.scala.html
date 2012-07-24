@@ -21,7 +21,7 @@
 			</thead>
 			<tbody>
 				@for(result <- results.getList) {
-					@tr() { @result.measured
+					@tr() { @result.measured.format("HH:mm dd.M.yyyy")
 						@result.device.manufacturer
 						@result.device.version
 						@result.device.brand
