@@ -86,7 +86,7 @@ public class Sensor extends Model {
 	public static Page<Sensor> page(int page, String order, String by) {
 		try {
 			int pageSize = 10;
-			return find.fetch("location").orderBy(by + " " + order)
+			return find.fetch("device").orderBy(by + " " + order)
 					.findPagingList(pageSize).getPage(page);
 		} catch (Exception e) {
 			return null;
