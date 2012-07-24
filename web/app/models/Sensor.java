@@ -85,6 +85,7 @@ public class Sensor extends Model {
 	public static Finder<Long, Sensor> find = new Finder<Long, Sensor>(
 			Long.class, Sensor.class);
 
+	// TODO fetch wifi
 	public static Sensor findById(int id) {
 		try {
 			return find.fetch("location").fetch("network").fetch("device")
