@@ -77,7 +77,7 @@ public class Sensor extends Model {
 	}
 
 	private <T> T validate(T t) {
-		if(t != null && Validation.getValidator().validate(t).isEmpty())
+		if (t != null && Validation.getValidator().validate(t).isEmpty())
 			return t;
 		return null;
 	}
@@ -87,7 +87,10 @@ public class Sensor extends Model {
 
 	public static Sensor findById(int id) {
 		try {
-			return find.fetch("location").where().eq("id", id).findUnique();
+			return find.fetch("location").fetch("network").fetch("device")
+					.fetch("accelerometer").fetch("proximity").fetch("gravity")
+					.fetch("gyroscope").fetch("light").fetch("magfield")
+					.where().eq("id", id).findUnique();
 		} catch (Exception e) {
 			return null;
 		}
