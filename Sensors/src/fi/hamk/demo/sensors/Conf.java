@@ -8,9 +8,9 @@ import android.hardware.Sensor;
 public class Conf {
 
 	public static final int STATUS_OK = 200;
-	public static final int STATUS_INTERNAL_SERVER_ERROR = 500;
+	public static final int STATUS_INTERNAL_SERVER_ERROR = -500;
 	public static final int STATUS_ERROR = -1;
-	public static final int STATUS_CONNECTION_ERROR = 2;
+	public static final int STATUS_CONNECTION_ERROR = -2;
 	public static final int CONNECTION_TIMEOUT = 10000; // milliseconds
 	public static final int CONNECTION_SLEEP = 30000; // milliseconds
 	public static final int CONNECTION_MANAGER_WORKERS = 5;

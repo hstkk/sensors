@@ -1,10 +1,18 @@
 package fi.hamk.demo.sensors;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.util.JSONPObject;
 
 import fi.hamk.demo.sensors.models.Sensor;
 
@@ -23,6 +31,7 @@ public class Connection implements Runnable {
 	String preferences_port;
 	String json;
 	Handler handler;
+	int id = Conf.STATUS_ERROR;
 
 	public Connection(Context context, Sensor sensor, Handler handler) {
 		preferences = context.getSharedPreferences(
@@ -34,8 +43,7 @@ public class Connection implements Runnable {
 		ConnectionManager.getConnectionManager().add(this);
 	}
 
-	private int post(String url) {
-		int status = Conf.STATUS_ERROR;
+	private void post(String url) {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setHeader("Content-type", "application/json");
@@ -44,11 +52,23 @@ public class Connection implements Runnable {
 		try {
 			httpPost.setEntity(new StringEntity(json, "UTF-8"));
 			HttpResponse httpResponse = httpClient.execute(httpPost);
-			status = httpResponse.getStatusLine().getStatusCode();
+			if (httpResponse.getStatusLine().getStatusCode() == Conf.STATUS_OK) {
+				HttpEntity httpEntity = httpResponse.getEntity();
+				if (httpEntity != null) {
+					BufferedReader bufferedReader = new BufferedReader(
+							new InputStreamReader(httpEntity.getContent()));
+					String line;
+					StringBuilder json = new StringBuilder();
+					while ((line = bufferedReader.readLine()) != null)
+						json.append(line);
+					ObjectMapper objectMapper = new ObjectMapper();
+					JsonNode jsonNode = objectMapper.readTree(json.toString());
+					id = jsonNode.findPath("id").asInt(Conf.STATUS_ERROR);
+				}
+			}
 		} catch (Exception e) {
 			// unused
 		}
-		return status;
 	}
 
 	public void run() {
@@ -60,9 +80,9 @@ public class Connection implements Runnable {
 		url.append("/");
 		url.append(Conf.SERVER_PATH);
 
-		int status = post(url.toString());
-		handler.sendMessage(Message.obtain(handler, status));
-		if (status == Conf.STATUS_OK)
+		post(url.toString());
+		handler.sendMessage(Message.obtain(handler, id));
+		if (id > 0)
 			ConnectionManager.getConnectionManager().done(this);
 		else
 			try {

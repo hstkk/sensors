@@ -4,6 +4,8 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,6 +27,7 @@ public class MainActivity extends SherlockActivity implements
 	TextView textView;
 	Utils utils;
 	NotificationManager notificationManager;
+	SharedPreferences preferences;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends SherlockActivity implements
 
 		notificationManager = (NotificationManager) this
 				.getSystemService(NOTIFICATION_SERVICE);
+		preferences = getSharedPreferences(getString(R.string.preferences), 0);
 
 		utils = new Utils(this);
 		textView = (TextView) findViewById(R.id.textView);
@@ -96,23 +100,16 @@ public class MainActivity extends SherlockActivity implements
 		Handler handler = new Handler() {
 			public void handleMessage(Message message) {
 				String title = null, text = getString(R.string.queue);
-				int id = Conf.STATUS_ERROR;
-				switch (message.what) {
-					case Conf.STATUS_OK:
-						title = getString(R.string.ok);
-						text = getString(R.string.ok_text);
-						id = Conf.STATUS_OK;
-						break;
-					case Conf.STATUS_INTERNAL_SERVER_ERROR:
-						title = getString(R.string.int_err);
-						break;
-					case Conf.STATUS_CONNECTION_ERROR:
-						title = getString(R.string.connection_err);
-						break;
-					case Conf.STATUS_ERROR:
-						title = getString(R.string.err);
-						break;
-				}
+				int id = message.what;
+				if (id > 0) {
+					title = getString(R.string.ok);
+					text = getString(R.string.ok_text);
+				} else if (id == Conf.STATUS_INTERNAL_SERVER_ERROR)
+					title = getString(R.string.int_err);
+				else if (id == Conf.STATUS_CONNECTION_ERROR)
+					title = getString(R.string.connection_err);
+				else if (id == Conf.STATUS_ERROR)
+					title = getString(R.string.err);
 				notification(id, title, text);
 			}
 		};
@@ -125,8 +122,11 @@ public class MainActivity extends SherlockActivity implements
 		notification.icon = R.drawable.ic_launcher;
 		notification.tickerText = title;
 		notification.when = System.currentTimeMillis();
-		Intent intent = id > 0 ? new Intent(this, SettingsActivity.class)
-				: new Intent();
+		Intent intent = id > 0 ? new Intent(Intent.ACTION_VIEW,
+				Uri.parse(preferences.getString(
+						getString(R.string.preferences_url),
+						Conf.DEFAULT_SERVER)
+						+ "/" + id)) : new Intent();
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
 				intent, 0);
 		notification.setLatestEventInfo(this, title, text, pendingIntent);
