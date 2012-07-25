@@ -68,19 +68,21 @@ public class ConnectionManager {
 
 	@SuppressWarnings("unchecked")
 	public void load(Context context) {
-		ObjectInputStream objectInputStream = null;
-		try {
-			FileInputStream fileInputStream = context
-					.openFileInput(Conf.FILE_QUEUE);
-			objectInputStream = new ObjectInputStream(fileInputStream);
-			queue = (ArrayList<Runnable>) objectInputStream.readObject();
-		} catch (Exception e) {
-			// unused
-		} finally {
+		if (queue.isEmpty() && running.isEmpty()) {
+			ObjectInputStream objectInputStream = null;
 			try {
-				objectInputStream.close();
+				FileInputStream fileInputStream = context
+						.openFileInput(Conf.FILE_QUEUE);
+				objectInputStream = new ObjectInputStream(fileInputStream);
+				queue = (ArrayList<Runnable>) objectInputStream.readObject();
 			} catch (Exception e) {
 				// unused
+			} finally {
+				try {
+					objectInputStream.close();
+				} catch (Exception e) {
+					// unused
+				}
 			}
 		}
 		next();
