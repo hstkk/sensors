@@ -54,7 +54,7 @@ public class SettingsActivity extends SherlockActivity {
 		else {
 			Editor editor = preferences.edit();
 			editor.putString(getString(R.string.preferences_url), url.getText()
-					.toString());
+					.toString().trim());
 			editor.putInt(getString(R.string.preferences_port), value);
 			editor.commit();
 			finish();
