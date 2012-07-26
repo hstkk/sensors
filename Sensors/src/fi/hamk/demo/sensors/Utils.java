@@ -5,6 +5,7 @@ import java.util.List;
 import fi.hamk.demo.sensors.models.*;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaRecorder;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
 import android.telephony.TelephonyManager;
@@ -15,15 +16,25 @@ import android.telephony.gsm.GsmCellLocation;
  */
 public class Utils extends Sensors {
 
+	MediaRecorder mediaRecorder;
+
 	public Utils(Context context) {
 		super(context);
 		register();
+
+		// volume
+		mediaRecorder = new MediaRecorder();
+		mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+		mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+		mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+		mediaRecorder.setOutputFile("/dev/null");
 	}
 
 	public Sensor getSensor() {
 		sensor.measured = new Date();
 		getNetwork();
 		sensor.wifi = getWifi();
+		getVolume();
 		return sensor;
 	}
 
@@ -50,41 +61,57 @@ public class Utils extends Sensors {
 		sensor.network.operator = telephonyManager.getNetworkOperatorName();
 		sensor.network.isNetworkRoaming = telephonyManager.isNetworkRoaming();
 		switch (telephonyManager.getNetworkType()) {
-			case TelephonyManager.NETWORK_TYPE_1xRTT:
-				sensor.network.technology = "1xRTT";
-				break;
-			case TelephonyManager.NETWORK_TYPE_CDMA:
-				sensor.network.technology = "CDMA";
-				break;
-			case TelephonyManager.NETWORK_TYPE_EDGE:
-				sensor.network.technology = "EDGE";
-				break;
-			case TelephonyManager.NETWORK_TYPE_EVDO_0:
-			case TelephonyManager.NETWORK_TYPE_EVDO_A:
-			case TelephonyManager.NETWORK_TYPE_EVDO_B:
-				sensor.network.technology = "EVDO";
-				break;
-			case TelephonyManager.NETWORK_TYPE_GPRS:
-				sensor.network.technology = "GPRS";
-				break;
-			case TelephonyManager.NETWORK_TYPE_HSDPA:
-				sensor.network.technology = "HSDPA";
-				break;
-			case TelephonyManager.NETWORK_TYPE_HSPA:
-				sensor.network.technology = "HSPA";
-				break;
-			case TelephonyManager.NETWORK_TYPE_HSUPA:
-				sensor.network.technology = "HSUPA";
-				break;
-			case TelephonyManager.NETWORK_TYPE_IDEN:
-				sensor.network.technology = "iDen";
-				break;
-			case TelephonyManager.NETWORK_TYPE_UMTS:
-				sensor.network.technology = "UMTS";
-				break;
-			default:
-				sensor.network.technology = "unknown";
-				break;
+		case TelephonyManager.NETWORK_TYPE_1xRTT:
+			sensor.network.technology = "1xRTT";
+			break;
+		case TelephonyManager.NETWORK_TYPE_CDMA:
+			sensor.network.technology = "CDMA";
+			break;
+		case TelephonyManager.NETWORK_TYPE_EDGE:
+			sensor.network.technology = "EDGE";
+			break;
+		case TelephonyManager.NETWORK_TYPE_EVDO_0:
+		case TelephonyManager.NETWORK_TYPE_EVDO_A:
+		case TelephonyManager.NETWORK_TYPE_EVDO_B:
+			sensor.network.technology = "EVDO";
+			break;
+		case TelephonyManager.NETWORK_TYPE_GPRS:
+			sensor.network.technology = "GPRS";
+			break;
+		case TelephonyManager.NETWORK_TYPE_HSDPA:
+			sensor.network.technology = "HSDPA";
+			break;
+		case TelephonyManager.NETWORK_TYPE_HSPA:
+			sensor.network.technology = "HSPA";
+			break;
+		case TelephonyManager.NETWORK_TYPE_HSUPA:
+			sensor.network.technology = "HSUPA";
+			break;
+		case TelephonyManager.NETWORK_TYPE_IDEN:
+			sensor.network.technology = "iDen";
+			break;
+		case TelephonyManager.NETWORK_TYPE_UMTS:
+			sensor.network.technology = "UMTS";
+			break;
+		default:
+			sensor.network.technology = "unknown";
+			break;
+		}
+	}
+
+	private void getVolume() {
+		try {
+			mediaRecorder.prepare();
+			mediaRecorder.start();
+			sensor.volume = mediaRecorder.getMaxAmplitude();
+		} catch (Exception e) {
+			sensor.volume = null;
+		} finally {
+			try {
+				mediaRecorder.reset();
+				mediaRecorder.release();
+			} catch (Exception e) {
+			}
 		}
 	}
 
