@@ -1,9 +1,7 @@
 package fi.hamk.demo.sensors;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -12,10 +10,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.util.JSONPObject;
-
 import fi.hamk.demo.sensors.models.Sensor;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -44,12 +39,13 @@ public class Connection implements Runnable {
 	}
 
 	private void post(String url) {
-		DefaultHttpClient httpClient = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost(url);
-		httpPost.setHeader("Content-type", "application/json");
-		HttpConnectionParams.setSoTimeout(httpClient.getParams(),
-				Conf.CONNECTION_TIMEOUT);
 		try {
+			DefaultHttpClient httpClient = new DefaultHttpClient();
+			HttpPost httpPost = new HttpPost(url);
+			httpPost.setHeader("Content-type", "application/json");
+			HttpConnectionParams.setSoTimeout(httpClient.getParams(),
+					Conf.CONNECTION_TIMEOUT);
+
 			httpPost.setEntity(new StringEntity(json, "UTF-8"));
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			if (httpResponse.getStatusLine().getStatusCode() == Conf.STATUS_OK) {
