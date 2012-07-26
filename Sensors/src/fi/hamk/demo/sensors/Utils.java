@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import fi.hamk.demo.sensors.models.*;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
 import android.telephony.TelephonyManager;
@@ -95,5 +96,18 @@ public class Utils extends Sensors {
 	public void unregister() {
 		super.unregister();
 		ConnectionManager.getConnectionManager().save(context);
+	}
+
+	public static String urlify(Context context, SharedPreferences preferences) {
+		StringBuilder url = new StringBuilder();
+		url.append(preferences.getString(
+				context.getString(R.string.preferences_url),
+				Conf.DEFAULT_SERVER));
+		url.append(":");
+		url.append(preferences.getInt(
+				context.getString(R.string.preferences_port),
+				Conf.DEFAULT_SERVER_PORT));
+		url.append("/");
+		return url.toString();
 	}
 }

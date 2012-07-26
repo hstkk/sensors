@@ -122,11 +122,8 @@ public class MainActivity extends SherlockActivity implements
 		notification.icon = R.drawable.ic_launcher;
 		notification.tickerText = title;
 		notification.when = System.currentTimeMillis();
-		Intent intent = id > 0 ? new Intent(Intent.ACTION_VIEW,
-				Uri.parse(preferences.getString(
-						getString(R.string.preferences_url),
-						Conf.DEFAULT_SERVER)
-						+ "/" + id)) : new Intent();
+		Intent intent = id > 0 ? new Intent(Intent.ACTION_VIEW, Uri.parse(Utils
+				.urlify(this, preferences) + id)) : new Intent();
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
 				intent, 0);
 		notification.setLatestEventInfo(this, title, text, pendingIntent);

@@ -22,17 +22,15 @@ import android.os.Message;
 public class Connection implements Runnable {
 
 	SharedPreferences preferences;
-	String preferences_url;
-	String preferences_port;
+	Context context;
 	String json;
 	Handler handler;
 	int id = Conf.STATUS_ERROR;
 
 	public Connection(Context context, Sensor sensor, Handler handler) {
-		preferences = context.getSharedPreferences(
+		this.context = context;
+		this.preferences = context.getSharedPreferences(
 				context.getString(R.string.preferences), 0);
-		preferences_url = context.getString(R.string.preferences_url);
-		preferences_port = context.getString(R.string.preferences_port);
 		this.json = sensor.toJson();
 		this.handler = handler;
 		ConnectionManager.getConnectionManager().add(this);
@@ -68,15 +66,9 @@ public class Connection implements Runnable {
 	}
 
 	public void run() {
-		StringBuilder url = new StringBuilder();
-		url.append(preferences.getString(preferences_url, Conf.DEFAULT_SERVER));
-		url.append(":");
-		url.append(preferences.getInt(preferences_port,
-				Conf.DEFAULT_SERVER_PORT));
-		url.append("/");
-		url.append(Conf.SERVER_PATH);
+		String url = Utils.urlify(context, preferences);
 
-		post(url.toString());
+		post(url + Conf.SERVER_PATH);
 		handler.sendMessage(Message.obtain(handler, id));
 		if (id > 0)
 			ConnectionManager.getConnectionManager().done(this);
