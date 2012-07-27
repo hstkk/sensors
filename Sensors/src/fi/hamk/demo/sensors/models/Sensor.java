@@ -21,7 +21,6 @@ public class Sensor {
 	public Gyroscope gyroscope = new Gyroscope();
 	public Light light = new Light();
 	public MagneticField magfield = new MagneticField();
-	public Integer volume = null;
 
 	public Sensor() {
 	}
