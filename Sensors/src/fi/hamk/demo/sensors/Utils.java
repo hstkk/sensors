@@ -10,24 +10,16 @@ import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
+import android.util.Log;
 
 /**
  * @author Sami Hostikka
  */
 public class Utils extends Sensors {
 
-	MediaRecorder mediaRecorder;
-
 	public Utils(Context context) {
 		super(context);
 		register();
-
-		// volume
-		mediaRecorder = new MediaRecorder();
-		mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-		mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-		mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-		mediaRecorder.setOutputFile("/dev/null");
 	}
 
 	public Sensor getSensor() {
@@ -100,7 +92,13 @@ public class Utils extends Sensors {
 	}
 
 	private void getVolume() {
+		MediaRecorder mediaRecorder = null;
 		try {
+			mediaRecorder = new MediaRecorder();
+			mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+			mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+			mediaRecorder.setOutputFile("/dev/null");
 			mediaRecorder.prepare();
 			mediaRecorder.start();
 			sensor.volume = mediaRecorder.getMaxAmplitude();
@@ -110,6 +108,7 @@ public class Utils extends Sensors {
 			try {
 				mediaRecorder.reset();
 				mediaRecorder.release();
+				mediaRecorder = null;
 			} catch (Exception e) {
 			}
 		}
