@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -92,7 +91,6 @@ public class MainActivity extends SherlockActivity implements
 			startActivity(intent);
 		} else {
 			Sensor sensor = utils.getSensor();
-			textView.setText(sensor.toJson());
 			upload(sensor);
 		}
 		return true;

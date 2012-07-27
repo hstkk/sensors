@@ -5,12 +5,10 @@ import java.util.List;
 import fi.hamk.demo.sensors.models.*;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MediaRecorder;
 import android.net.wifi.WifiManager;
 import android.net.wifi.ScanResult;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
-import android.util.Log;
 
 /**
  * @author Sami Hostikka
@@ -26,7 +24,6 @@ public class Utils extends Sensors {
 		sensor.measured = new Date();
 		getNetwork();
 		sensor.wifi = getWifi();
-		getVolume();
 		return sensor;
 	}
 
@@ -88,29 +85,6 @@ public class Utils extends Sensors {
 		default:
 			sensor.network.technology = "unknown";
 			break;
-		}
-	}
-
-	private void getVolume() {
-		MediaRecorder mediaRecorder = null;
-		try {
-			mediaRecorder = new MediaRecorder();
-			mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-			mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-			mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-			mediaRecorder.setOutputFile("/dev/null");
-			mediaRecorder.prepare();
-			mediaRecorder.start();
-			sensor.volume = mediaRecorder.getMaxAmplitude();
-		} catch (Exception e) {
-			sensor.volume = null;
-		} finally {
-			try {
-				mediaRecorder.reset();
-				mediaRecorder.release();
-				mediaRecorder = null;
-			} catch (Exception e) {
-			}
 		}
 	}
 
