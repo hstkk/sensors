@@ -7,6 +7,8 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
+import fi.hamk.demo.sensors.fragments.TabFragment;
+
 public class MainActivity extends SherlockFragmentActivity implements
 		ActionBar.TabListener {
 

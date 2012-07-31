@@ -1,5 +1,8 @@
-package fi.hamk.demo.sensors;
+package fi.hamk.demo.sensors.fragments;
 
+import fi.hamk.demo.sensors.R;
+import fi.hamk.demo.sensors.R.id;
+import fi.hamk.demo.sensors.R.layout;
 import fi.hamk.demo.sensors.models.Sensor;
 import android.widget.TableRow.LayoutParams;
 import android.content.Context;
