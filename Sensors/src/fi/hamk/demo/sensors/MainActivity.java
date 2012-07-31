@@ -29,10 +29,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 	// @Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		TabFragment tabFragment;
-		if (tab.getPosition() == 0)
-			tabFragment = new TabFragment(R.layout.fragment_device);
-		else
-			tabFragment = new TabFragment(R.layout.fragment_network);
+		//if (tab.getPosition() == 0)
+			tabFragment = new TabFragment(this);
+/*		else
+			tabFragment = new TabFragment();*/
 		ft.replace(android.R.id.content, tabFragment);
 	}
 
