@@ -20,9 +20,10 @@ import fi.hamk.demo.sensors.models.Sensor;
 public class MainActivity extends SherlockFragmentActivity implements
 		ActionBar.TabListener {
 
+	ActionBar actionbar;
 	Utils utils;
 	Helper helper;
-	static Sensor sensor;
+	Sensor sensor;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 		helper = new Helper(this);
 
 		// ActionBarSherlock settings
-		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionbar = getSupportActionBar();
+		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// ActionBarSherlock add tabs
 		for (String title : Conf.TABS) {
@@ -62,6 +64,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			startActivity(intent);
 		} else {
 			sensor = utils.getSensor();
+			actionbar.selectTab(actionbar.getSelectedTab());
 			helper.upload(sensor);
 		}
 		return true;
