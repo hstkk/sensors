@@ -1,5 +1,11 @@
 package fi.hamk.demo.sensors;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import com.actionbarsherlock.app.ActionBar.Tab;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,6 +15,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import fi.hamk.demo.sensors.models.Sensor;
 
 public class Helper {
@@ -64,5 +71,32 @@ public class Helper {
 			notification(Conf.STATUS_ERROR,
 					context.getString(R.string.to_be_continued), queueStatus
 							+ " " + context.getString(R.string.pipeline));
+	}
+
+	public void fragmentify(Tab tab, FragmentTransaction fragmentTransaction,
+			Sensor sensor) {
+		if (sensor != null) {
+			Map<String, String> map = null;
+			final List<String> tabs = Arrays.asList(Conf.TABS);
+			if (tab.getPosition() == tabs.indexOf("etc"))
+				map = sensor.mapify();
+			else if (tab.getPosition() == tabs.indexOf("location"))
+				map = sensor.location.mapify();
+			else if (tab.getPosition() == tabs.indexOf("accelerometer"))
+				map = sensor.accelerometer.mapify();
+			else if (tab.getPosition() == tabs.indexOf("gravity"))
+				map = sensor.gravity.mapify();
+			else if (tab.getPosition() == tabs.indexOf("gyroscope"))
+				map = sensor.gyroscope.mapify();
+			else if (tab.getPosition() == tabs.indexOf("magnetic field"))
+				map = sensor.magfield.mapify();
+			else if (tab.getPosition() == tabs.indexOf("device"))
+				map = sensor.device.mapify();
+			else if (tab.getPosition() == tabs.indexOf("network"))
+				map = sensor.network.mapify();
+			// WIFI
+			TabFragment tabFragment = new TabFragment(context, map);
+			fragmentTransaction.replace(android.R.id.content, tabFragment);
+		}
 	}
 }

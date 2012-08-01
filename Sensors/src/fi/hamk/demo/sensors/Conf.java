@@ -17,11 +17,13 @@ public class Conf {
 	public static final String DEFAULT_SERVER = "http://127.0.0.1";
 	public static final int DEFAULT_SERVER_PORT = 9000;
 	public static final String SERVER_PATH = "json";
-	public static final String[] TABS = { "network", "device", "location" };
+	public static final String[] TABS = { "etc", "location", "accelerometer",
+			"gravity", "gyroscope", "magnetic field", "device", "network",
+			"wifi" };
 	public static final String FILE_QUEUE = "queue";
 	public static final String FILE_RUNNING = "running";
 	public static final int[] SENSORS = { Sensor.TYPE_ACCELEROMETER,
 			Sensor.TYPE_GRAVITY, Sensor.TYPE_GYROSCOPE, Sensor.TYPE_LIGHT,
 			Sensor.TYPE_MAGNETIC_FIELD, Sensor.TYPE_PROXIMITY };
-
+	public static final String DATE_FORMAT = "HH:mm:ss dd.MM.yy";
 }

@@ -1,5 +1,10 @@
 package fi.hamk.demo.sensors;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +15,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import fi.hamk.demo.sensors.fragments.TabFragment;
 import fi.hamk.demo.sensors.models.Sensor;
 
 public class MainActivity extends SherlockFragmentActivity implements
@@ -65,9 +69,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	// @Override
 	public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
-		TabFragment tabFragment;
-		tabFragment = new TabFragment(this);
-		fragmentTransaction.replace(android.R.id.content, tabFragment);
+		helper.fragmentify(tab, fragmentTransaction, sensor);
+	}
+
+	// @Override
+	public void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction) {
+		helper.fragmentify(tab, fragmentTransaction, sensor);
 	}
 
 	@Override
@@ -91,11 +98,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	// @Override
 	public void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction) {
-		// unused
-	}
-
-	// @Override
-	public void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction) {
 		// unused
 	}
 }

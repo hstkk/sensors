@@ -1,9 +1,8 @@
-package fi.hamk.demo.sensors.fragments;
+package fi.hamk.demo.sensors;
 
-import fi.hamk.demo.sensors.R;
-import fi.hamk.demo.sensors.R.id;
-import fi.hamk.demo.sensors.R.layout;
-import fi.hamk.demo.sensors.models.Sensor;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import android.widget.TableRow.LayoutParams;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -20,11 +19,11 @@ public class TabFragment extends Fragment {
 
 	TableLayout tableLayout;
 	Context context;
-	Sensor sensor;
+	Map<String, String> map;
 
-	public TabFragment(Context context/* , Sensor sensor */) {
+	public TabFragment(Context context, Map<String, String> map) {
 		this.context = context;
-		// this.sensor = sensor;
+		this.map = map;
 	}
 
 	@Override
@@ -33,12 +32,17 @@ public class TabFragment extends Fragment {
 		View view = layoutInflater.inflate(R.layout.fragment_tab, viewGroup,
 				false);
 		tableLayout = (TableLayout) view.findViewById(R.id.table);
-		addRow("Eka", "Toka");
-		addRow("Kolmas", "Neljäsmiljoonas");
+		if (map != null)
+			addRow(map);
 		return view;
 	}
 
-	protected void addRow(String header, String value) {
+	private void addRow(Map<String, String> map) {
+		for (Entry<String, String> entry : map.entrySet())
+			addRow(entry.getKey(), entry.getValue());
+	}
+
+	private void addRow(String header, String value) {
 		TableRow tableRow = new TableRow(context);
 		tableRow.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT));

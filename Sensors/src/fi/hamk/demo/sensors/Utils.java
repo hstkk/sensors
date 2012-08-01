@@ -1,5 +1,7 @@
 package fi.hamk.demo.sensors;
 
+import java.security.KeyRep.Type;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import fi.hamk.demo.sensors.models.*;
@@ -109,5 +111,12 @@ public class Utils extends Sensors {
 				Conf.DEFAULT_SERVER_PORT));
 		url.append("/");
 		return url.toString();
+	}
+
+	public static <T> String stringify(T value) {
+		return (value == null) ? "–"
+				: (value instanceof Date) ? new SimpleDateFormat(
+						Conf.DATE_FORMAT).format(value) : value.toString();
+
 	}
 }

@@ -1,8 +1,13 @@
 package fi.hamk.demo.sensors.models;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.codehaus.jackson.map.ObjectMapper;
+
+import fi.hamk.demo.sensors.Utils;
 import android.net.wifi.ScanResult;
 
 /**
@@ -31,5 +36,16 @@ public class Sensor {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public Map<String, String> mapify() {
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		if(measured != null)
+			map.put("Measured", Utils.stringify(measured));
+		if (proximity != null)
+			map.put("Proximity", Utils.stringify(proximity.x));
+		if (light != null)
+			map.put("Light", Utils.stringify(light.x));
+		return map;
 	}
 }
