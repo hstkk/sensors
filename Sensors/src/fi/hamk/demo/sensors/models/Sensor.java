@@ -40,12 +40,27 @@ public class Sensor {
 
 	public Map<String, String> mapify() {
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		if(measured != null)
+		if (measured != null)
 			map.put("Measured", Utils.stringify(measured));
 		if (proximity != null)
 			map.put("Proximity", Utils.stringify(proximity.x));
 		if (light != null)
 			map.put("Light", Utils.stringify(light.x));
+		return map;
+	}
+
+	public Map<String, String> mapifyWifi() {
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		if (wifi != null) {
+			for (ScanResult scanResult : wifi) {
+				map.put("BSSID", Utils.stringify(scanResult.BSSID));
+				map.put("SSID", Utils.stringify(scanResult.SSID));
+				map.put("Light", Utils.stringify(scanResult.capabilities));
+				map.put("Frequency", Utils.stringify(scanResult.frequency));
+				map.put("Level", Utils.stringify(scanResult.level));
+				map.put("", "");
+			}
+		}
 		return map;
 	}
 }

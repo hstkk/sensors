@@ -94,7 +94,8 @@ public class Helper {
 				map = sensor.device.mapify();
 			else if (tab.getPosition() == tabs.indexOf("network"))
 				map = sensor.network.mapify();
-			// WIFI
+			else if (tab.getPosition() == tabs.indexOf("wifi"))
+				map = sensor.mapifyWifi();
 			TabFragment tabFragment = new TabFragment(context, map);
 			fragmentTransaction.replace(android.R.id.content, tabFragment);
 		}

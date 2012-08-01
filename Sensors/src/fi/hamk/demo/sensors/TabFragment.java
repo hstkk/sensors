@@ -34,6 +34,8 @@ public class TabFragment extends Fragment {
 		tableLayout = (TableLayout) view.findViewById(R.id.table);
 		if (map != null)
 			addRow(map);
+		else
+			addRow("N/A", "");
 		return view;
 	}
 
