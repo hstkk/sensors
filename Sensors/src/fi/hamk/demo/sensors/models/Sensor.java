@@ -53,8 +53,8 @@ public class Sensor {
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		if (wifi != null) {
 			for (ScanResult scanResult : wifi) {
-				map.put("BSSID", Utils.stringify(scanResult.BSSID));
 				map.put("SSID", Utils.stringify(scanResult.SSID));
+				map.put("BSSID", Utils.stringify(scanResult.BSSID));
 				map.put("Light", Utils.stringify(scanResult.capabilities));
 				map.put("Frequency", Utils.stringify(scanResult.frequency));
 				map.put("Level", Utils.stringify(scanResult.level));
