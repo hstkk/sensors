@@ -55,7 +55,7 @@ public class Sensor {
 			for (ScanResult scanResult : wifi) {
 				map.put("SSID", Utils.stringify(scanResult.SSID));
 				map.put("BSSID", Utils.stringify(scanResult.BSSID));
-				map.put("Light", Utils.stringify(scanResult.capabilities));
+				map.put("Capabilities", Utils.stringify(scanResult.capabilities));
 				map.put("Frequency", Utils.stringify(scanResult.frequency));
 				map.put("Level", Utils.stringify(scanResult.level));
 				map.put("", "");
