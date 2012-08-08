@@ -17,11 +17,11 @@ public class Wifi extends Model {
 
 	@Required
 	@NotNull
-	public String bssid;
+	public String BSSID;
 
 	@Required
 	@NotNull
-	public String ssid;
+	public String SSID;
 
 	public String capabilities;
 

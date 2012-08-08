@@ -95,14 +95,15 @@
 @if(result.wifi != null && !result.wifi.isEmpty) {
 	<h3>WiFi</h3>
 	@table() {
-		@thead() { BSSID
-			SSID
+		@thead() { SSID
+			BSSID
 			Capabilities
 			Frequency
 			Level }
 		<tbody>
 			@for(row <- result.wifi) {
-				@tr() {	@row.ssid
+				@tr() {	@row.SSID
+					@row.BSSID
 					@row.capabilities
 					@row.frequency
 					@row.level }
