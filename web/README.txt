@@ -1,3 +1,17 @@
+Web-sovelluksen käyttöönotto paikallisesti
+------------------------------------------
+1. Lataa Play Framework 2.0.3
+http://download.playframework.org/releases/play-2.0.3.zip
+2. Pura ladattu ZIP-paketti
+3. Lisää puretun kansion sijainti PATH-ympäristömuuttujaan (varmista myös, että Java on ympäristömuuttujassa)
+http://geekswithblogs.net/renso/archive/2009/10/21/how-to-set-the-windows-path-in-windows-7.aspx
+http://www.linuxheadquarters.com/howto/basic/path.shtml
+4. Mene komentorivillä hakemistoon, jossa web-sovellus sijaitsee
+5. Käännä web-sovellus
+play clean compile
+6. Käynnistä web-sovellus
+play run
+
 Web-sovelluksen käyttöönotto OpenShift-pilvessä
 -----------------------------------------------
 1. Asenna tietokoneelle OpenShift asiakasohjelma
