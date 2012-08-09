@@ -13,28 +13,35 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
 /**
- * Handles user interaction
+ * Handles user interaction.
  * 
  * @author Sami Hostikka
  */
 public class Application extends Controller {
 
 	/**
-	 * Display index page
+	 * Display index page.
 	 * 
 	 * @param order
+	 *            the order
 	 * @param by
+	 *            the by
+	 * @return the result
 	 */
 	public static Result index(String order, String by) {
 		return page(0, order, by);
 	}
 
 	/**
-	 * Display sensor page
+	 * Display sensor page.
 	 * 
 	 * @param page
+	 *            the page
 	 * @param order
+	 *            the order
 	 * @param by
+	 *            the by
+	 * @return the result
 	 */
 	public static Result page(int page, String order, String by) {
 		return ok(views.html.results.render(Sensor.page(page, order, by),
@@ -42,9 +49,11 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Display specific result
+	 * Display specific result.
 	 * 
 	 * @param id
+	 *            the id
+	 * @return the result
 	 */
 	public static Result result(int id) {
 		Sensor sensor = Sensor.findById(id);
@@ -54,9 +63,11 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Display specific result as table row
+	 * Display specific result as table row.
 	 * 
 	 * @param id
+	 *            the id
+	 * @return the result
 	 */
 	public static Result resultAsTr(int id) {
 		Sensor sensor = Sensor.findById(id);
@@ -66,14 +77,16 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Display map
+	 * Display map.
+	 * 
+	 * @return the result
 	 */
 	public static Result map() {
 		return ok(views.html.map.render());
 	}
 
 	/**
-	 * Display sensors as JSON
+	 * Display sensors as JSON.
 	 * 
 	 * @return list of sensor objects as JSON || badRequest
 	 */
@@ -85,7 +98,7 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Add JSON to database
+	 * Add JSON to database.
 	 * 
 	 * @return ok || badRequest
 	 */
