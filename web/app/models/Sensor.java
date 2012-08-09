@@ -4,17 +4,16 @@ import java.util.*;
 import javax.persistence.*;
 import javax.validation.Valid;
 
-import org.codehaus.jackson.JsonNode;
-
 import com.avaje.ebean.*;
 import com.avaje.ebean.validation.NotNull;
 
 import play.data.validation.Validation;
 import play.data.validation.Constraints.*;
 import play.db.ebean.Model;
-import play.libs.Json;
 
 /**
+ * Sensor entity
+ * 
  * @author Sami Hostikka
  */
 @Entity
@@ -62,6 +61,9 @@ public class Sensor extends Model {
 	public Sensor() {
 	}
 
+	/**
+	 * Validate objects before saving and finally save
+	 */
 	@Override
 	public void save() {
 		this.location = validate(this.location);
@@ -76,6 +78,13 @@ public class Sensor extends Model {
 		super.save();
 	}
 
+	/**
+	 * Generic method for validating objects
+	 * 
+	 * @param t
+	 *            Object for validation
+	 * @return object || null
+	 */
 	private <T> T validate(T t) {
 		if (t != null && Validation.getValidator().validate(t).isEmpty())
 			return t;
@@ -85,7 +94,13 @@ public class Sensor extends Model {
 	public static Finder<Long, Sensor> find = new Finder<Long, Sensor>(
 			Long.class, Sensor.class);
 
-	// TODO fetch wifi
+	/**
+	 * Find sensor object by id
+	 * 
+	 * @param id
+	 *            Id of sensor object
+	 * @return Sensor object || null
+	 */
 	public static Sensor findById(int id) {
 		try {
 			return find.fetch("location").fetch("network").fetch("device")
@@ -97,6 +112,17 @@ public class Sensor extends Model {
 		}
 	}
 
+	/**
+	 * Find sensor page
+	 * 
+	 * @param page
+	 *            Page to display
+	 * @param order
+	 *            Property order
+	 * @param by
+	 *            Property used to sort page
+	 * @return Page of sensor
+	 */
 	public static Page<Sensor> page(int page, String order, String by) {
 		try {
 			int pageSize = 10;
@@ -107,6 +133,11 @@ public class Sensor extends Model {
 		}
 	}
 
+	/**
+	 * Find list of sensor objects
+	 * 
+	 * @return Sensor list || null
+	 */
 	public static List<Sensor> pushpins() {
 		try {
 			return find.select("id, measured, location").fetch("location")

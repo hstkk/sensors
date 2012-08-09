@@ -1,10 +1,11 @@
 package models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import play.db.ebean.Model;
 
 /**
+ * Device entity
+ * 
  * @author Sami Hostikka
  */
 @Entity
@@ -27,6 +28,13 @@ public class Device extends Model {
 	public static Finder<Long, Device> find = new Finder<Long, Device>(
 			Long.class, Device.class);
 
+	/**
+	 * Find device object by id
+	 * 
+	 * @param id
+	 *            Id of device object
+	 * @return Device object || null
+	 */
 	public static Device findById(int id) {
 		try {
 			return find.where().eq("id", id).findUnique();

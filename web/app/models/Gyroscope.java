@@ -6,7 +6,9 @@ import javax.validation.constraints.NotNull;
 import play.db.ebean.Model;
 
 /**
- * @author Pontus Vainionpaa
+ * Gyroscope entity
+ * 
+ * @author Sami Hostikka
  */
 @Entity
 public class Gyroscope extends Model {
@@ -25,6 +27,13 @@ public class Gyroscope extends Model {
 	public static Finder<Long, Gyroscope> find = new Finder<Long, Gyroscope>(
 			Long.class, Gyroscope.class);
 
+	/**
+	 * Find gyroscope object by id
+	 * 
+	 * @param id
+	 *            Id of gyroscope object
+	 * @return gyroscope object || null
+	 */
 	public static Gyroscope findById(int id) {
 		try {
 			return find.where().eq("id", id).findUnique();
