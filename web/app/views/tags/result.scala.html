@@ -115,9 +115,9 @@
 @if(result.light != null || result.proximity != null) {
 	<h3>Etc</h3>
 	@table() {
-		@thead() { Light
-			Proximity }
-		@tbody() { @result.light.x
-			@result.proximity.x }
+		@thead() { @if(result.light != null) {Light }
+			@if(result.proximity != null) {Proximity } }
+		@tbody() { @if(result.light != null) {@result.light.x }
+			@if(result.proximity != null) {@result.proximity.x } }
 	}
 }
