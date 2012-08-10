@@ -106,7 +106,7 @@ public class Sensor extends Model {
 			return find.fetch("location").fetch("network").fetch("device")
 					.fetch("accelerometer").fetch("proximity").fetch("gravity")
 					.fetch("gyroscope").fetch("light").fetch("magfield")
-					.where().eq("id", id).findUnique();
+					.fetch("wifi").where().eq("id", id).findUnique();
 		} catch (Exception e) {
 			return null;
 		}
