@@ -36,16 +36,18 @@ git remote add quickstart -m master https://github.com/opensas/play2-openshift-q
 git pull -s recursive -X theirs quickstart master
 10. Käännä web-sovellus
 play clean compile stage
-11. Lisää conf/openshift.conf-tiedostoon:
+11. Lisää conf/openshift.conf-tiedostoon openshift.play.params riville aikavyöhyke
+-Duser.timezone=Europe/Helsinki
+12. Lisää conf/openshift.conf-tiedostoon:
 	db.default.driver=com.mysql.jdbc.Driver
 	db.default.url="jdbc:mysql://"${OPENSHIFT_DB_HOST}":"${OPENSHIFT_DB_PORT}/${OPENSHIFT_APP_NAME}
 	db.default.user=${OPENSHIFT_DB_USERNAME}
 	db.default.password=${OPENSHIFT_DB_PASSWORD}
-12. Lisää uudet tiedostot paikalliseen repoon
+13. Lisää uudet tiedostot paikalliseen repoon
 git add .
-13. Tallenna muutokset paikalliseen repoon
+14. Tallenna muutokset paikalliseen repoon
 git commit -am "deploying"
-14. Työnnä verkkosovellus pilveen
+15. Työnnä verkkosovellus pilveen
 git push origin
-15. Varmista sovelluksen toiminta
+16. Varmista sovelluksen toiminta
 rhc app tail -a sensors
