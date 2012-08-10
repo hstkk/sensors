@@ -1,0 +1,123 @@
+@***********************
+* Result helper        *
+* author Sami Hostikka *
+***********************@
+@(result: Sensor)
+
+<p>Measured on @result.measured.format("HH:mm dd.M.yyyy")</p>
+
+<h3>Device</h3>
+@table() {
+	@thead() { Manufacturer
+		Android
+		Brand
+		Model }
+	@tbody() { @result.device.manufacturer
+		@result.device.version
+		@result.device.brand
+		@result.device.model }
+}
+@if(result.location != null) {
+	<h3>Location</h3>
+	@table() {
+		@thead() { Altitude
+			Latitude
+			Longitude
+			Accuracy
+			Speed
+			Provider
+			Satellites }
+		@tbody() { @result.location.altitude
+			@result.location.latitude
+			@result.location.longitude
+			@result.location.accuracy
+			@result.location.speed
+			@result.location.provider
+			@result.location.satellites }
+	}
+}
+@if(result.magfield != null) {
+	<h3>Magnetic field</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.magfield.x
+			@result.magfield.y
+			@result.magfield.z }
+	}
+}
+@if(result.gyroscope != null) {
+	<h3>Gyroscope</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.gyroscope.x
+			@result.gyroscope.y
+			@result.gyroscope.z }
+	}
+}
+@if(result.gravity != null) {
+	<h3>Gravity</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.gravity.x
+			@result.gravity.y
+			@result.gravity.z }
+	}
+}
+@if(result.accelerometer != null) {
+	<h3>Accelerometer</h3>
+	@table() {
+		@thead() { X
+			Y
+			Z }
+		@tbody() { @result.accelerometer.x
+			@result.accelerometer.y
+			@result.accelerometer.z }
+	}
+}
+@if(result.network != null) {
+	<h3>Network</h3>
+	@table() {
+		@thead() { Operator
+			Technology
+			Roaming
+			Cell }
+		@tbody() { @result.network.operator
+			@result.network.technology
+			@result.network.isNetworkRoaming
+			@result.network.cell }
+	}
+}
+@if(result.wifi != null && !result.wifi.isEmpty) {
+	<h3>WiFi</h3>
+	@table() {
+		@thead() { SSID
+			BSSID
+			Capabilities
+			Frequency
+			Level }
+		<tbody>
+			@for(row <- result.wifi) {
+				@tr() {	@row.SSID
+					@row.BSSID
+					@row.capabilities
+					@row.frequency
+					@row.level }
+			}
+		</tbody>
+	}
+}
+@if(result.light != null || result.proximity != null) {
+	<h3>Etc</h3>
+	@table() {
+		@thead() { Light
+			Proximity }
+		@tbody() { @if(result.light != null) {@result.light.x }
+			@if(result.proximity != null) {@result.proximity.x } }
+	}
+}

@@ -1,0 +1,41 @@
+@***********************
+* Base html            *
+* author Sami Hostikka *
+***********************@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>@title - Sensors</title>
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/styles.css")">
+		<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
+	</head>
+	<body>
+		<header class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="@controllers.routes.Application.index()">Sensors</a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							@if(title.equals("Results")) {
+								<li class="active"><a href="@controllers.routes.Application.index()">Results</a></li>
+							} else {
+								<li><a href="@controllers.routes.Application.index()">Results</a></li>
+							}
+							<li><a href="@controllers.routes.Application.map()">Map</a></li>
+							<li><a href="@routes.Assets.at("Sensors.apk")">Download</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+	    </header>
+	    <article class="container">
+	    	<header>
+				<h1>@title</h1>
+			</header>
+			@content
+	    </article>
+    </body>
+</html>

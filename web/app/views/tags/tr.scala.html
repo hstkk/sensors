@@ -1,0 +1,15 @@
+@***********************
+* Table row helper     *
+* author Sami Hostikka *
+***********************@
+@()(content: Html)
+
+	<tr>
+		@for(td <- content.toString.lines) {
+			@if(!td.trim.isEmpty) {
+				<td>@Html(td.trim)</td>
+			} else {
+				<td><em>&mdash;</em></td>
+			}
+		}
+	</tr>

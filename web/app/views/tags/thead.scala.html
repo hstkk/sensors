@@ -1,0 +1,13 @@
+@***********************
+* Table head helper    *
+* author Sami Hostikka *
+***********************@
+@()(content: Html)
+
+<thead>
+	<tr>
+		@for(th <- content.toString.lines) {
+			<th>@th.trim</th>
+		}
+	</tr>
+</thead>
