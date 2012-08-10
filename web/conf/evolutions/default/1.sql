@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table accelerometer (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   x                         float,
   y                         float,
   z                         float,
@@ -12,7 +12,7 @@ create table accelerometer (
 ;
 
 create table device (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   manufacturer              varchar(255),
   version                   varchar(255),
   brand                     varchar(255),
@@ -21,7 +21,7 @@ create table device (
 ;
 
 create table gravity (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   x                         float,
   y                         float,
   z                         float,
@@ -29,7 +29,7 @@ create table gravity (
 ;
 
 create table gyroscope (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   x                         float,
   y                         float,
   z                         float,
@@ -37,13 +37,13 @@ create table gyroscope (
 ;
 
 create table light (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   x                         float,
   constraint pk_light primary key (id))
 ;
 
 create table location (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   altitude                  double,
   latitude                  double,
   longitude                 double,
@@ -55,7 +55,7 @@ create table location (
 ;
 
 create table magnetic_field (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   x                         float,
   y                         float,
   z                         float,
@@ -63,23 +63,23 @@ create table magnetic_field (
 ;
 
 create table network (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   operator                  varchar(255),
   technology                varchar(255),
-  is_network_roaming        boolean,
+  is_network_roaming        tinyint(1) default 0,
   cell                      integer,
   constraint pk_network primary key (id))
 ;
 
 create table proximity (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   x                         float,
   constraint pk_proximity primary key (id))
 ;
 
 create table sensor (
-  id                        integer not null,
-  measured                  timestamp not null,
+  id                        integer auto_increment not null,
+  measured                  datetime not null,
   location_id               integer,
   network_id                integer,
   device_id                 integer not null,
@@ -93,7 +93,7 @@ create table sensor (
 ;
 
 create table wifi (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   sensor_id                 integer not null,
   bssid                     varchar(255),
   ssid                      varchar(255),
@@ -102,28 +102,6 @@ create table wifi (
   level                     integer,
   constraint pk_wifi primary key (id))
 ;
-
-create sequence accelerometer_seq;
-
-create sequence device_seq;
-
-create sequence gravity_seq;
-
-create sequence gyroscope_seq;
-
-create sequence light_seq;
-
-create sequence location_seq;
-
-create sequence magnetic_field_seq;
-
-create sequence network_seq;
-
-create sequence proximity_seq;
-
-create sequence sensor_seq;
-
-create sequence wifi_seq;
 
 alter table sensor add constraint fk_sensor_location_1 foreign key (location_id) references location (id) on delete restrict on update restrict;
 create index ix_sensor_location_1 on sensor (location_id);
@@ -150,51 +128,29 @@ create index ix_wifi_sensor_10 on wifi (sensor_id);
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists accelerometer;
+drop table accelerometer;
 
-drop table if exists device;
+drop table device;
 
-drop table if exists gravity;
+drop table gravity;
 
-drop table if exists gyroscope;
+drop table gyroscope;
 
-drop table if exists light;
+drop table light;
 
-drop table if exists location;
+drop table location;
 
-drop table if exists magnetic_field;
+drop table magnetic_field;
 
-drop table if exists network;
+drop table network;
 
-drop table if exists proximity;
+drop table proximity;
 
-drop table if exists sensor;
+drop table sensor;
 
-drop table if exists wifi;
+drop table wifi;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists accelerometer_seq;
-
-drop sequence if exists device_seq;
-
-drop sequence if exists gravity_seq;
-
-drop sequence if exists gyroscope_seq;
-
-drop sequence if exists light_seq;
-
-drop sequence if exists location_seq;
-
-drop sequence if exists magnetic_field_seq;
-
-drop sequence if exists network_seq;
-
-drop sequence if exists proximity_seq;
-
-drop sequence if exists sensor_seq;
-
-drop sequence if exists wifi_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
