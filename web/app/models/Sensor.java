@@ -55,7 +55,7 @@ public class Sensor extends Model {
 	@OneToOne(cascade = CascadeType.ALL)
 	public MagneticField magfield;
 
-	@ManyToOne
+	@OneToMany(cascade = CascadeType.ALL)
 	public List<Wifi> wifi = new ArrayList<Wifi>();
 
 	public Sensor() {
