@@ -114,7 +114,6 @@ public class Application extends Controller {
 				return ok(result);
 			}
 		} catch (Exception e) {
-			System.out.print(e.toString());
 		}
 		return badRequest();
 	}
