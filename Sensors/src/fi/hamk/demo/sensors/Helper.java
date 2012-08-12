@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
+import fi.hamk.demo.sensors.models.KeyValue;
 import fi.hamk.demo.sensors.models.Sensor;
 
 public class Helper {
@@ -76,7 +77,7 @@ public class Helper {
 	public void fragmentify(Tab tab, FragmentTransaction fragmentTransaction,
 			Sensor sensor) {
 		if (sensor != null) {
-			Map<String, String> map = null;
+			List<KeyValue> map = null;
 			final List<String> tabs = Arrays.asList(Conf.TABS);
 			if (tab.getPosition() == tabs.indexOf("etc"))
 				map = sensor.mapify();

@@ -1,7 +1,7 @@
 package fi.hamk.demo.sensors.models;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import fi.hamk.demo.sensors.Utils;
 
@@ -12,11 +12,11 @@ public class Gyroscope {
 
 	public Float x = null, y = null, z = null;
 
-	public Map<String, String> mapify() {
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		map.put("X", Utils.stringify(x));
-		map.put("Y", Utils.stringify(y));
-		map.put("Z", Utils.stringify(z));
+	public List<KeyValue> mapify() {
+		List<KeyValue> map = new ArrayList<KeyValue>();
+		map.add(new KeyValue("X", Utils.stringify(x)));
+		map.add(new KeyValue("Y", Utils.stringify(y)));
+		map.add(new KeyValue("Z", Utils.stringify(z)));
 		return map;
 	}
 }

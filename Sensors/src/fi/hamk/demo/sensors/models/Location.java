@@ -1,7 +1,7 @@
 package fi.hamk.demo.sensors.models;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import fi.hamk.demo.sensors.Utils;
 
@@ -28,15 +28,15 @@ public class Location {
 		satellites = null;
 	}
 
-	public Map<String, String> mapify() {
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		map.put("altitude", Utils.stringify(altitude));
-		map.put("latitude", Utils.stringify(latitude));
-		map.put("longitude", Utils.stringify(longitude));
-		map.put("accuracy", Utils.stringify(accuracy));
-		map.put("speed", Utils.stringify(speed));
-		map.put("provider", Utils.stringify(provider));
-		map.put("satellites", Utils.stringify(satellites));
+	public List<KeyValue> mapify() {
+		List<KeyValue> map = new ArrayList<KeyValue>();
+		map.add(new KeyValue("altitude", Utils.stringify(altitude)));
+		map.add(new KeyValue("latitude", Utils.stringify(latitude)));
+		map.add(new KeyValue("longitude", Utils.stringify(longitude)));
+		map.add(new KeyValue("accuracy", Utils.stringify(accuracy)));
+		map.add(new KeyValue("speed", Utils.stringify(speed)));
+		map.add(new KeyValue("provider", Utils.stringify(provider)));
+		map.add(new KeyValue("satellites", Utils.stringify(satellites)));
 		return map;
 	}
 }

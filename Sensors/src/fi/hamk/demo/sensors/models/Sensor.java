@@ -1,9 +1,8 @@
 package fi.hamk.demo.sensors.models;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -38,27 +37,29 @@ public class Sensor {
 		}
 	}
 
-	public Map<String, String> mapify() {
-		Map<String, String> map = new LinkedHashMap<String, String>();
+	public List<KeyValue> mapify() {
+		List<KeyValue> map = new ArrayList<KeyValue>();
 		if (measured != null)
-			map.put("Measured", Utils.stringify(measured));
+			map.add(new KeyValue("Measured", Utils.stringify(measured)));
 		if (proximity != null)
-			map.put("Proximity", Utils.stringify(proximity.x));
+			map.add(new KeyValue("Proximity", Utils.stringify(proximity.x)));
 		if (light != null)
-			map.put("Light", Utils.stringify(light.x));
+			map.add(new KeyValue("Light", Utils.stringify(light.x)));
 		return map;
 	}
 
-	public Map<String, String> mapifyWifi() {
-		Map<String, String> map = new LinkedHashMap<String, String>();
+	public List<KeyValue> mapifyWifi() {
+		List<KeyValue> map = new ArrayList<KeyValue>();
 		if (wifi != null) {
 			for (ScanResult scanResult : wifi) {
-				map.put("SSID", Utils.stringify(scanResult.SSID));
-				map.put("BSSID", Utils.stringify(scanResult.BSSID));
-				map.put("Capabilities", Utils.stringify(scanResult.capabilities));
-				map.put("Frequency", Utils.stringify(scanResult.frequency));
-				map.put("Level", Utils.stringify(scanResult.level));
-				map.put("", "");
+				map.add(new KeyValue("SSID", Utils.stringify(scanResult.SSID)));
+				map.add(new KeyValue("BSSID", Utils.stringify(scanResult.BSSID)));
+				map.add(new KeyValue("Capabilities", Utils
+						.stringify(scanResult.capabilities)));
+				map.add(new KeyValue("Frequency", Utils
+						.stringify(scanResult.frequency)));
+				map.add(new KeyValue("Level", Utils.stringify(scanResult.level)));
+				map.add(new KeyValue("", ""));
 			}
 		}
 		return map;

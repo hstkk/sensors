@@ -1,7 +1,7 @@
 package fi.hamk.demo.sensors.models;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import fi.hamk.demo.sensors.Utils;
 
@@ -15,12 +15,12 @@ public class Network {
 	public Boolean isNetworkRoaming = null;
 	public Integer cell = null;
 
-	public Map<String, String> mapify() {
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		map.put("Operator", Utils.stringify(operator));
-		map.put("Technology", Utils.stringify(technology));
-		map.put("Roaming", Utils.stringify(isNetworkRoaming));
-		map.put("Cell", Utils.stringify(cell));
+	public List<KeyValue> mapify() {
+		List<KeyValue> map = new ArrayList<KeyValue>();
+		map.add(new KeyValue("Operator", Utils.stringify(operator)));
+		map.add(new KeyValue("Technology", Utils.stringify(technology)));
+		map.add(new KeyValue("Roaming", Utils.stringify(isNetworkRoaming)));
+		map.add(new KeyValue("Cell", Utils.stringify(cell)));
 		return map;
 	}
 }

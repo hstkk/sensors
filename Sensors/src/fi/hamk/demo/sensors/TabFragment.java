@@ -1,7 +1,8 @@
 package fi.hamk.demo.sensors;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.List;
+
+import fi.hamk.demo.sensors.models.KeyValue;
 
 import android.widget.TableRow.LayoutParams;
 import android.content.Context;
@@ -19,9 +20,9 @@ public class TabFragment extends Fragment {
 
 	TableLayout tableLayout;
 	Context context;
-	Map<String, String> map;
+	List<KeyValue> map;
 
-	public TabFragment(Context context, Map<String, String> map) {
+	public TabFragment(Context context, List<KeyValue> map) {
 		this.context = context;
 		this.map = map;
 	}
@@ -39,9 +40,9 @@ public class TabFragment extends Fragment {
 		return view;
 	}
 
-	private void addRow(Map<String, String> map) {
-		for (Entry<String, String> entry : map.entrySet())
-			addRow(entry.getKey(), entry.getValue());
+	private void addRow(List<KeyValue> map) {
+		for (KeyValue keyValue : map)
+			addRow(keyValue.key, keyValue.value);
 	}
 
 	private void addRow(String header, String value) {

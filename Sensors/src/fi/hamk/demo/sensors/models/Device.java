@@ -1,7 +1,7 @@
 package fi.hamk.demo.sensors.models;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import fi.hamk.demo.sensors.Utils;
 import android.os.Build;
@@ -23,12 +23,12 @@ public class Device {
 		this.model = Build.MODEL;
 	}
 
-	public Map<String, String> mapify() {
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		map.put("Manufacturer", Utils.stringify(manufacturer));
-		map.put("Version", Utils.stringify(version));
-		map.put("Brand", Utils.stringify(brand));
-		map.put("Model", Utils.stringify(model));
+	public List<KeyValue> mapify() {
+		List<KeyValue> map = new ArrayList<KeyValue>();
+		map.add(new KeyValue("Manufacturer", Utils.stringify(manufacturer)));
+		map.add(new KeyValue("Version", Utils.stringify(version)));
+		map.add(new KeyValue("Brand", Utils.stringify(brand)));
+		map.add(new KeyValue("Model", Utils.stringify(model)));
 		return map;
 	}
 }
