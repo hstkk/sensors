@@ -12,6 +12,9 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
+/**
+ * @author Sami Hostikka
+ */
 public class SettingsActivity extends SherlockActivity {
 	EditText url, port;
 	SharedPreferences preferences;

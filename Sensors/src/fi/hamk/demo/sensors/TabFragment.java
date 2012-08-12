@@ -16,6 +16,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+/**
+ * @author Sami Hostikka
+ */
 public class TabFragment extends Fragment {
 
 	TableLayout tableLayout;

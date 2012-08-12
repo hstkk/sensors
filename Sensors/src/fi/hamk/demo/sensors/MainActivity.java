@@ -12,6 +12,9 @@ import com.actionbarsherlock.view.MenuItem;
 
 import fi.hamk.demo.sensors.models.Sensor;
 
+/**
+ * @author Sami Hostikka
+ */
 public class MainActivity extends SherlockFragmentActivity implements
 		ActionBar.TabListener {
 

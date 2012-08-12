@@ -19,6 +19,9 @@ import android.support.v4.app.FragmentTransaction;
 import fi.hamk.demo.sensors.models.KeyValue;
 import fi.hamk.demo.sensors.models.Sensor;
 
+/**
+ * @author Sami Hostikka
+ */
 public class Helper {
 	Context context;
 	NotificationManager notificationManager;
