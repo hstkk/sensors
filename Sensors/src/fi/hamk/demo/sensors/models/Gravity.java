@@ -6,12 +6,19 @@ import java.util.List;
 import fi.hamk.demo.sensors.Utils;
 
 /**
+ * Gravity model.
+ * 
  * @author Pontus Vainionpaa
  */
 public class Gravity {
 
 	public Float x = null, y = null, z = null;
 
+	/**
+	 * Returns map of measured values.
+	 * 
+	 * @return map of measured values.
+	 */
 	public List<KeyValue> mapify() {
 		List<KeyValue> map = new ArrayList<KeyValue>();
 		map.add(new KeyValue("X", Utils.stringify(x)));

@@ -20,6 +20,8 @@ import fi.hamk.demo.sensors.models.KeyValue;
 import fi.hamk.demo.sensors.models.Sensor;
 
 /**
+ * UI helper class.
+ * 
  * @author Sami Hostikka
  */
 public class Helper {
@@ -27,6 +29,10 @@ public class Helper {
 	NotificationManager notificationManager;
 	SharedPreferences preferences;
 
+	/**
+	 * @param current
+	 *            application context
+	 */
 	public Helper(Context context) {
 		this.context = context;
 		notificationManager = (NotificationManager) context
@@ -35,6 +41,13 @@ public class Helper {
 				context.getString(R.string.preferences), 0);
 	}
 
+	/**
+	 * Adds sensor objects to transmission queue and receives transmission
+	 * statuses.
+	 * 
+	 * @param sensor
+	 *            object for upload
+	 */
 	public void upload(Sensor sensor) {
 		Handler handler = new Handler() {
 			public void handleMessage(Message message) {
@@ -55,6 +68,16 @@ public class Helper {
 		new Connection(context, sensor, handler);
 	}
 
+	/**
+	 * Adds notification to androids notification center.
+	 * 
+	 * @param notification
+	 *            id, if greater than 0 then notification opens web page
+	 * @param notification
+	 *            title
+	 * @param notification
+	 *            text
+	 */
 	@SuppressWarnings("deprecation")
 	private void notification(int id, String title, String text) {
 		Notification notification = new Notification();
@@ -69,6 +92,9 @@ public class Helper {
 		notificationManager.notify(id, notification);
 	}
 
+	/**
+	 * Shows transmission status in notification.
+	 */
 	public void status() {
 		int queueStatus = ConnectionManager.getConnectionManager().status();
 		if (queueStatus > 0)
@@ -77,6 +103,14 @@ public class Helper {
 							+ " " + context.getString(R.string.pipeline));
 	}
 
+	/**
+	 * Shows sensor data in UI fragment.
+	 * 
+	 * @param tab
+	 * @param fragmentTransaction
+	 * @param sensor
+	 *            object to show in UI
+	 */
 	public void fragmentify(Tab tab, FragmentTransaction fragmentTransaction,
 			Sensor sensor) {
 		if (sensor != null) {

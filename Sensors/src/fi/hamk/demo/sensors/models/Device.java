@@ -7,6 +7,8 @@ import fi.hamk.demo.sensors.Utils;
 import android.os.Build;
 
 /**
+ * Device model.
+ * 
  * @author Sami Hostikka
  */
 public class Device {
@@ -23,6 +25,11 @@ public class Device {
 		this.model = Build.MODEL;
 	}
 
+	/**
+	 * Returns map of measured values.
+	 * 
+	 * @return map of measured values.
+	 */
 	public List<KeyValue> mapify() {
 		List<KeyValue> map = new ArrayList<KeyValue>();
 		map.add(new KeyValue("Manufacturer", Utils.stringify(manufacturer)));

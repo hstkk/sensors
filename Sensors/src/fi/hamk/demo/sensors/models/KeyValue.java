@@ -1,6 +1,8 @@
 package fi.hamk.demo.sensors.models;
 
 /**
+ * Key value pair.
+ * 
  * @author Sami Hostikka
  */
 public class KeyValue {

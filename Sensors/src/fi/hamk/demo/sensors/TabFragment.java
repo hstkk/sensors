@@ -17,6 +17,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 /**
+ * UI fragment.
+ * 
  * @author Sami Hostikka
  */
 public class TabFragment extends Fragment {
@@ -25,11 +27,21 @@ public class TabFragment extends Fragment {
 	Context context;
 	List<KeyValue> map;
 
+	/**
+	 * 
+	 * @param applications
+	 *            current context
+	 * @param measured
+	 *            values as map
+	 */
 	public TabFragment(Context context, List<KeyValue> map) {
 		this.context = context;
 		this.map = map;
 	}
 
+	/**
+	 * Initializes fragment.
+	 */
 	@Override
 	public View onCreateView(LayoutInflater layoutInflater,
 			ViewGroup viewGroup, Bundle bundle) {
@@ -43,11 +55,25 @@ public class TabFragment extends Fragment {
 		return view;
 	}
 
+	/**
+	 * Adds maps items to table.
+	 * 
+	 * @param measured
+	 *            values map
+	 */
 	private void addRow(List<KeyValue> map) {
 		for (KeyValue keyValue : map)
 			addRow(keyValue.key, keyValue.value);
 	}
 
+	/**
+	 * Add row to table.
+	 * 
+	 * @param rows
+	 *            header
+	 * @param rows
+	 *            value
+	 */
 	private void addRow(String header, String value) {
 		TableRow tableRow = new TableRow(context);
 		tableRow.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,

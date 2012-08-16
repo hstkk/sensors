@@ -6,6 +6,8 @@ import java.util.List;
 import fi.hamk.demo.sensors.Utils;
 
 /**
+ * Location model.
+ * 
  * @author Pontus Vainionpaa
  */
 public class Location {
@@ -18,6 +20,9 @@ public class Location {
 	public Location() {
 	}
 
+	/**
+	 * Initializes values.
+	 */
 	public void nullify() {
 		altitude = null;
 		latitude = null;
@@ -28,6 +33,11 @@ public class Location {
 		satellites = null;
 	}
 
+	/**
+	 * Returns map of measured values.
+	 * 
+	 * @return map of measured values.
+	 */
 	public List<KeyValue> mapify() {
 		List<KeyValue> map = new ArrayList<KeyValue>();
 		map.add(new KeyValue("altitude", Utils.stringify(altitude)));

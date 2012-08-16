@@ -13,12 +13,17 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 /**
+ * Settings view.
+ * 
  * @author Sami Hostikka
  */
 public class SettingsActivity extends SherlockActivity {
 	EditText url, port;
 	SharedPreferences preferences;
 
+	/**
+	 * Initializes view.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,6 +38,9 @@ public class SettingsActivity extends SherlockActivity {
 				Conf.DEFAULT_SERVER_PORT) + "");
 	}
 
+	/**
+	 * Adds buttons to menu.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(getString(R.string.save)).setIcon(R.drawable.ic_content_save)
@@ -40,6 +48,11 @@ public class SettingsActivity extends SherlockActivity {
 		return true;
 	}
 
+	/**
+	 * Tries to save settings.
+	 * 
+	 * @return true
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
 		int value = -1;
@@ -65,6 +78,9 @@ public class SettingsActivity extends SherlockActivity {
 		return true;
 	}
 
+	/**
+	 * Flushes transmission queue.
+	 */
 	public void flush(View view) {
 		ConnectionManager.getConnectionManager().flush();
 	}

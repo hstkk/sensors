@@ -10,6 +10,8 @@ import fi.hamk.demo.sensors.Utils;
 import android.net.wifi.ScanResult;
 
 /**
+ * Sensor model.
+ * 
  * @author Sami Hostikka & Pontus Vainionpaa
  */
 public class Sensor {
@@ -29,6 +31,11 @@ public class Sensor {
 	public Sensor() {
 	}
 
+	/**
+	 * Converts sensor model to JSON.
+	 * 
+	 * @return sensor model as JSON.
+	 */
 	public String toJson() {
 		try {
 			return new ObjectMapper().valueToTree(this).toString();
@@ -37,6 +44,11 @@ public class Sensor {
 		}
 	}
 
+	/**
+	 * Returns map of measured values.
+	 * 
+	 * @return map of measured values.
+	 */
 	public List<KeyValue> mapify() {
 		List<KeyValue> map = new ArrayList<KeyValue>();
 		if (measured != null)
@@ -48,6 +60,11 @@ public class Sensor {
 		return map;
 	}
 
+	/**
+	 * Returns map of available WiFi networks.
+	 * 
+	 * @return map of available WiFi networks.
+	 */
 	public List<KeyValue> mapifyWifi() {
 		List<KeyValue> map = new ArrayList<KeyValue>();
 		if (wifi != null) {

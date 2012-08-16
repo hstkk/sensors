@@ -3,6 +3,8 @@ package fi.hamk.demo.sensors;
 import android.hardware.Sensor;
 
 /**
+ * Global configuration class
+ * 
  * @author Sami Hostikka
  */
 public class Conf {

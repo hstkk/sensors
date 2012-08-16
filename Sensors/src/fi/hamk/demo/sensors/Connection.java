@@ -17,6 +17,8 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
+ * Async connection to server.
+ * 
  * @author Sami Hostikka
  */
 public class Connection implements Runnable {
@@ -36,6 +38,11 @@ public class Connection implements Runnable {
 		ConnectionManager.getConnectionManager().add(this);
 	}
 
+	/**
+	 * Tries to send data to server
+	 * 
+	 * @param url
+	 */
 	private void post(String url) {
 		try {
 			DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -65,6 +72,9 @@ public class Connection implements Runnable {
 		}
 	}
 
+	/**
+	 * Thread tries to execute post method until it succeeds.
+	 */
 	public void run() {
 		String url = Utils.urlify(context, preferences);
 

@@ -13,6 +13,8 @@ import com.actionbarsherlock.view.MenuItem;
 import fi.hamk.demo.sensors.models.Sensor;
 
 /**
+ * Main view.
+ * 
  * @author Sami Hostikka
  */
 public class MainActivity extends SherlockFragmentActivity implements
@@ -23,6 +25,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 	Helper helper;
 	Sensor sensor;
 
+	/**
+	 * Initializes view.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +49,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		helper.status();
 	}
 
+	/**
+	 * Adds buttons to menu.
+	 * 
+	 * @return true
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(getString(R.string.refresh))
@@ -55,6 +65,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 		return true;
 	}
 
+	/**
+	 * Handles menus click events.
+	 * 
+	 * @param clicked
+	 *            menuItem
+	 * @return true
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
 		if (menuItem.getTitle().equals(getString(R.string.settings))) {
@@ -68,22 +85,34 @@ public class MainActivity extends SherlockFragmentActivity implements
 		return true;
 	}
 
+	/**
+	 * Shows fragment when tab is selected.
+	 */
 	// @Override
 	public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
 		helper.fragmentify(tab, fragmentTransaction, sensor);
 	}
 
+	/**
+	 * Shows fragment when tab is reselected.
+	 */
 	// @Override
 	public void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction) {
 		helper.fragmentify(tab, fragmentTransaction, sensor);
 	}
 
+	/**
+	 * Unregisters app
+	 */
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		utils.unregister();
 	}
 
+	/**
+	 * Registers app
+	 */
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -91,6 +120,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 		helper.status();
 	}
 
+	/**
+	 * Unregisters app
+	 */
 	@Override
 	protected void onPause() {
 		super.onPause();

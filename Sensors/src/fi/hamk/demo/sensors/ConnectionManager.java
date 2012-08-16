@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import android.content.Context;
 
 /**
+ * Connection manager dominates connections.
+ * 
  * @author Sami Hostikka
  */
 public class ConnectionManager {
@@ -17,22 +19,39 @@ public class ConnectionManager {
 	ArrayList<Runnable> queue = new ArrayList<Runnable>();
 	static ConnectionManager connectionManager;
 
+	/**
+	 * Return connection manager instance.
+	 * 
+	 * @return connection manager instance.
+	 */
 	public static ConnectionManager getConnectionManager() {
 		if (connectionManager == null)
 			connectionManager = new ConnectionManager();
 		return connectionManager;
 	}
 
+	/**
+	 * Adds connections to transmission queue.
+	 * 
+	 * @param runnable
+	 *            connection thread
+	 */
 	public void add(Runnable runnable) {
 		queue.add(runnable);
 		next();
 	}
 
+	/**
+	 * Flushes transmission queue and current connections.
+	 */
 	public void flush() {
 		queue.clear();
 		running.clear();
 	}
 
+	/**
+	 * Executes next transmission.
+	 */
 	private void next() {
 		if (!queue.isEmpty()
 				&& running.size() < Conf.CONNECTION_MANAGER_WORKERS) {
@@ -43,11 +62,23 @@ public class ConnectionManager {
 		}
 	}
 
+	/**
+	 * Removes executed connection.
+	 * 
+	 * @param runnable
+	 *            executed connection
+	 */
 	public void done(Runnable runnable) {
 		running.remove(runnable);
 		next();
 	}
 
+	/**
+	 * Saves queues to file.
+	 * 
+	 * @param context
+	 *            current application context
+	 */
 	public void save(Context context) {
 		ObjectOutputStream objectOutputStream = null;
 		try {
@@ -66,6 +97,12 @@ public class ConnectionManager {
 		}
 	}
 
+	/**
+	 * Loads saved queue from file.
+	 * 
+	 * @param context
+	 *            current application context.
+	 */
 	@SuppressWarnings("unchecked")
 	public void load(Context context) {
 		if (queue.isEmpty() && running.isEmpty()) {
@@ -88,6 +125,11 @@ public class ConnectionManager {
 		next();
 	}
 
+	/**
+	 * Returns current queue size
+	 * 
+	 * @return current queue size
+	 */
 	public int status() {
 		return queue.size() + running.size();
 	}
