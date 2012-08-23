@@ -1,0 +1,94 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="fi.hamk.demo.sensors.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <controls:Pivot Title="SENSORS">
+            <controls:PivotItem Header="device">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="manufacturer" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="manufacturer" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="model" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="model" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="OS version" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="version" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+            <controls:PivotItem Header="location">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="altitude" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="altitude" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="latitude" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="latitude" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="longitude" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="longitude" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="speed" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="speed" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+            <controls:PivotItem Header="network">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="operator" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="telco" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="technology" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="technology" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="roaming" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="roaming" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+            <controls:PivotItem Header="sensors">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="accelerometer" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="X" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="accelerometerx" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="Y" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="accelerometery" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="Z" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="accelerometerz" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="gyroscope" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="X" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="gyroscopex" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="Y" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="gyroscopey" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="Z" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="gyroscopez" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="magnetometer" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="X" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="magnetometerx" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="Y" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="magnetometery" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="Z" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="magnetometerz" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="appbarrefreshrest.png" Text="Refresh" Click="ApplicationBarIconButton_Click"/>
+            <!--<shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Settings"/>
+            </shell:ApplicationBar.MenuItems>-->
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
